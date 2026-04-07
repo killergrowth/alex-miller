@@ -167,8 +167,16 @@
             font-weight: 700;
             white-space: nowrap;
         }
+        .service-areas-page .location-grid {
+            row-gap: 24px;
+        }
+        .service-areas-page .location-grid > [class*="col-"] {
+            display: flex;
+        }
         .service-areas-page .location-card {
+            width: 100%;
             height: 100%;
+            min-height: 100%;
             padding: 24px 22px;
             background: #ffffff;
             border: 1px solid rgba(13,27,62,0.08);
@@ -232,21 +240,7 @@
                 <h3>Wichita Metro &amp; Surrounding Communities</h3>
                 <div class="region-badge">Closest Coverage Area</div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
-                    <div class="location-card">
-                        <h5>Wichita, KS</h5>
-                        <p>Real estate &amp; land auctions in Wichita and Sedgwick County.</p>
-                        <a href="/locations/wichita-ks/">Learn More &rarr;</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
-                    <div class="location-card">
-                        <h5>Derby, KS</h5>
-                        <p>Auction services in Derby and southern Sedgwick County.</p>
-                        <a href="/locations/derby-ks/">Learn More &rarr;</a>
-                    </div>
-                </div>
+            <div class="row location-grid">
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
                     <div class="location-card">
                         <h5>Andover, KS</h5>
@@ -263,16 +257,16 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
                     <div class="location-card">
-                        <h5>Haysville, KS</h5>
-                        <p>Auction services in Haysville and south Sedgwick County.</p>
-                        <a href="/locations/haysville-ks/">Learn More &rarr;</a>
+                        <h5>Bel Aire, KS</h5>
+                        <p>Serving Bel Aire and northeast Wichita.</p>
+                        <a href="/locations/bel-aire-ks/">Learn More &rarr;</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
                     <div class="location-card">
-                        <h5>Valley Center, KS</h5>
-                        <p>Real estate auctions in Valley Center and north Sedgwick County.</p>
-                        <a href="/locations/valley-center-ks/">Learn More &rarr;</a>
+                        <h5>Derby, KS</h5>
+                        <p>Auction services in Derby and southern Sedgwick County.</p>
+                        <a href="/locations/derby-ks/">Learn More &rarr;</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
@@ -280,6 +274,20 @@
                         <h5>Goddard, KS</h5>
                         <p>Serving Goddard and west Sedgwick County.</p>
                         <a href="/locations/goddard-ks/">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
+                    <div class="location-card">
+                        <h5>Haysville, KS</h5>
+                        <p>Auction services in Haysville and south Sedgwick County.</p>
+                        <a href="/locations/haysville-ks/">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
+                    <div class="location-card">
+                        <h5>Kechi, KS</h5>
+                        <p>Auction services in Kechi and north Wichita metro.</p>
+                        <a href="/locations/kechi-ks/">Learn More &rarr;</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
@@ -298,16 +306,16 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
                     <div class="location-card">
-                        <h5>Bel Aire, KS</h5>
-                        <p>Serving Bel Aire and northeast Wichita.</p>
-                        <a href="/locations/bel-aire-ks/">Learn More &rarr;</a>
+                        <h5>Valley Center, KS</h5>
+                        <p>Real estate auctions in Valley Center and north Sedgwick County.</p>
+                        <a href="/locations/valley-center-ks/">Learn More &rarr;</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
                     <div class="location-card">
-                        <h5>Kechi, KS</h5>
-                        <p>Auction services in Kechi and north Wichita metro.</p>
-                        <a href="/locations/kechi-ks/">Learn More &rarr;</a>
+                        <h5>Wichita, KS</h5>
+                        <p>Real estate &amp; land auctions in Wichita and Sedgwick County.</p>
+                        <a href="/locations/wichita-ks/">Learn More &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -323,14 +331,7 @@
                 <h3>South-Central Kansas</h3>
                 <div class="region-badge">Expanded Rural Reach</div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
-                    <div class="location-card">
-                        <h5>Hutchinson, KS</h5>
-                        <p>Real estate &amp; land auctions in Hutchinson and Reno County.</p>
-                        <a href="/locations/hutchinson-ks/">Learn More &rarr;</a>
-                    </div>
-                </div>
+            <div class="row location-grid">
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
                     <div class="location-card">
                         <h5>El Dorado, KS</h5>
@@ -340,9 +341,16 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
                     <div class="location-card">
-                        <h5>Newton, KS</h5>
-                        <p>Auction services in Newton and Harvey County.</p>
-                        <a href="/locations/newton-ks/">Learn More &rarr;</a>
+                        <h5>Hutchinson, KS</h5>
+                        <p>Real estate &amp; land auctions in Hutchinson and Reno County.</p>
+                        <a href="/locations/hutchinson-ks/">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
+                    <div class="location-card">
+                        <h5>Lyons, KS</h5>
+                        <p>Real estate auctions in Lyons and Rice County.</p>
+                        <a href="/locations/lyons-ks/">Learn More &rarr;</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
@@ -350,6 +358,13 @@
                         <h5>McPherson, KS</h5>
                         <p>Real estate auctions in McPherson and McPherson County.</p>
                         <a href="/locations/mcpherson-ks/">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
+                    <div class="location-card">
+                        <h5>Newton, KS</h5>
+                        <p>Auction services in Newton and Harvey County.</p>
+                        <a href="/locations/newton-ks/">Learn More &rarr;</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
@@ -366,13 +381,6 @@
                         <a href="/locations/wellington-ks/">Learn More &rarr;</a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
-                    <div class="location-card">
-                        <h5>Lyons, KS</h5>
-                        <p>Real estate auctions in Lyons and Rice County.</p>
-                        <a href="/locations/lyons-ks/">Learn More &rarr;</a>
-                    </div>
-                </div>
             </div>
             </div>
         </div>
@@ -386,19 +394,19 @@
                 <h3>North-Central &amp; Western Kansas</h3>
                 <div class="region-badge">Broader Market Coverage</div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
-                    <div class="location-card">
-                        <h5>Salina, KS</h5>
-                        <p>Real estate &amp; land auctions in Salina and Saline County.</p>
-                        <a href="/locations/salina-ks/">Learn More &rarr;</a>
-                    </div>
-                </div>
+            <div class="row location-grid">
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
                     <div class="location-card">
                         <h5>Great Bend, KS</h5>
                         <p>Serving Great Bend and Barton County with auction services.</p>
                         <a href="/locations/great-bend-ks/">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-24">
+                    <div class="location-card">
+                        <h5>Salina, KS</h5>
+                        <p>Real estate &amp; land auctions in Salina and Saline County.</p>
+                        <a href="/locations/salina-ks/">Learn More &rarr;</a>
                     </div>
                 </div>
             </div>
