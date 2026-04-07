@@ -18,7 +18,7 @@ export async function onRequestPost(context) {
       return Response.redirect(new URL('/contact.html?error=1', context.request.url).toString(), 302);
     }
 
-    const destination = 'alex@alexmillerauctions.com';
+    const destination = 'brickley@killergrowth.com';
     const subject = `New website inquiry from ${name}`;
 
     const lines = [
