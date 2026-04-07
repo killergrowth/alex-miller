@@ -10,15 +10,15 @@
    ============================================= */
 :root {
   --navy:      #0d1b3e;
-  --navy-mid:  #162447;
+  --navy-mid:  #0d1b3e;
   --navy-light:#1f3a6e;
   --gold:      #c9a227;
-  --gold-light:#e0b840;
+  --gold-light:#d4ac2c;
   --gold-dark: #a07e1a;
   --white:     #ffffff;
   --gray-light:#f5f5f5;
-  --gray-text: #666666;
-  --body-text: #333333;
+  --gray-text: #555555;
+  --body-text: #1a1a1a;
 }
 
 /* =============================================
@@ -29,8 +29,17 @@ body {
   font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
 }
 
-a { color: var(--gold); }
+/* Body links: navy is readable on white; gold accent on dark BGs is handled in context */
+a { color: var(--navy); }
 a:hover { color: var(--gold-dark); text-decoration: none; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--navy);
+}
+
+p {
+  color: var(--body-text);
+}
 
 /* =============================================
    TOP HEADER BAR
@@ -46,33 +55,80 @@ a:hover { color: var(--gold-dark); text-decoration: none; }
 /* =============================================
    STICKY NAV
    ============================================= */
-.menu-area {
-  background-color: var(--navy-mid);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+
+/* Kill the gold pseudo-element from template that creates gold panel in nav */
+.menu-area::before {
+  display: none !important;
+  content: none !important;
 }
-.sticky-menu {
+
+/* Nav background: always dark navy */
+.menu-area,
+.menu-area.sticky-menu,
+.sticky-menu,
+.sticky-menu .second-menu {
+  background: var(--navy) !important;
   background-color: var(--navy) !important;
-  box-shadow: 0 3px 16px rgba(0,0,0,0.35) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3) !important;
 }
-#mobile-menu ul li a {
+
+/* All nav links: white text on navy */
+.main-menu ul li a,
+#mobile-menu ul li a,
+.second-menu .main-menu ul li a {
   color: rgba(255,255,255,0.9) !important;
   font-weight: 500;
 }
+
+/* Nav link hover & active: gold accent */
+.main-menu ul li a:hover,
+.main-menu ul li:hover > a,
 #mobile-menu ul li a:hover,
+.main-menu ul li.active > a,
+.main-menu ul li.current > a,
 #mobile-menu ul li.active > a {
   color: var(--gold) !important;
 }
+
+/* Contact CTA button in nav: gold bg + navy text â€” high contrast */
+.main-menu ul li a.top-btn,
 #mobile-menu ul li a.top-btn {
   background-color: var(--gold) !important;
   color: var(--navy) !important;
   border-radius: 4px;
-  padding: 8px 20px !important;
+  padding: 8px 22px !important;
   font-weight: 700;
   letter-spacing: 0.03em;
+  line-height: 1.4;
+  display: inline-block;
 }
+.main-menu ul li a.top-btn:hover,
 #mobile-menu ul li a.top-btn:hover {
-  background-color: var(--gold-light) !important;
+  background-color: var(--gold-dark) !important;
+  color: var(--navy) !important;
 }
+
+/* Dropdown / submenu: white bg, navy text */
+.main-menu .has-sub > ul,
+.main-menu .has-sub > ul > .has-sub > ul,
+.main-menu .has-sub > ul > .has-sub > ul > .has-sub > ul {
+  background-color: #ffffff !important;
+  border-top: 3px solid var(--gold) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+}
+.main-menu .has-sub li a,
+.main-menu .has-sub > ul li a {
+  color: var(--navy) !important;
+  font-weight: 500;
+}
+.main-menu .has-sub li a:hover,
+.main-menu .has-sub > ul li a:hover,
+.main-menu .has-sub a:hover {
+  color: var(--navy) !important;
+  background-color: #f5f5f5 !important;
+}
+
+/* Mobile hamburger icon */
 .responsive i { color: var(--white); }
 
 /* =============================================
@@ -125,7 +181,7 @@ a:hover { color: var(--gold-dark); text-decoration: none; }
 /* =============================================
    ABOUT SECTION
    ============================================= */
-.about-area .about-content p { color: var(--gray-text); }
+.about-area .about-content p { color: var(--body-text); }
 .about-text.second-about {
   background-color: var(--navy);
   color: var(--white);
@@ -179,7 +235,7 @@ a:hover { color: var(--gold-dark); text-decoration: none; }
    CHOOSE / FEATURE SPLIT
    ============================================= */
 .choose-content .choose-list li i { color: var(--gold); }
-.choose-content .choose-list li { color: var(--gray-text); }
+.choose-content .choose-list li { color: var(--body-text); }
 
 /* =============================================
    TESTIMONIALS
@@ -298,8 +354,8 @@ a:hover { color: var(--gold-dark); text-decoration: none; }
   border-color: var(--gold);
 }
 .location-card h5 { color: var(--navy); font-weight: 700; margin-bottom: 6px; }
-.location-card p { color: var(--gray-text); font-size: 14px; margin: 0; }
-.location-card a { color: var(--gold); font-weight: 600; font-size: 14px; }
+.location-card p { color: var(--body-text); font-size: 14px; margin: 0; }
+.location-card a { color: var(--navy); font-weight: 600; font-size: 14px; }
 .location-card a:hover { color: var(--gold-dark); }
 
 /* =============================================
@@ -336,7 +392,7 @@ a:hover { color: var(--gold-dark); text-decoration: none; }
   margin-top: 4px;
 }
 .step-content h5 { color: var(--navy); font-weight: 700; }
-.step-content p { color: var(--gray-text); }
+.step-content p { color: var(--body-text); }
 
 /* =============================================
    FAQ ACCORDION
@@ -360,7 +416,7 @@ a:hover { color: var(--gold-dark); text-decoration: none; }
   line-height: 1;
 }
 .faq-item[open] summary::after { content: 'âˆ’'; }
-.faq-item p { color: var(--gray-text); margin: 12px 0 4px; }
+.faq-item p { color: var(--body-text); margin: 12px 0 4px; }
 
 /* =============================================
    MISC UTILITIES
@@ -380,3 +436,253 @@ a:hover { color: var(--gold-dark); text-decoration: none; }
   border-radius: 2px;
 }
 .divider-gold.left { margin-left: 0; }
+
+/* =============================================
+   FULL COLOR SYSTEM OVERHAUL — CONTRAST FIXES
+   (appended 2026-04-06)
+   ============================================= */
+
+/* ---- Template body text & link overrides ---- */
+body, p, li, td, th, span, div {
+  /* Ensure body copy uses dark text, not template grays */
+}
+.content-text p,
+.services-content p,
+.about-content p,
+.inner-content p,
+.blog-text p,
+.single-post p {
+  color: #1a1a1a;
+}
+
+/* ---- Fix template default: body color #252525 is ok but some areas override to #777 ---- */
+.choose-content p,
+.team-info p,
+.counter-text p,
+.price-body p {
+  color: #1a1a1a;
+}
+
+/* ---- Section backgrounds: white and light gray alternation ---- */
+/* Remove any dark non-hero section backgrounds that template may add */
+.services-area:not(.counter-area):not(.testimonial-area):not(.cta-area),
+.pricing-area,
+.blog-area {
+  background-color: #ffffff;
+}
+
+/* ---- Hero / slider overlay: ensure white text is readable on photo backgrounds ---- */
+.slider-area,
+.breadcrumb-area,
+.page-banner {
+  position: relative;
+}
+.slider-area::after,
+.page-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 27, 62, 0.55);
+  pointer-events: none;
+  z-index: 0;
+}
+.slider-area .container,
+.slider-area .row,
+.page-banner .container,
+.page-banner .row {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Template: .menu-area background was #3c3935 — hard override to navy ---- */
+.menu-area { background: #0d1b3e !important; }
+
+/* ---- Template: sticky-menu was #fff — force navy ---- */
+.sticky-menu {
+  background: #0d1b3e !important;
+  background-color: #0d1b3e !important;
+}
+
+/* ---- Template: .main-menu ul li a was color:#000000 on a potentially gold/brown bg ---- */
+.main-menu ul li > a {
+  color: rgba(255,255,255,0.92) !important;
+}
+.main-menu ul li:hover > a,
+.main-menu ul li.active > a,
+.main-menu ul li.current > a {
+  color: #c9a227 !important;
+}
+
+/* ---- top-btn (Contact) — template had dark bg w/ white; we want gold bg + navy text ---- */
+.top-btn,
+a.top-btn,
+li a.top-btn {
+  background: #c9a227 !important;
+  color: #0d1b3e !important;
+  border-radius: 4px !important;
+}
+.top-btn:hover,
+a.top-btn:hover,
+li a.top-btn:hover {
+  background: #a07e1a !important;
+  color: #0d1b3e !important;
+}
+
+/* ---- Dropdown: navy text on white background ---- */
+.main-menu .has-sub > ul {
+  background: #ffffff !important;
+  border-top: 3px solid #c9a227 !important;
+}
+.main-menu .has-sub > ul li a {
+  color: #0d1b3e !important;
+  background: transparent !important;
+}
+.main-menu .has-sub > ul li:hover > a,
+.main-menu .has-sub > ul li a:hover {
+  color: #0d1b3e !important;
+  background: #f5f5f5 !important;
+}
+
+/* ---- Buttons: primary = gold + navy text; secondary = navy + white ---- */
+.btn, .btn.ss-btn {
+  background-color: #c9a227 !important;
+  color: #0d1b3e !important;
+  border-color: #c9a227 !important;
+  font-weight: 700;
+}
+.btn:hover, .btn.ss-btn:hover {
+  background-color: #a07e1a !important;
+  border-color: #a07e1a !important;
+  color: #0d1b3e !important;
+}
+.btn.ss-btn2,
+.btn.header-btn,
+.btn-secondary {
+  background-color: #0d1b3e !important;
+  color: #ffffff !important;
+  border-color: #0d1b3e !important;
+}
+.btn.ss-btn2:hover,
+.btn.header-btn:hover,
+.btn-secondary:hover {
+  background-color: #162447 !important;
+  border-color: #162447 !important;
+  color: #ffffff !important;
+}
+
+/* ---- Service card text ---- */
+.second-services-content2 p,
+.second-services-content p,
+.services-content p {
+  color: #1a1a1a;
+}
+
+/* ---- Links in body content: navy (readable on white) ---- */
+.content-area a,
+.blog-text a,
+.about-content a,
+.services-content a {
+  color: #0d1b3e;
+  text-decoration: underline;
+}
+.content-area a:hover,
+.blog-text a:hover {
+  color: #c9a227;
+}
+
+/* ---- Header top bar: ensure navy bg (template had #f4f4fe light blue/gray) ---- */
+.second-header,
+.header-top.second-header {
+  background: #0d1b3e !important;
+  background-color: #0d1b3e !important;
+}
+.second-header .wellcome-text p,
+.header-top .wellcome-text p {
+  color: rgba(255,255,255,0.8) !important;
+}
+.second-header .header-cta ul li,
+.header-top .header-cta ul li,
+.second-header .header-cta ul li span {
+  color: rgba(255,255,255,0.85) !important;
+}
+.second-header .header-cta ul li .icon,
+.header-top .header-cta ul li .icon {
+  color: #c9a227 !important;
+}
+
+/* ---- Services icon ---- */
+.services-ico2 i,
+.services-icon i {
+  color: #c9a227 !important;
+}
+
+/* ---- Counter/stats bar (on navy bg) ---- */
+.counter-area .count,
+.counter-area h2,
+.counter-area h3,
+.counter-area h4 {
+  color: #ffffff !important;
+}
+.counter-area p,
+.counter-area span {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+/* ---- Testimonial area (navy bg) ---- */
+.testimonial-area,
+.testimonial-bg {
+  background-color: #0d1b3e !important;
+}
+.single-testimonial p {
+  color: rgba(255,255,255,0.88) !important;
+}
+.ta-info h6 { color: #c9a227 !important; }
+.ta-info span { color: rgba(255,255,255,0.65) !important; }
+
+/* ---- CTA area (likely navy or dark bg) ---- */
+.cta-area {
+  background-color: #0d1b3e !important;
+}
+.cta-area h2, .cta-area h3 { color: #ffffff !important; }
+.cta-area p { color: rgba(255,255,255,0.85) !important; }
+
+/* ---- About second panel (navy bg) ---- */
+.about-text.second-about {
+  background-color: #0d1b3e !important;
+}
+.about-text.second-about p,
+.about-text.second-about li {
+  color: rgba(255,255,255,0.85) !important;
+}
+.about-text.second-about h2,
+.about-text.second-about h3,
+.about-text.second-about h5 {
+  color: #ffffff !important;
+}
+.about-text.second-about strong { color: #c9a227 !important; }
+
+/* ---- Footer: ensure all footer text is readable on navy ---- */
+.footer-bg, .footer-bg * {
+  /* Base: all footer on navy, text defaults to light */
+}
+.footer-bg h5, .footer-bg h6 { color: #ffffff !important; }
+.footer-bg p, .footer-bg span:not(.logo-text-fallback) { color: rgba(255,255,255,0.75) !important; }
+.footer-bg a { color: rgba(255,255,255,0.75) !important; }
+.footer-bg a:hover { color: #c9a227 !important; }
+.copyright-text p { color: rgba(255,255,255,0.55) !important; }
+.copyright-text a { color: #c9a227 !important; }
+
+/* ---- Ensure no gold text on white backgrounds globally ---- */
+/* Gold is safe only on dark backgrounds or as accent borders/icons */
+/* Override any remaining light-gold-on-white scenarios */
+.s-single-services .second-services-content2 a,
+.services-link a,
+.read-more a {
+  color: #0d1b3e;
+  font-weight: 600;
+}
+.s-single-services .second-services-content2 a:hover,
+.services-link a:hover,
+.read-more a:hover {
+  color: #a07e1a;
+}
