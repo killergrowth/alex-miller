@@ -21,6 +21,9 @@ const ROOT_PAGES = [
   'services.html',
   'contact.html',
   'service-areas.html',
+  'upcoming-auctions.html',
+  'resources.html',
+  'privacy-policy.html',
 ];
 
 // Service sub-pages
