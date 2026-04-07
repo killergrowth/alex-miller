@@ -187,8 +187,10 @@
                         </div>
                         <!-- CLARK COPY: Form intro (optional short line before form fields) -->
                         <p style="color:#666; margin-bottom:24px;">No obligation. Alex will review your situation and give you an honest assessment of your options.</p>
+                        <div id="form-status-success" style="display:none; margin-bottom:18px; padding:14px 16px; border-radius:8px; background:#edf7ed; color:#1f5f2c; border:1px solid #b7dfbf;">Thanks — your message was sent directly to Alex.</div>
+                        <div id="form-status-error" style="display:none; margin-bottom:18px; padding:14px 16px; border-radius:8px; background:#fff4e5; color:#8a4b08; border:1px solid #f2d2a2;">Something went wrong sending your message. Please email Alex directly at <a href="mailto:alex@alexmillerauctions.com">alex@alexmillerauctions.com</a>.</div>
 
-                        <form action="mailto:alex@alexmillerauctions.com" method="post" enctype="text/plain" class="contact-field">
+                        <form action="/api/contact" method="post" class="contact-field">
                             <div class="row">
                                 <div class="col-md-6 mb-20">
                                     <label for="contact-name" style="color:#333; font-weight:600; font-size:14px;">Name <span style="color:#c9a227;">*</span></label>
@@ -200,7 +202,7 @@
                                 </div>
                                 <div class="col-md-6 mb-20">
                                     <label for="contact-phone" style="color:#333; font-weight:600; font-size:14px;">Phone</label>
-                                    <input id="contact-phone" class="form-control" type="tel" name="phone" placeholder="alex@alexmillerauctions.com">
+                                    <input id="contact-phone" class="form-control" type="tel" name="phone" placeholder="(316) 555-1234">
                                 </div>
                                 <div class="col-md-6 mb-20">
                                     <label for="contact-type" style="color:#333; font-weight:600; font-size:14px;">Property Type</label>
@@ -222,9 +224,13 @@
                                     <label for="contact-message" style="color:#333; font-weight:600; font-size:14px;">Tell Us More</label>
                                     <textarea id="contact-message" class="form-control c-message" name="message" rows="5" placeholder="Tell us about your property and what you&rsquo;re hoping to accomplish..."></textarea>
                                 </div>
+                                <div class="col-12" style="display:none;">
+                                    <label for="contact-website">Website</label>
+                                    <input id="contact-website" type="text" name="website" autocomplete="off" tabindex="-1">
+                                </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn header-btn">Open Email Draft</button>
-                                    <p class="form-help-text">This site currently uses direct email instead of a third-party form service. Send your details and Alex can reply personally.</p>
+                                    <button type="submit" class="btn header-btn">Send Message</button>
+                                    <p class="form-help-text">Your message will be sent directly to Alex.</p>
                                     <p style="color:#999; font-size:12px; margin-top:12px;">No spam. No pressure. Alex will respond personally.</p>
                                 </div>
                             </div>
@@ -377,5 +383,18 @@
 <script src="/js/wow.min.js"></script>
 <script src="/js/jquery.scrollUp.min.js"></script>
 <script src="/js/main.js"></script>
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const success = document.getElementById('form-status-success');
+  const error = document.getElementById('form-status-error');
+  if (params.get('success') === '1' && success) {
+    success.style.display = 'block';
+  }
+  if ((params.get('error') === '1' || params.get('error') === 'mail') && error) {
+    error.style.display = 'block';
+  }
+})();
+</script>
 </body>
 </html>
