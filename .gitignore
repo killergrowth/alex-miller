@@ -1,0 +1,8 @@
+﻿# Build output - deploy dist/ to Cloudflare Pages
+# Uncomment to exclude dist from git if preferred:
+# dist/
+
+# Temp files
+*.tmp
+Thumbs.db
+.DS_Store

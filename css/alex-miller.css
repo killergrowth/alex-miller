@@ -1,0 +1,382 @@
+/*
+ * alex-miller.css
+ * Custom brand overrides for Alex Miller Real Estate Auctions
+ * Dark Navy (#0d1b3e) + Gold (#c9a227) palette
+ * Loads after style.css to override template defaults
+ */
+
+/* =============================================
+   CSS CUSTOM PROPERTIES
+   ============================================= */
+:root {
+  --navy:      #0d1b3e;
+  --navy-mid:  #162447;
+  --navy-light:#1f3a6e;
+  --gold:      #c9a227;
+  --gold-light:#e0b840;
+  --gold-dark: #a07e1a;
+  --white:     #ffffff;
+  --gray-light:#f5f5f5;
+  --gray-text: #666666;
+  --body-text: #333333;
+}
+
+/* =============================================
+   GLOBAL TYPOGRAPHY
+   ============================================= */
+body {
+  color: var(--body-text);
+  font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+}
+
+a { color: var(--gold); }
+a:hover { color: var(--gold-dark); text-decoration: none; }
+
+/* =============================================
+   TOP HEADER BAR
+   ============================================= */
+.header-top.second-header {
+  background-color: var(--navy);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+}
+.header-top .wellcome-text p { color: rgba(255,255,255,0.7); margin: 0; }
+.header-top .header-cta ul li { color: rgba(255,255,255,0.85); }
+.header-top .header-cta ul li .icon { color: var(--gold); }
+
+/* =============================================
+   STICKY NAV
+   ============================================= */
+.menu-area {
+  background-color: var(--navy-mid);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.sticky-menu {
+  background-color: var(--navy) !important;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.35) !important;
+}
+#mobile-menu ul li a {
+  color: rgba(255,255,255,0.9) !important;
+  font-weight: 500;
+}
+#mobile-menu ul li a:hover,
+#mobile-menu ul li.active > a {
+  color: var(--gold) !important;
+}
+#mobile-menu ul li a.top-btn {
+  background-color: var(--gold) !important;
+  color: var(--navy) !important;
+  border-radius: 4px;
+  padding: 8px 20px !important;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+#mobile-menu ul li a.top-btn:hover {
+  background-color: var(--gold-light) !important;
+}
+.responsive i { color: var(--white); }
+
+/* =============================================
+   HERO / SLIDER
+   ============================================= */
+.slider-area .slider-content h2 { color: var(--white); }
+.slider-area .slider-content ul li { color: var(--white); }
+.slider-area .slider-content ul li i { color: var(--gold); }
+.slider-area .slider-price h3 { color: var(--gold); }
+.btn.ss-btn {
+  background-color: var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+}
+.btn.ss-btn:hover {
+  background-color: transparent;
+  color: var(--gold);
+}
+.btn.ss-btn.active,
+.btn.ss-btn2 {
+  background-color: transparent;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+}
+.btn.ss-btn2:hover {
+  background-color: var(--gold);
+  color: var(--navy);
+}
+
+/* =============================================
+   SECTION TITLES
+   ============================================= */
+.section-title span,
+.about-title span,
+.second-atitle span {
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+}
+.section-title h2,
+.about-title h2 {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+/* =============================================
+   ABOUT SECTION
+   ============================================= */
+.about-area .about-content p { color: var(--gray-text); }
+.about-text.second-about {
+  background-color: var(--navy);
+  color: var(--white);
+}
+.about-text.second-about strong { color: var(--gold); }
+
+/* =============================================
+   COUNTER / STATS BAR
+   ============================================= */
+.counter-area { background-color: var(--navy); }
+.single-counter i,
+.counter-area i { color: var(--gold); }
+.counter-area .count { color: var(--white); }
+.counter-area p { color: rgba(255,255,255,0.75); }
+
+/* =============================================
+   SERVICES CARDS
+   ============================================= */
+.s-single-services {
+  border: 1px solid rgba(13, 27, 62, 0.08);
+  border-radius: 6px;
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+.s-single-services:hover,
+.s-single-services.active {
+  box-shadow: 0 8px 24px rgba(13, 27, 62, 0.12);
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+.s-single-services.active { background-color: var(--navy); }
+.s-single-services.active .second-services-content2 h5,
+.s-single-services.active .second-services-content2 p,
+.s-single-services.active .second-services-content2 a { color: var(--white) !important; }
+.services-ico2 i { color: var(--gold) !important; font-size: 36px; }
+.second-services-content2 h5 { color: var(--navy); font-weight: 700; }
+.second-services-content2 a { color: var(--gold); font-weight: 600; }
+.second-services-content2 a:hover { color: var(--gold-dark); }
+
+/* Services icon-right style */
+.second-services-content h5 { color: var(--navy); font-weight: 700; }
+.services-icon i { color: var(--gold) !important; }
+
+/* =============================================
+   CTA BANNER
+   ============================================= */
+.cta-area .cta-title p { color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+.cta-area .cta-title h2 { color: var(--white); }
+.cta-area .cta-title h3 { color: var(--gold); }
+
+/* =============================================
+   CHOOSE / FEATURE SPLIT
+   ============================================= */
+.choose-content .choose-list li i { color: var(--gold); }
+.choose-content .choose-list li { color: var(--gray-text); }
+
+/* =============================================
+   TESTIMONIALS
+   ============================================= */
+.testimonial-area { background-color: var(--navy-mid); }
+.single-testimonial p { color: rgba(255,255,255,0.85); }
+.ta-info h6 { color: var(--gold); }
+.ta-info span { color: rgba(255,255,255,0.6); }
+
+/* =============================================
+   CONTACT SECTION
+   ============================================= */
+.single-cta .f-cta-icon i { color: var(--gold); }
+.single-cta h5 { color: var(--navy); }
+.contact-field input,
+.contact-field textarea {
+  border: 1px solid rgba(13,27,62,0.2);
+  border-radius: 4px;
+}
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: var(--gold);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(201,162,39,0.12);
+}
+.btn.header-btn {
+  background-color: var(--navy);
+  color: var(--white);
+  border: 2px solid var(--navy);
+  border-radius: 4px;
+  font-weight: 600;
+}
+.btn.header-btn:hover {
+  background-color: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+}
+
+/* =============================================
+   BREADCRUMB HERO
+   ============================================= */
+.breadcrumb-area {
+  background-color: var(--navy);
+  background-blend-mode: multiply;
+}
+.breadcrumb-title h2 { color: var(--white); }
+.breadcrumb-item a { color: var(--gold); }
+.breadcrumb-item.active { color: rgba(255,255,255,0.7); }
+.breadcrumb-item + .breadcrumb-item::before { color: var(--gold); }
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer-bg {
+  background-color: var(--navy) !important;
+  color: rgba(255,255,255,0.8);
+}
+.f-widget-title h5 {
+  color: var(--white);
+  font-weight: 700;
+  border-bottom: 2px solid var(--gold);
+  display: inline-block;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+.footer-link ul li a {
+  color: rgba(255,255,255,0.7);
+  transition: color 0.2s;
+}
+.footer-link ul li a:hover { color: var(--gold); padding-left: 4px; }
+.footer-text p { color: rgba(255,255,255,0.65); }
+.footer-social a {
+  background-color: var(--navy-light);
+  color: var(--white);
+  margin-right: 6px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.2s;
+}
+.footer-social a:hover { background-color: var(--gold); color: var(--navy); }
+.footer-social span { color: rgba(255,255,255,0.6); margin-right: 10px; font-weight: 600; font-size: 13px; }
+.copyright-wrap {
+  background-color: rgba(0,0,0,0.25);
+  padding: 18px 0;
+}
+.copyright-text p {
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+  margin: 0;
+}
+.copyright-text a { color: var(--gold); }
+.footer-brokered {
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* =============================================
+   SERVICE AREAS / LOCATION GRID
+   ============================================= */
+.location-card {
+  background: var(--white);
+  border: 1px solid rgba(13,27,62,0.1);
+  border-radius: 6px;
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+}
+.location-card:hover {
+  box-shadow: 0 6px 20px rgba(13,27,62,0.1);
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.location-card h5 { color: var(--navy); font-weight: 700; margin-bottom: 6px; }
+.location-card p { color: var(--gray-text); font-size: 14px; margin: 0; }
+.location-card a { color: var(--gold); font-weight: 600; font-size: 14px; }
+.location-card a:hover { color: var(--gold-dark); }
+
+/* =============================================
+   REGION HEADINGS (SERVICE AREAS PAGE)
+   ============================================= */
+.region-heading {
+  border-left: 4px solid var(--gold);
+  padding-left: 14px;
+  margin: 40px 0 24px;
+}
+.region-heading h3 { color: var(--navy); font-weight: 700; margin: 0; }
+
+/* =============================================
+   AUCTION 101 / EDUCATIONAL SECTIONS
+   ============================================= */
+.step-card {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+.step-number {
+  background-color: var(--navy);
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 20px;
+  margin-top: 4px;
+}
+.step-content h5 { color: var(--navy); font-weight: 700; }
+.step-content p { color: var(--gray-text); }
+
+/* =============================================
+   FAQ ACCORDION
+   ============================================= */
+.faq-item { border-bottom: 1px solid rgba(13,27,62,0.1); padding: 16px 0; }
+.faq-item summary {
+  color: var(--navy);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  padding-right: 24px;
+  position: relative;
+}
+.faq-item summary::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  color: var(--gold);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+}
+.faq-item[open] summary::after { content: '−'; }
+.faq-item p { color: var(--gray-text); margin: 12px 0 4px; }
+
+/* =============================================
+   MISC UTILITIES
+   ============================================= */
+.text-gold { color: var(--gold); }
+.text-navy { color: var(--navy); }
+.bg-navy { background-color: var(--navy); }
+.bg-gold { background-color: var(--gold); }
+.bg-light-gray { background-color: var(--gray-light); }
+.section-pad { padding: 80px 0; }
+.section-pad-sm { padding: 50px 0; }
+.divider-gold {
+  width: 48px;
+  height: 3px;
+  background: var(--gold);
+  margin: 12px auto 24px;
+  border-radius: 2px;
+}
+.divider-gold.left { margin-left: 0; }
