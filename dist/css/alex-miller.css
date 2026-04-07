@@ -368,6 +368,10 @@ p {
   padding-bottom: 6px;
   margin-bottom: 16px;
 }
+.f-widget-title h5::before {
+  display: none !important;
+  content: none !important;
+}
 .footer-link ul li a {
   color: rgba(255,255,255,0.7);
   transition: color 0.2s;
