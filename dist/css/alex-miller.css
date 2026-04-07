@@ -438,7 +438,7 @@ p {
 .divider-gold.left { margin-left: 0; }
 
 /* =============================================
-   FULL COLOR SYSTEM OVERHAUL — CONTRAST FIXES
+   FULL COLOR SYSTEM OVERHAUL ï¿½ CONTRAST FIXES
    (appended 2026-04-06)
    ============================================= */
 
@@ -482,7 +482,7 @@ body, p, li, td, th, span, div {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(13, 27, 62, 0.55);
+  background: rgba(13, 27, 62, 0.65);
   pointer-events: none;
   z-index: 0;
 }
@@ -494,10 +494,10 @@ body, p, li, td, th, span, div {
   z-index: 1;
 }
 
-/* ---- Template: .menu-area background was #3c3935 — hard override to navy ---- */
+/* ---- Template: .menu-area background was #3c3935 ï¿½ hard override to navy ---- */
 .menu-area { background: #0d1b3e !important; }
 
-/* ---- Template: sticky-menu was #fff — force navy ---- */
+/* ---- Template: sticky-menu was #fff ï¿½ force navy ---- */
 .sticky-menu {
   background: #0d1b3e !important;
   background-color: #0d1b3e !important;
@@ -513,7 +513,7 @@ body, p, li, td, th, span, div {
   color: #c9a227 !important;
 }
 
-/* ---- top-btn (Contact) — template had dark bg w/ white; we want gold bg + navy text ---- */
+/* ---- top-btn (Contact) ï¿½ template had dark bg w/ white; we want gold bg + navy text ---- */
 .top-btn,
 a.top-btn,
 li a.top-btn {
