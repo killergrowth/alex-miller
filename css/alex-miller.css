@@ -390,6 +390,55 @@ li a.top-btn:hover {
   border-radius: 6px;
 }
 
+.contact-info {
+  padding: 28px 28px 8px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(13,27,62,0.12);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(13,27,62,0.08);
+}
+.contact-info .single-cta {
+  border-bottom: 1px solid rgba(13,27,62,0.12) !important;
+  padding: 0 0 22px;
+  margin-bottom: 22px !important;
+}
+.contact-info div.single-cta:last-child {
+  border-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+.contact-info h5,
+.contact-info .single-cta h5 {
+  color: var(--navy) !important;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.contact-info p,
+.contact-info .single-cta p,
+.contact-info .single-cta p a {
+  color: #4a5565 !important;
+}
+.contact-info .f-cta-icon {
+  width: 54px;
+  min-width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(201,162,39,0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 18px !important;
+}
+.contact-info .f-cta-icon i {
+  margin-bottom: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  line-height: 1 !important;
+  background: transparent !important;
+  color: var(--gold) !important;
+  font-size: 22px !important;
+}
+
 .counter-area .count,
 .counter-area h2,
 .counter-area h3,
