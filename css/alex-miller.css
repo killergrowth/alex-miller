@@ -108,24 +108,51 @@ p {
   color: var(--navy) !important;
 }
 
-/* Dropdown / submenu: white bg, navy text */
+/* Dropdown / submenu: force white background + navy text */
+.main-menu li.has-sub,
+.main-menu li.has-sub:hover,
+.main-menu li.has-sub:focus-within {
+  background: transparent !important;
+}
 .main-menu .has-sub > ul,
 .main-menu .has-sub > ul > .has-sub > ul,
-.main-menu .has-sub > ul > .has-sub > ul > .has-sub > ul {
+.main-menu .has-sub > ul > .has-sub > ul > .has-sub > ul,
+.main-menu ul li.has-sub ul,
+.main-menu ul li.has-sub ul li,
+.main-menu ul li.has-sub ul li a {
+  background: #ffffff !important;
   background-color: #ffffff !important;
+}
+.main-menu .has-sub > ul,
+.main-menu .has-sub > ul > .has-sub > ul,
+.main-menu .has-sub > ul > .has-sub > ul > .has-sub > ul,
+.main-menu ul li.has-sub ul {
   border-top: 3px solid var(--gold) !important;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+  box-shadow: 0 12px 30px rgba(13,27,62,0.14) !important;
+}
+.main-menu .has-sub li,
+.main-menu .has-sub > ul li,
+.main-menu ul li.has-sub ul li {
+  border-bottom: 1px solid rgba(13,27,62,0.12) !important;
+}
+.main-menu .has-sub li:last-child,
+.main-menu .has-sub > ul li:last-child,
+.main-menu ul li.has-sub ul li:last-child {
+  border-bottom: none !important;
 }
 .main-menu .has-sub li a,
-.main-menu .has-sub > ul li a {
+.main-menu .has-sub > ul li a,
+.main-menu ul li.has-sub ul li a {
   color: var(--navy) !important;
   font-weight: 500;
 }
 .main-menu .has-sub li a:hover,
 .main-menu .has-sub > ul li a:hover,
-.main-menu .has-sub a:hover {
+.main-menu .has-sub a:hover,
+.main-menu ul li.has-sub ul li:hover > a {
   color: var(--navy) !important;
-  background-color: #f5f5f5 !important;
+  background: #f5f7fb !important;
+  background-color: #f5f7fb !important;
 }
 
 /* Mobile hamburger icon */
@@ -134,8 +161,10 @@ p {
 /* Sitewide nav/utility contrast cleanup */
 .menu-area .main-menu > nav > ul > li > a,
 .sticky-menu .main-menu > nav > ul > li > a,
-.header-area .main-menu > nav > ul > li > a {
+.header-area .main-menu > nav > ul > li > a,
+.main-menu > nav > ul > li > a {
   color: rgba(255,255,255,0.92) !important;
+  background: transparent !important;
 }
 .menu-area .main-menu > nav > ul > li:hover > a,
 .menu-area .main-menu > nav > ul > li.active > a,
@@ -145,8 +174,17 @@ p {
 .sticky-menu .main-menu > nav > ul > li.current > a,
 .header-area .main-menu > nav > ul > li:hover > a,
 .header-area .main-menu > nav > ul > li.active > a,
-.header-area .main-menu > nav > ul > li.current > a {
+.header-area .main-menu > nav > ul > li.current > a,
+.main-menu > nav > ul > li:hover > a,
+.main-menu > nav > ul > li.active > a,
+.main-menu > nav > ul > li.current > a {
   color: #c9a227 !important;
+  background: transparent !important;
+}
+.main-menu ul li.current a,
+.main-menu ul li.has-sub .current a {
+  color: #c9a227 !important;
+  background: transparent !important;
 }
 .breadcrumb-wrap,
 .breadcrumb-wrap a,
