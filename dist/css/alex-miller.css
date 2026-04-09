@@ -300,15 +300,15 @@ li a.top-btn:hover {
 .content-area p {
   color: var(--body-text) !important;
 }
+/* About badge (orange/gold box) — force text dark so it's readable on gold background */
+.about-text.second-about strong,
+.about-text.second-about span {
+  color: var(--navy) !important;
+}
+
 .about-text span,
-.about-text.second-about strong,
-.about-text.second-about span,
-.about-text.second-about strong,
-.about-text.second-about p span,
 .ta-info h6,
 .single-cta .f-cta-icon i,
-.services-ico2 i,
-.services-icon i,
 .features-content h4 a:hover,
 .services-content h4:hover a,
 .blog-content h4:hover a,
@@ -319,6 +319,13 @@ li a.top-btn:hover {
 .second-services-content h5 a,
 .second-services-content2 h5 a {
   color: var(--gold) !important;
+}
+
+/* Services icons — orange circle, black icon for contrast */
+.services-ico2 i,
+.services-icon i {
+  background: var(--gold) !important;
+  color: #000000 !important;
 }
 
 .features-area,
