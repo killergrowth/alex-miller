@@ -607,3 +607,54 @@ li a.top-btn:hover {
     text-align: center;
   }
 }
+
+/* =============================================
+   STATIC HERO — Mobile / Tablet responsive
+   ============================================= */
+
+/* Tablet (≤991px) */
+@media (max-width: 991px) {
+  #home h2 {
+    font-size: clamp(32px, 7vw, 50px) !important;
+    letter-spacing: 0 !important;
+  }
+  #home h2 span[style*="white-space:nowrap"] {
+    white-space: normal !important;
+  }
+  #home p {
+    font-size: 15px !important;
+  }
+  #home .btn {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+}
+
+/* Mobile (≤575px) */
+@media (max-width: 575px) {
+  #home {
+    min-height: 520px !important;
+    padding: 80px 0 60px;
+  }
+  #home h2 {
+    font-size: clamp(28px, 9vw, 40px) !important;
+    line-height: 1.15 !important;
+    white-space: normal !important;
+  }
+  #home h2 span[style*="white-space:nowrap"] {
+    white-space: normal !important;
+  }
+  #home p {
+    font-size: 14px !important;
+  }
+  #home .btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-right: 0 !important;
+    margin-bottom: 12px;
+  }
+  #home .col-lg-9 {
+    padding: 0 16px;
+  }
+}
