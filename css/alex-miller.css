@@ -473,6 +473,13 @@ li a.top-btn:hover {
 .single-testimonial p {
   color: var(--white) !important;
 }
+/* Override for white cards inside testimonial-area — text must be navy */
+.testimonial-area [style*="background:#fff"] h3,
+.testimonial-area [style*="background:#fff"] h4,
+.testimonial-area [style*="background:#fff"] p,
+.testimonial-area [style*="background:#fff"] li {
+  color: #0d1b3e !important;
+}
 .counter-area p,
 .counter-area span,
 .testimonial-area span,
