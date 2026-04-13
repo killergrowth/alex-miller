@@ -154,57 +154,87 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="pt-40 pb-80 bg-light-gray">
+    <section class="pt-60 pb-80" style="background:#f5f5f5;">
         <div class="container">
             <div class="section-title text-center mb-50 wow fadeInDown animated">
                 <span>Common Questions</span>
                 <h2>Frequently Asked Questions</h2>
                 <div class="divider-gold"></div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-
-                    <!-- CLARK COPY: FAQ answers below -->
-                    <details class="faq-item">
+            <style>
+                .faq-card {
+                    background:#fff;
+                    border-left: 4px solid #c9a227;
+                    border-radius: 6px;
+                    padding: 20px 24px;
+                    margin-bottom: 20px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+                    transition: box-shadow 0.2s;
+                }
+                .faq-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+                .faq-card summary {
+                    font-weight: 700;
+                    color: #0d1b3e;
+                    font-size: 15px;
+                    cursor: pointer;
+                    list-style: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 12px;
+                }
+                .faq-card summary::-webkit-details-marker { display: none; }
+                .faq-card summary::after {
+                    content: '+';
+                    font-size: 22px;
+                    color: #c9a227;
+                    flex-shrink: 0;
+                    line-height: 1;
+                }
+                .faq-card[open] summary::after { content: '−'; }
+                .faq-card p {
+                    margin: 14px 0 0;
+                    color: #555;
+                    font-size: 14px;
+                    line-height: 1.7;
+                }
+            </style>
+            <div class="row">
+                <div class="col-lg-6">
+                    <details class="faq-card">
                         <summary>Is there a minimum price (reserve) in a real estate auction?</summary>
                         <p>It depends on the type of auction. Some auctions are &ldquo;absolute&rdquo; &mdash; meaning the property sells to the highest bidder regardless of price. Others have a reserve price the seller must approve. Alex will discuss which approach makes sense for your property and goals.</p>
                     </details>
-
-                    <details class="faq-item">
+                    <details class="faq-card">
                         <summary>What does &ldquo;sold as-is&rdquo; mean in a real estate auction?</summary>
                         <p>It means the property is sold in its current condition. Buyers are expected to do their due diligence during the inspection period before auction day. There are no inspection or repair contingencies after the hammer falls.</p>
                     </details>
-
-                    <details class="faq-item">
+                    <details class="faq-card">
                         <summary>How do I know what the property is worth before bidding?</summary>
                         <p>Do your research before auction day. Attend the inspection, review comparable sales in the area, and set your maximum bid in advance based on your own analysis &mdash; not auction-day excitement.</p>
                     </details>
-
-                    <details class="faq-item">
+                    <details class="faq-card">
                         <summary>How is a real estate auctioneer compensated?</summary>
-                        <p><!-- CLARK COPY: Explain Alex's fee structure / buyer's premium if applicable --> Compensation structures vary. Alex will clearly explain all fees upfront during your consultation. Typically, fees are built into the purchase price as a buyer&rsquo;s premium, or charged to the seller as a commission &mdash; or a combination of both. You&rsquo;ll always know the terms before participating.</p>
+                        <p>Compensation structures vary. Alex will clearly explain all fees upfront during your consultation. Typically, fees are built into the purchase price as a buyer&rsquo;s premium, or charged to the seller as a commission &mdash; or a combination of both. You&rsquo;ll always know the terms before participating.</p>
                     </details>
-
-                    <details class="faq-item">
+                </div>
+                <div class="col-lg-6">
+                    <details class="faq-card">
                         <summary>Do I need to be pre-approved for financing before the auction?</summary>
                         <p>Yes &mdash; strongly recommended. If you&rsquo;re the high bidder, you&rsquo;ll be signing a purchase agreement that day. The timeline moves fast. Have your financing in order and your earnest money ready before you bid.</p>
                     </details>
-
-                    <details class="faq-item">
+                    <details class="faq-card">
                         <summary>What happens if no one meets the reserve price?</summary>
                         <p>If an auction has a reserve and bidding doesn&rsquo;t reach it, the seller is not obligated to sell. Alex will work with the seller and highest bidder to see if a deal can be reached post-auction, but there are no guarantees.</p>
                     </details>
-
-                    <details class="faq-item">
+                    <details class="faq-card">
                         <summary>Can I sell my property if I still have a mortgage?</summary>
                         <p>Yes, in most cases. The outstanding mortgage is typically paid off at closing from the sale proceeds, just like in a traditional sale. Consult with your lender and Alex during the planning phase to confirm your specific situation.</p>
                     </details>
-
-                    <details class="faq-item">
+                    <details class="faq-card">
                         <summary>How long does the auction process take from start to close?</summary>
-                        <p><!-- CLARK COPY: Typical timeline from listing to close --> Typically 4&ndash;8 weeks from the consultation and listing agreement to auction day, with closing following 30&ndash;45 days after the auction. This is one of the major advantages over a traditional listing, which can take 3&ndash;6+ months.</p>
+                        <p>Typically 4&ndash;8 weeks from the consultation and listing agreement to auction day, with closing following 30&ndash;45 days after the auction. This is one of the major advantages over a traditional listing, which can take 3&ndash;6+ months.</p>
                     </details>
-
                 </div>
             </div>
         </div>
