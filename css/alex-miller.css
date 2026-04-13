@@ -300,11 +300,12 @@ li a.top-btn:hover {
 .content-area p {
   color: var(--body-text) !important;
 }
-/* About badge (orange/gold box) — remove fixed height so both lines show, force dark text */
+/* About badge (orange/gold box) — remove fixed height/width so both lines show, force dark text */
 .about-text,
 .about-text.second-about {
   height: auto !important;
   min-height: 0 !important;
+  width: auto !important;
 }
 .about-text.second-about strong,
 .about-text.second-about span {
