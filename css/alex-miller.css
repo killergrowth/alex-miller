@@ -628,6 +628,21 @@ li a.top-btn:hover {
     display: inline-block;
     margin-bottom: 10px;
   }
+  /* Center all buttons sitewide on tablet */
+  .slider-btn,
+  .cta-title,
+  .slider-content,
+  .about-content .slider-btn,
+  [class*="col-"] > .btn,
+  .text-left .btn,
+  .btn-wrapper,
+  div > .btn {
+    text-align: center !important;
+  }
+  .btn, .ss-btn, .ss-btn2 {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
 }
 
 /* Mobile (≤575px) */
@@ -647,14 +662,21 @@ li a.top-btn:hover {
   #home p {
     font-size: 14px !important;
   }
-  #home .btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin-right: 0 !important;
-    margin-bottom: 12px;
-  }
   #home .col-lg-9 {
     padding: 0 16px;
+    text-align: center;
+  }
+  /* Center + stack all buttons sitewide on mobile */
+  .btn, .ss-btn, .ss-btn2, .header-btn {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 12px auto !important;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  div > .btn + .btn,
+  div > .ss-btn + .ss-btn2 {
+    margin-top: 4px;
   }
 }
