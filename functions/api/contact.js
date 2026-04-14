@@ -24,12 +24,12 @@ function base64url(buffer) {
     .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 }
 
-async function getGmailAccessToken(clientEmail, privateKeyPem) {
+async function getGmailAccessToken(clientEmail, privateKeyPem, subject) {
   const now = Math.floor(Date.now() / 1000);
   const header  = { alg: 'RS256', typ: 'JWT' };
   const payload = {
     iss:   clientEmail,
-    sub:   clientEmail,
+    sub:   subject,
     scope: 'https://www.googleapis.com/auth/gmail.send',
     aud:   'https://oauth2.googleapis.com/token',
     iat:   now,
@@ -217,9 +217,10 @@ export async function onRequestPost(context) {
       return Response.redirect(new URL('/contact.html?error=1', context.request.url).toString(), 302);
     }
 
-    const to      = context.env.TO_EMAIL      || 'corrie@killergrowth.com';
-    const from    = `Alex Miller Auctions <${context.env.FROM_EMAIL || 'notifications@killergrowth.com'}>`;
-    const subject = `New Inquiry from ${name} — Alex Miller Auctions`;
+    const fromEmail = context.env.FROM_EMAIL || 'notifications@killergrowth.com';
+    const to        = context.env.TO_EMAIL   || 'corrie@killergrowth.com';
+    const from      = `Alex Miller Auctions <${fromEmail}>`;
+    const subject = `New Inquiry from ${name} \u2014 Alex Miller Auctions`;
 
     const plainText = [
       'New Alex Miller Auctions Inquiry',
@@ -242,7 +243,8 @@ export async function onRequestPost(context) {
     // Get Gmail token and send
     const accessToken = await getGmailAccessToken(
       context.env.GOOGLE_CLIENT_EMAIL,
-      context.env.GOOGLE_PRIVATE_KEY
+      context.env.GOOGLE_PRIVATE_KEY,
+      fromEmail
     );
 
     await sendGmail(accessToken, from, to, subject, htmlBody, plainText, email);
