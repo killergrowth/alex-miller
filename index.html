@@ -382,26 +382,47 @@
                         </div>
                         <!-- CLARK COPY: Contact form intro copy -->
                         <p>Have a property you&rsquo;re considering selling? Fill out the form below and Alex will be in touch to discuss whether auction might be a good fit.</p>
-                        <form action="mailto:alex@amauctionandrealestate.com" method="post" enctype="text/plain" class="contact-field mt-20">
+                        <style>
+                          #home-consult-form input:invalid,
+                          #home-consult-form select:invalid,
+                          #home-consult-form textarea:invalid {
+                            border-color: #e05c2a !important;
+                            box-shadow: 0 0 0 2px rgba(224,92,42,0.2) !important;
+                          }
+                        </style>
+                        <form id="home-consult-form" action="/api/contact" method="POST" class="contact-field mt-20">
                             <div class="row">
                                 <div class="col-md-6 mb-20">
-                                    <input class="form-control c-name" type="text" name="name" placeholder="Your Name" required>
+                                    <input class="form-control c-name" type="text" name="name" placeholder="Your full name" required>
                                 </div>
                                 <div class="col-md-6 mb-20">
-                                    <input class="form-control c-email" type="email" name="email" placeholder="Email Address" required>
+                                    <input class="form-control c-email" type="email" name="email" placeholder="your@email.com" required>
                                 </div>
                                 <div class="col-md-6 mb-20">
-                                    <input class="form-control" type="tel" name="phone" placeholder="Phone Number">
+                                    <input class="form-control" type="tel" name="phone" placeholder="(316) 555-1234" required>
                                 </div>
                                 <div class="col-md-6 mb-20">
-                                    <input class="form-control c-subject" type="text" name="subject" placeholder="Property Type (e.g. Farm, Home)">
+                                    <select class="form-control" name="property_type" style="height:50px;" required>
+                                        <option value="" disabled selected>Property Type</option>
+                                        <option value="residential">Residential</option>
+                                        <option value="farm_land">Farm / Land</option>
+                                        <option value="commercial">Commercial</option>
+                                        <option value="estate">Estate</option>
+                                        <option value="other">Other</option>
+                                    </select>
                                 </div>
                                 <div class="col-12 mb-20">
-                                    <textarea class="form-control c-message" name="message" rows="5" placeholder="Tell us about your property and situation..."></textarea>
+                                    <input class="form-control" type="text" name="location" placeholder="Property location (e.g. Hutchinson, Reno County, KS)" required>
+                                </div>
+                                <div class="col-12 mb-20">
+                                    <textarea class="form-control c-message" name="message" rows="5" placeholder="Tell us about your property and what you&rsquo;re hoping to accomplish..." required></textarea>
+                                </div>
+                                <!-- Honeypot -->
+                                <div style="display:none;">
+                                    <input type="text" name="website" autocomplete="off" tabindex="-1">
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn header-btn">Open Email Draft</button>
-                                    <p class="form-help-text">This form opens your email app with your details so you can contact Alex directly until a dedicated form endpoint is provided.</p>
+                                    <button type="submit" class="btn header-btn">Request Consultation</button>
                                 </div>
                             </div>
                         </form>
@@ -430,5 +451,44 @@
 <script src="/js/jquery.scrollUp.min.js"></script>
 <script src="/js/ajax-form.js"></script>
 <script src="/js/main.js"></script>
+
+<!-- Thank You Modal Popup -->
+<div id="thankyou-overlay" style="display:none; position:fixed; inset:0; background:rgba(13,27,62,0.75); z-index:9999; align-items:center; justify-content:center; opacity:0; transition:opacity 0.35s ease;">
+  <div id="thankyou-modal" style="background:#ffffff; border-radius:10px; max-width:460px; width:90%; padding:0; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,0.30); transform:translateY(20px); transition:transform 0.35s ease;">
+    <div style="background:#0d1b3e; padding:28px 32px 24px; text-align:center; position:relative;">
+      <button id="thankyou-close" aria-label="Close" style="position:absolute; top:14px; right:16px; background:none; border:none; cursor:pointer; color:#f9f7f4; font-size:22px; line-height:1; opacity:0.7; padding:4px 8px;">&times;</button>
+      <h2 style="margin:0; font-family:Georgia, 'Times New Roman', serif; font-size:24px; color:#c9a227;">Thank you for your interest!</h2>
+    </div>
+    <div style="padding:28px 32px 32px; text-align:center; background:#f9f7f4;">
+      <p style="margin:0 0 20px; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#333; line-height:1.6;">Alex will be in touch with you soon.</p>
+      <button id="thankyou-dismiss" style="background:#c9a227; color:#0d1b3e; border:none; border-radius:4px; padding:11px 28px; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:700; cursor:pointer; letter-spacing:0.5px;">Close</button>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('success') !== '1') return;
+  const overlay = document.getElementById('thankyou-overlay');
+  const modal = document.getElementById('thankyou-modal');
+  const closeBtn = document.getElementById('thankyou-close');
+  const dismissBtn = document.getElementById('thankyou-dismiss');
+  function closeModal() {
+    overlay.style.opacity = '0';
+    modal.style.transform = 'translateY(20px)';
+    setTimeout(function () { overlay.style.display = 'none'; }, 350);
+  }
+  overlay.style.display = 'flex';
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      overlay.style.opacity = '1';
+      modal.style.transform = 'translateY(0)';
+    });
+  });
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+  closeBtn.addEventListener('click', closeModal);
+  dismissBtn.addEventListener('click', closeModal);
+})();
+</script>
 </body>
 </html>
