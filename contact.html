@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- CLARK COPY: Page title and meta description for contact page -->
     <title>Contact Alex Miller | Real Estate Auctioneer &ndash; Central Kansas</title>
-    <meta name="description" content="Contact Alex Miller to discuss your property and whether a real estate auction is right for you. Serving central Kansas. Brokered by L2 Realty Inc.">
+    <meta name="description" content="Contact Alex Miller to discuss your property and whether a real estate auction is right for you. Serving central Kansas. Brokered by <a href="https://l2realtyinc.com/alex-miller/" target="_blank" rel="noopener">L2 Realty Inc.</a>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/alex-miller.css">
+    <style>
+    input:invalid, select:invalid, textarea:invalid {
+      border-color: #e05c2a !important;
+      box-shadow: 0 0 0 2px rgba(224,92,42,0.2) !important;
+    }
+    </style>
 </head>
 <body>
 
@@ -76,7 +82,7 @@
                             <div>
                                 <h5>Email</h5>
                                 <!-- CLARK COPY: Email address -->
-                                <p><a href="mailto:alex@alexmillerauctions.com" style="color:#666;">alex@alexmillerauctions.com</a></p>
+                                <p><a href="mailto:alex@amauctionandrealestate.com" style="color:#666;">alex@amauctionandrealestate.com</a></p>
                             </div>
                         </div>
                         <div class="single-cta d-flex align-items-start mb-30">
@@ -112,8 +118,8 @@
                         </div>
                         <!-- CLARK COPY: Form intro (optional short line before form fields) -->
                         <p style="color:#666; margin-bottom:24px;">No obligation. Alex will review your situation and give you an honest assessment of your options.</p>
-                        <div id="form-status-success" style="display:none; margin-bottom:18px; padding:14px 16px; border-radius:8px; background:#edf7ed; color:#1f5f2c; border:1px solid #b7dfbf;">Thanks — your message was sent directly to Alex.</div>
-                        <div id="form-status-error" style="display:none; margin-bottom:18px; padding:14px 16px; border-radius:8px; background:#fff4e5; color:#8a4b08; border:1px solid #f2d2a2;">Something went wrong sending your message. Please email Alex directly at <a href="mailto:alex@alexmillerauctions.com">alex@alexmillerauctions.com</a>.</div>
+                        <div id="form-status-success" style="display:none;"></div>
+                        <div id="form-status-error" style="display:none; margin-bottom:18px; padding:14px 16px; border-radius:8px; background:#fff4e5; color:#8a4b08; border:1px solid #f2d2a2;">Something went wrong sending your message. Please email Alex directly at <a href="mailto:alex@amauctionandrealestate.com">alex@amauctionandrealestate.com</a>.</div>
 
                         <form action="/api/contact" method="post" class="contact-field">
                             <div class="row">
@@ -126,12 +132,12 @@
                                     <input id="contact-email" class="form-control c-email" type="email" name="email" placeholder="your@email.com" required>
                                 </div>
                                 <div class="col-md-6 mb-20">
-                                    <label for="contact-phone" style="color:#333; font-weight:600; font-size:14px;">Phone</label>
-                                    <input id="contact-phone" class="form-control" type="tel" name="phone" placeholder="(316) 555-1234">
+                                    <label for="contact-phone" style="color:#333; font-weight:600; font-size:14px;">Phone <span style="color:#c9a227;">*</span></label>
+                                    <input id="contact-phone" class="form-control" type="tel" name="phone" placeholder="(316) 555-1234" required>
                                 </div>
                                 <div class="col-md-6 mb-20">
-                                    <label for="contact-type" style="color:#333; font-weight:600; font-size:14px;">Property Type</label>
-                                    <select id="contact-type" class="form-control" name="property_type" style="height:50px;">
+                                    <label for="contact-type" style="color:#333; font-weight:600; font-size:14px;">Property Type <span style="color:#c9a227;">*</span></label>
+                                    <select id="contact-type" class="form-control" name="property_type" style="height:50px;" required>
                                         <option value="">Select one...</option>
                                         <option value="residential">Residential Home</option>
                                         <option value="land">Farm / Agricultural Land</option>
@@ -142,12 +148,12 @@
                                     </select>
                                 </div>
                                 <div class="col-md-12 mb-20">
-                                    <label for="contact-location" style="color:#333; font-weight:600; font-size:14px;">Property Location (City, County)</label>
-                                    <input id="contact-location" class="form-control" type="text" name="location" placeholder="e.g. Hutchinson, Reno County, KS">
+                                    <label for="contact-location" style="color:#333; font-weight:600; font-size:14px;">Property Location (City, County) <span style="color:#c9a227;">*</span></label>
+                                    <input id="contact-location" class="form-control" type="text" name="location" placeholder="e.g. Hutchinson, Reno County, KS" required>
                                 </div>
                                 <div class="col-12 mb-20">
-                                    <label for="contact-message" style="color:#333; font-weight:600; font-size:14px;">Tell Us More</label>
-                                    <textarea id="contact-message" class="form-control c-message" name="message" rows="5" placeholder="Tell us about your property and what you&rsquo;re hoping to accomplish..."></textarea>
+                                    <label for="contact-message" style="color:#333; font-weight:600; font-size:14px;">Tell Us More <span style="color:#c9a227;">*</span></label>
+                                    <textarea id="contact-message" class="form-control c-message" name="message" rows="5" placeholder="Tell us about your property and what you&rsquo;re hoping to accomplish..." required></textarea>
                                 </div>
                                 <div class="col-12" style="display:none;">
                                     <label for="contact-website">Website</label>
@@ -170,8 +176,8 @@
     <!-- Brokered by notice -->
     <div style="background:#f5f5f5; padding:24px 0; border-top:1px solid #e0e0e0;">
         <div class="container text-center">
-            <!-- ASSET: L2 Realty logo SVG (Drive ID: 1266Cl_ht70enEvgBGh8YCq55DCFVw8Ue) -->
-            <p style="color:#999; font-size:13px; margin:0;">Brokered by <strong style="color:#555;">L2 Realty Inc.</strong> &mdash; Licensed Kansas Real Estate Brokerage</p>
+            <!-- ASSET: <a href="https://l2realtyinc.com/alex-miller/" target="_blank" rel="noopener">L2 Realty Inc.</a> logo SVG (Drive ID: 1266Cl_ht70enEvgBGh8YCq55DCFVw8Ue) -->
+            <p style="color:#999; font-size:13px; margin:0;">Brokered by <strong style="color:#555;"><a href="https://l2realtyinc.com/alex-miller/" target="_blank" rel="noopener">L2 Realty Inc.</a></strong> &mdash; Licensed Kansas Real Estate Brokerage</p>
         </div>
     </div>
 
@@ -189,14 +195,61 @@
 <script>
 (function () {
   const params = new URLSearchParams(window.location.search);
-  const success = document.getElementById('form-status-success');
   const error = document.getElementById('form-status-error');
-  if (params.get('success') === '1' && success) {
-    success.style.display = 'block';
-  }
   if ((params.get('error') === '1' || params.get('error') === 'mail') && error) {
     error.style.display = 'block';
   }
+})();
+</script>
+
+<!-- Thank You Modal Popup -->
+<div id="thankyou-overlay" style="display:none; position:fixed; inset:0; background:rgba(13,27,62,0.75); z-index:9999; align-items:center; justify-content:center; opacity:0; transition:opacity 0.35s ease;">
+  <div id="thankyou-modal" style="background:#ffffff; border-radius:10px; max-width:460px; width:90%; padding:0; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,0.30); transform:translateY(20px); transition:transform 0.35s ease;">
+    <!-- Modal header -->
+    <div style="background:#0d1b3e; padding:28px 32px 24px; text-align:center; position:relative;">
+      <button id="thankyou-close" aria-label="Close" style="position:absolute; top:14px; right:16px; background:none; border:none; cursor:pointer; color:#f9f7f4; font-size:22px; line-height:1; opacity:0.7; padding:4px 8px;">&times;</button>
+      <h2 style="margin:0; font-family:Georgia, 'Times New Roman', serif; font-size:24px; color:#c9a227;">Thank you for your interest!</h2>
+    </div>
+    <!-- Modal body -->
+    <div style="padding:28px 32px 32px; text-align:center; background:#f9f7f4;">
+      <p style="margin:0 0 20px; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#333; line-height:1.6;">Alex will be in touch with you soon.</p>
+      <button id="thankyou-dismiss" style="background:#c9a227; color:#0d1b3e; border:none; border-radius:4px; padding:11px 28px; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:700; cursor:pointer; letter-spacing:0.5px;">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('success') !== '1') return;
+
+  const overlay = document.getElementById('thankyou-overlay');
+  const modal = document.getElementById('thankyou-modal');
+  const closeBtn = document.getElementById('thankyou-close');
+  const dismissBtn = document.getElementById('thankyou-dismiss');
+
+  function closeModal() {
+    overlay.style.opacity = '0';
+    modal.style.transform = 'translateY(20px)';
+    setTimeout(function () { overlay.style.display = 'none'; }, 350);
+  }
+
+  // Show modal
+  overlay.style.display = 'flex';
+  // Trigger fade-in on next frame
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      overlay.style.opacity = '1';
+      modal.style.transform = 'translateY(0)';
+    });
+  });
+
+  // Dismiss on overlay click (but not modal click)
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeModal();
+  });
+  closeBtn.addEventListener('click', closeModal);
+  dismissBtn.addEventListener('click', closeModal);
 })();
 </script>
 </body>
