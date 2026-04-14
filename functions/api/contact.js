@@ -220,7 +220,7 @@ export async function onRequestPost(context) {
     const fromEmail = context.env.FROM_EMAIL || 'notifications@killergrowth.com';
     const to        = context.env.TO_EMAIL   || 'corrie@killergrowth.com';
     const from      = `Alex Miller Auctions <${fromEmail}>`;
-    const subject = `New Inquiry from ${name} \u2014 Alex Miller Auctions`;
+    const subject = `New Inquiry from ${name} - Alex Miller Auctions`;
 
     const plainText = [
       'New Alex Miller Auctions Inquiry',
