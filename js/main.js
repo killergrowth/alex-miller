@@ -20,7 +20,7 @@ $(window).on('scroll', function () {
 
 // RESPONSIVE MENU
 $('.responsive').on('click', function (e) {
-	$('#mobile-menu').slideToggle();
+	$('.main-menu').slideToggle();
 });
 
 
@@ -28,7 +28,7 @@ $('.responsive').on('click', function (e) {
 // menu toggle
 $(".main-menu li a").on('click', function () {
 	if ($(window).width() < 1200) {
-		$("#mobile-menu").slideUp();
+		$('.main-menu').slideUp();
 	}
 });
 
