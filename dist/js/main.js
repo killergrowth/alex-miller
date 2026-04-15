@@ -1,12 +1,14 @@
 (function ($) {
 "use strict";
 
-// One Page Nav
-var top_offset = $('.header-area').height() - 100;
-$('.main-menu nav ul').onePageNav({
-	currentClass: 'active',
-	scrollOffset: top_offset,
-});
+// One Page Nav (only if plugin is loaded)
+if (typeof $.fn.onePageNav === 'function') {
+	var top_offset = $('.header-area').height() - 100;
+	$('.main-menu nav ul').onePageNav({
+		currentClass: 'active',
+		scrollOffset: top_offset,
+	});
+}
 
 // sticky
 $(window).on('scroll', function () {
@@ -20,7 +22,7 @@ $(window).on('scroll', function () {
 
 // RESPONSIVE MENU
 $('.responsive').on('click', function (e) {
-	$('#mobile-menu').slideToggle();
+	$('.main-menu').slideToggle();
 });
 
 
@@ -28,7 +30,7 @@ $('.responsive').on('click', function (e) {
 // menu toggle
 $(".main-menu li a").on('click', function () {
 	if ($(window).width() < 1200) {
-		$("#mobile-menu").slideUp();
+		$('.main-menu').slideUp();
 	}
 });
 
