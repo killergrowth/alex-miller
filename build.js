@@ -19,6 +19,7 @@ const ROOT_PAGES = [
   'index.html',
   'about.html',
   'services.html',
+  'listings.html',
   'contact.html',
   'service-areas.html',
   'upcoming-auctions.html',
