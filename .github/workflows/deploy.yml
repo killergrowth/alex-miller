@@ -19,4 +19,3 @@ jobs:
           accountId: 27cafbbee6f8e1db0d9499405d4755c1
           projectName: alex-miller
           directory: dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
