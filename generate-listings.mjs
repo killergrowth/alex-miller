@@ -39,17 +39,17 @@ function fetchXML() {
 
 // ---------------------------------------------------------------
 // Parse helpers
+// Allow whitespace before/after CDATA — realstack formats <url>\n    <![CDATA[...]]>\n</url>
 // ---------------------------------------------------------------
 function extractTag(xml, tag) {
-  // Handles both plain and CDATA content
-  const re = new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([^<]*))<\\/${tag}>`, 'i');
+  const re = new RegExp('<' + tag + '[^>]*>\\s*(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([^<]*?))\\s*<\\/' + tag + '>', 'i');
   const m = xml.match(re);
   if (!m) return '';
   return (m[1] !== undefined ? m[1] : m[2] || '').trim();
 }
 
 function extractAllTags(xml, tag) {
-  const re = new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([^<]*))<\\/${tag}>`, 'gi');
+  const re = new RegExp('<' + tag + '[^>]*>\\s*(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([^<]*?))\\s*<\\/' + tag + '>', 'gi');
   const results = [];
   let m;
   while ((m = re.exec(xml)) !== null) {
@@ -60,7 +60,7 @@ function extractAllTags(xml, tag) {
 }
 
 function getBlock(xml, tag) {
-  const re = new RegExp(`<${tag}[\\s\\S]*?<\\/${tag}>`, 'i');
+  const re = new RegExp('<' + tag + '[\\s\\S]*?<\\/' + tag + '>', 'i');
   const m = xml.match(re);
   return m ? m[0] : '';
 }
@@ -84,9 +84,8 @@ function escapeHtml(str) {
 // Parse all listings
 // ---------------------------------------------------------------
 function parseListings(xml) {
-  // Split on <item  (note the space — it's <item > in the feed)
   const parts = xml.split(/<item\s/);
-  parts.shift(); // drop everything before first item
+  parts.shift();
 
   const listings = [];
 
@@ -101,40 +100,29 @@ function parseListings(xml) {
     const price      = extractTag(block, 'price');
     const acreage    = extractTag(block, 'acreage');
 
-    // Location
     const locBlock   = getBlock(block, 'location');
     const city       = extractTag(locBlock, 'city');
     const stateAbbr  = extractTag(getBlock(locBlock, 'state'), 'abbreviation');
     const county     = extractTag(getBlock(locBlock, 'county'), 'name');
 
-    // Types
     const typesBlock = getBlock(block, 'types');
     const types      = extractAllTags(typesBlock, 'name');
 
-    // Agent
     const repBlock   = getBlock(block, 'listing_rep');
     const agentFirst = extractTag(repBlock, 'first_name');
     const agentLast  = extractTag(repBlock, 'last_name');
 
-    // Sale type
-    const saleTypeBlock = getBlock(block, 'sale_type');
-    const saleType   = extractTag(saleTypeBlock, 'name');
-
-    // First gallery image
     const gallery    = getBlock(block, 'gallery');
     const imgs       = extractAllTags(gallery, 'url');
-    const image      = imgs[0] || '';
+    // Use 'big' (127KB) not 'extrabig' (290KB) — cuts image payload by 55%
+    const image      = (imgs[0] || '').replace('/extrabig/', '/big/');
 
-    // Link
     const link       = extractTag(block, 'website_url') || extractTag(block, 'external_listing_url');
-
-    // Featured
     const featured   = extractTag(block, 'featured') === 'true';
 
-    listings.push({ id, title, price, acreage, city, stateAbbr, county, types, agentFirst, agentLast, saleType, image, link, featured });
+    listings.push({ id, title, price, acreage, city, stateAbbr, county, types, agentFirst, agentLast, image, link, featured });
   }
 
-  // Sort: featured first, then by price descending
   listings.sort((a, b) => {
     if (a.featured && !b.featured) return -1;
     if (!a.featured && b.featured) return 1;
@@ -145,90 +133,86 @@ function parseListings(xml) {
 }
 
 // ---------------------------------------------------------------
-// Render a single listing card
+// Render a single listing card (matches Worker output format)
 // ---------------------------------------------------------------
+function esc(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function renderCard(l) {
-  const title   = escapeHtml(l.title || 'Property Listing');
-  const location = [l.city, l.county ? l.county + ' Co.' : '', l.stateAbbr].filter(Boolean).join(', ');
-  const price   = formatPrice(l.price);
-  const acres   = l.acreage ? l.acreage + '+/- Acres' : '';
-  const agent   = [l.agentFirst, l.agentLast].filter(Boolean).join(' ');
-  const types   = (l.types || []).slice(0, 3);
-  const link    = l.link || '#';
+  const title    = esc(l.title || 'Property Listing');
+  const price    = formatPrice(l.price);
+  const acres    = l.acreage ? esc(l.acreage) + '+/- Acres' : '';
+  const location = [l.city, l.county ? l.county + ' Co.' : '', l.stateAbbr].filter(Boolean).map(esc).join(', ');
+  const agent    = [l.agentFirst, l.agentLast].filter(Boolean).map(esc).join(' ');
+  const types    = (l.types || []).slice(0, 3);
+  const link     = esc(l.link || '#');
+  const typeData = esc((l.types || []).join(','));
 
   const imgHtml = l.image
-    ? `<img src="${escapeHtml(l.image)}" alt="${title}" style="width:100%;height:220px;object-fit:cover;display:block;">`
-    : `<div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>`;
+    ? '<img src="' + esc(l.image) + '" alt="' + title + '" loading="lazy" width="400" height="200" decoding="async">'
+    : '<div class="img-placeholder"><i class="fas fa-map-marked-alt" style="font-size:44px;color:#c9a227;opacity:0.6;"></i></div>';
 
-  const typeTags = types.map(t =>
-    `<span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">${escapeHtml(t)}</span>`
-  ).join('');
+  const featuredBadge = l.featured ? '<span class="featured-badge">Featured</span>' : '';
 
-  const featuredBadge = l.featured
-    ? `<span style="position:absolute;top:12px;left:12px;background:#c9a227;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:0.05em;">Featured</span>`
-    : '';
+  const typeTags = types.map(t => '<span class="type-tag">' + esc(t) + '</span>').join('');
 
-  return `
-                <div class="col-lg-4 col-md-6 mb-30">
-                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
-                        <div style="position:relative;">
-                            ${imgHtml}
-                            ${featuredBadge}
-                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">${escapeHtml(price)}</div>
-                        </div>
-                        <div class="p-25">
-                            ${typeTags ? `<div style="margin-bottom:8px;">${typeTags}</div>` : ''}
-                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">${title}</h6>
-                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
-                                ${location ? `<i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>${escapeHtml(location)}<br>` : ''}
-                                ${acres ? `<i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>${escapeHtml(acres)}` : ''}
-                            </p>
-                            ${agent ? `<p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>${escapeHtml(agent)}</p>` : ''}
-                            <a href="${escapeHtml(link)}" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
-                        </div>
-                    </div>
-                </div>`;
+  return '\n            <div class="col-lg-4 col-md-6 mb-30 am-prop-card-wrap" data-types="' + typeData + '">' +
+    '\n                <div class="am-prop-card">' +
+    '\n                    <div class="card-img-wrap">' +
+    '\n                        ' + imgHtml +
+    '\n                        ' + featuredBadge +
+    '\n                        <span class="price-badge">' + price + '</span>' +
+    '\n                    </div>' +
+    '\n                    <div class="card-body">' +
+    (typeTags ? '\n                        <div class="type-tags">' + typeTags + '</div>' : '') +
+    '\n                        <p class="prop-title">' + title + '</p>' +
+    '\n                        <ul class="prop-meta">' +
+    (location ? '\n                            <li><i class="fas fa-map-marker-alt"></i>' + location + '</li>' : '') +
+    (acres ? '\n                            <li><i class="fas fa-ruler-combined"></i>' + acres + '</li>' : '') +
+    '\n                        </ul>' +
+    (agent ? '\n                        <p class="prop-agent"><i class="fas fa-user"></i>' + agent + '</p>' : '') +
+    '\n                        <a href="' + link + '" target="_blank" rel="noopener" class="btn-view">View Listing &rarr;</a>' +
+    '\n                    </div>' +
+    '\n                </div>' +
+    '\n            </div>';
 }
 
 // ---------------------------------------------------------------
-// Build the full listings section HTML
+// Build the listings section HTML
 // ---------------------------------------------------------------
 function buildListingsSection(listings) {
-  const count = listings.length;
-  const cards = listings.map(renderCard).join('\n');
+  const count   = listings.length;
+  const updated = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  const cards   = listings.map(renderCard).join('\n');
 
-  return `<!-- BEGIN:LISTINGS_CONTENT (auto-generated ${new Date().toISOString().split('T')[0]}, ${count} active listings) -->
-    <!-- Listings Grid -->
-    <section class="services-area services-two pt-20 pb-80">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:30px;">
-                <span style="color:#999;font-size:14px;">${count} active listing${count !== 1 ? 's' : ''} from <strong>L2 Realty, Inc.</strong> &mdash; Click any listing to view full details on their website.</span>
-            </div>
-            <div class="row">
-${cards}
-            </div>
-        </div>
-    </section>
-<!-- END:LISTINGS_CONTENT -->`;
+  const grid = count > 0
+    ? '<div class="row" id="am-listings-grid">\n' + cards + '\n            </div>'
+    : '<div class="col-12 am-empty-state"><i class="fas fa-map-marked-alt"></i><p>No listings currently available. <a href="/contact.html">Contact Alex</a> directly.</p></div>';
+
+  return '<!-- BEGIN:LISTINGS_CONTENT (auto-generated ' + new Date().toISOString().split('T')[0] + ', ' + count + ' active listings) -->\n' +
+    '    <section class="pt-20 pb-60" id="am-listings-section">\n' +
+    '        <div class="container">\n' +
+    '            ' + grid + '\n' +
+    '            <p class="am-updated-note">Listings updated ' + updated + ' &mdash; sourced from <a href="https://l2realtyinc.com/" target="_blank" rel="noopener" style="color:#b0b7c3;">L2 Realty Inc.</a></p>\n' +
+    '        </div>\n' +
+    '    </section>\n' +
+    '<!-- END:LISTINGS_CONTENT -->';
 }
 
 // ---------------------------------------------------------------
 // Inject into listings.html
 // ---------------------------------------------------------------
 function injectIntoPage(html, listingsHtml) {
-  // Replace between markers if they exist
   const markerRe = /<!-- BEGIN:LISTINGS_CONTENT[\s\S]*?<!-- END:LISTINGS_CONTENT -->/;
   if (markerRe.test(html)) {
     return html.replace(markerRe, listingsHtml);
   }
-
-  // Otherwise, replace the entire <!-- Listings Grid --> section
-  const gridRe = /<!--\s*Listings Grid\s*-->[\s\S]*?(?=<!--\s*Upcoming Auctions CTA|<!--\s*CTA\s*-->)/;
-  if (gridRe.test(html)) {
-    return html.replace(gridRe, listingsHtml + '\n\n    ');
-  }
-
-  // Fallback — insert before the CTA section
   return html.replace('<!-- CTA -->', listingsHtml + '\n\n    <!-- CTA -->');
 }
 
@@ -238,10 +222,14 @@ function injectIntoPage(html, listingsHtml) {
 async function main() {
   console.log('Fetching REALSTACK listings feed...');
   const xml = await fetchXML();
-  console.log(`Feed fetched (${Math.round(xml.length / 1024)}KB)`);
+  console.log('Feed fetched (' + Math.round(xml.length / 1024) + 'KB)');
 
   const listings = parseListings(xml);
-  console.log(`Parsed ${listings.length} available listings`);
+  console.log('Parsed ' + listings.length + ' available listings');
+
+  // Quick sanity check
+  const withImages = listings.filter(l => l.image).length;
+  console.log('Listings with images: ' + withImages + '/' + listings.length);
 
   const listingsHtml = buildListingsSection(listings);
 
@@ -251,7 +239,7 @@ async function main() {
 
   const updated = injectIntoPage(src, listingsHtml);
   fs.writeFileSync(LISTINGS_SRC, updated, 'utf8');
-  console.log(`listings.html updated with ${listings.length} cards`);
+  console.log('listings.html updated with ' + listings.length + ' cards');
   console.log('Now run: node build.js');
 }
 

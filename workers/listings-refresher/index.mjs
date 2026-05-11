@@ -73,15 +73,16 @@ async function refreshListings(env) {
 // ─────────────────────────────────────────────────────────────────
 // XML parsing helpers
 // ─────────────────────────────────────────────────────────────────
+// Allow optional whitespace before/after CDATA — realstack formats <url>\n    <![CDATA[...]]>\n</url>
 function extractTag(xml, tag) {
-  const re = new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([^<]*))<\\/${tag}>`, 'i');
+  const re = new RegExp(`<${tag}[^>]*>\\s*(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([^<]*?))\\s*<\\/${tag}>`, 'i');
   const m  = xml.match(re);
   if (!m) return '';
   return (m[1] !== undefined ? m[1] : m[2] || '').trim();
 }
 
 function extractAllTags(xml, tag) {
-  const re = new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([^<]*))<\\/${tag}>`, 'gi');
+  const re = new RegExp(`<${tag}[^>]*>\\s*(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([^<]*?))\\s*<\\/${tag}>`, 'gi');
   const out = [];
   let m;
   while ((m = re.exec(xml)) !== null) {
@@ -128,7 +129,8 @@ function parseListings(xml) {
 
     const gallery    = getBlock(block, 'gallery');
     const imgs       = extractAllTags(gallery, 'url');
-    const image      = imgs[0] || '';
+    // Use 'big' (127KB) not 'extrabig' (290KB) — cuts image payload by 55%
+    const image      = (imgs[0] || '').replace('/extrabig/', '/big/');
 
     const link       = extractTag(block, 'website_url') || extractTag(block, 'external_listing_url');
     const featured   = extractTag(block, 'featured') === 'true';
@@ -175,7 +177,7 @@ function renderCard(l) {
   const typeData = esc((l.types || []).join(','));
 
   const imgHtml = l.image
-    ? `<img src="${esc(l.image)}" alt="${title}" loading="lazy">`
+    ? `<img src="${esc(l.image)}" alt="${title}" loading="lazy" width="400" height="200" decoding="async">`
     : `<div class="img-placeholder"><i class="fas fa-map-marked-alt" style="font-size:44px;color:#c9a227;opacity:0.6;"></i></div>`;
 
   const featuredBadge = l.featured
