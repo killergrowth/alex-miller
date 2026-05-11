@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Current Property Listings | Alex Miller Real Estate Auctions</title>
-    <meta name="description" content="Browse current property listings available through Alex Miller Real Estate Auctions in central Kansas. Residential, land, and commercial properties.">
+    <meta name="description" content="Browse current property listings available through Alex Miller Real Estate Auctions and L2 Realty in central Kansas. Residential, land, hunting, and agricultural properties.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -15,13 +15,237 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/alex-miller.css">
+    <style>
+        /* ── Listings Page Custom Styles ── */
+        .am-listings-hero {
+            background-image: url('/images/alex-hutch-hero.jpg');
+            background-size: cover;
+            background-position: center top;
+            min-height: 300px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .am-listings-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(13,27,62,0.58);
+        }
+        .am-listings-hero .hero-inner {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        /* Filter bar */
+        .am-filter-bar {
+            background: #f5f7fb;
+            border-bottom: 1px solid rgba(13,27,62,0.08);
+            padding: 14px 0;
+        }
+        .am-filter-bar .filter-btn {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: 1px solid rgba(13,27,62,0.18);
+            background: #fff;
+            color: #0d1b3e;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 4px;
+            transition: all 0.18s;
+        }
+        .am-filter-bar .filter-btn:hover,
+        .am-filter-bar .filter-btn.active {
+            background: #c9a227;
+            border-color: #c9a227;
+            color: #0d1b3e;
+        }
+        .am-filter-bar .listings-count {
+            font-size: 13px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Property Cards */
+        .am-prop-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(13,27,62,0.09);
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .am-prop-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(13,27,62,0.15);
+        }
+        .am-prop-card .card-img-wrap {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+            flex-shrink: 0;
+        }
+        .am-prop-card .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s;
+        }
+        .am-prop-card:hover .card-img-wrap img {
+            transform: scale(1.04);
+        }
+        .am-prop-card .card-img-wrap .img-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f0e8d0 0%, #e8dcc0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .am-prop-card .price-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(13,27,62,0.88);
+            color: #c9a227;
+            font-size: 15px;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 5px;
+            letter-spacing: 0.02em;
+        }
+        .am-prop-card .featured-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #c9a227;
+            color: #0d1b3e;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .am-prop-card .card-body {
+            padding: 18px 20px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .am-prop-card .type-tags {
+            margin-bottom: 9px;
+            line-height: 1.8;
+        }
+        .am-prop-card .type-tag {
+            display: inline-block;
+            background: #f0e8d0;
+            color: #7a5c10;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 9px;
+            border-radius: 3px;
+            margin: 0 3px 3px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .am-prop-card .prop-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0d1b3e;
+            line-height: 1.45;
+            margin-bottom: 10px;
+            flex: 1;
+        }
+        .am-prop-card .prop-meta {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 14px;
+        }
+        .am-prop-card .prop-meta li {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .am-prop-card .prop-meta li i {
+            color: #c9a227;
+            width: 13px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .am-prop-card .prop-agent {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 14px;
+        }
+        .am-prop-card .prop-agent i {
+            color: #c9a227;
+            margin-right: 5px;
+        }
+        .am-prop-card .btn-view {
+            display: block;
+            width: 100%;
+            padding: 9px 16px;
+            background: #0d1b3e;
+            color: #c9a227 !important;
+            border: 2px solid #0d1b3e;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.18s;
+            letter-spacing: 0.04em;
+        }
+        .am-prop-card .btn-view:hover {
+            background: #c9a227;
+            border-color: #c9a227;
+            color: #0d1b3e !important;
+        }
+
+        /* Empty state */
+        .am-empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6b7280;
+        }
+        .am-empty-state i {
+            font-size: 48px;
+            color: #c9a227;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* Updated timestamp */
+        .am-updated-note {
+            font-size: 11px;
+            color: #b0b7c3;
+            text-align: right;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .am-filter-bar .filter-btn { font-size: 12px; padding: 5px 12px; }
+            .am-prop-card .card-img-wrap { height: 180px; }
+        }
+    </style>
 <script type="text/javascript">
  (function(k) {
  let s=document.createElement('script');s.defer=true;
  s.src="https://cdn.feedbucket.app/assets/feedbucket.js";
  s.dataset.feedbucket=k;document.head.appendChild(s);
  })('t5pZRdMNCLsQ93aey77L')
-</script></head>
+</script>
+</head>
 <body>
 
 <!-- header -->
@@ -99,104 +323,353 @@
 
 <main>
 
-    <!-- Breadcrumb Hero -->
-    <section class="breadcrumb-area d-flex align-items-center" style="background-image:url('/images/alex-hutch-hero.jpg'); background-size:cover; background-position:center top; min-height:340px; position:relative;">
-        <div style="position:absolute; inset:0; background:rgba(13,27,62,0.52);"></div>
-        <div class="container" style="position:relative; z-index:2;">
-            <div class="row">
-                <div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
-                    <div class="breadcrumb-wrap text-center">
-                        <div class="breadcrumb-title mb-20">
-                            <h2 style="color:#fff;">Property Listings</h2>
+    <!-- Hero Banner -->
+    <section class="am-listings-hero">
+        <div class="hero-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
+                        <div class="text-center">
+                            <div style="margin-bottom:12px;">
+                                <span style="color:#c9a227; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;">L2 Realty Inc.</span>
+                            </div>
+                            <h1 style="color:#fff; font-size:clamp(28px,5vw,46px); font-weight:800; margin-bottom:10px;">Property Listings</h1>
+                            <p style="color:rgba(255,255,255,0.82); font-size:15px; margin-bottom:0;">Central Kansas real estate &mdash; land, auctions, residential &amp; more</p>
+                            <nav aria-label="breadcrumb" style="margin-top:16px;">
+                                <ol class="breadcrumb justify-content-center" style="background:transparent; margin:0;">
+                                    <li class="breadcrumb-item"><a href="/index.html" style="color:rgba(255,255,255,0.7);">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page" style="color:#c9a227;">Listings</li>
+                                </ol>
+                            </nav>
                         </div>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center" style="background:transparent;">
-                                <li class="breadcrumb-item"><a href="/index.html" style="color:rgba(255,255,255,0.8);">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page" style="color:#c9a227;">Listings</li>
-                            </ol>
-                        </nav>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Listings Intro -->
-    <section class="pt-80 pb-40">
+    <!-- Filter Bar -->
+    <div class="am-filter-bar">
         <div class="container">
-            <div class="section-title text-center mb-50 wow fadeInDown animated">
+            <div class="d-flex flex-wrap align-items-center justify-content-between" style="gap:8px;">
+                <div id="am-filters">
+                    <button class="filter-btn active" data-filter="all" onclick="filterListings('all',this)">All Listings</button>
+                    <button class="filter-btn" data-filter="Hunting Land" onclick="filterListings('Hunting Land',this)">Hunting Land</button>
+                    <button class="filter-btn" data-filter="Recreational Land" onclick="filterListings('Recreational Land',this)">Recreational</button>
+                    <button class="filter-btn" data-filter="Undeveloped Land" onclick="filterListings('Undeveloped Land',this)">Undeveloped Land</button>
+                    <button class="filter-btn" data-filter="Residential" onclick="filterListings('Residential',this)">Residential</button>
+                    <button class="filter-btn" data-filter="Agricultural Land" onclick="filterListings('Agricultural Land',this)">Agricultural</button>
+                </div>
+                <span class="listings-count" id="am-count"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Listings Section Intro -->
+    <section class="pt-60 pb-10">
+        <div class="container">
+            <div class="section-title text-center wow fadeInDown animated" style="margin-bottom:10px;">
                 <span>Available Properties</span>
                 <h2>Current Real Estate Listings in Central Kansas</h2>
                 <div class="divider-gold"></div>
-                <p class="mt-20" style="max-width:700px; margin:20px auto 0; color:#666;">Browse current properties available through Alex Miller Real Estate Auctions. From residential homes to agricultural land, each listing is marketed with transparency and professionalism to ensure the best outcome for buyers and sellers alike.</p>
+                <p class="mt-15" style="max-width:680px; margin:12px auto 0; color:#6b7280; font-size:15px;">Browse current properties available through Alex Miller Real Estate Auctions and L2 Realty. Every listing links directly to the full property details on L2 Realty&rsquo;s site.</p>
             </div>
         </div>
     </section>
 
+    <!-- LISTINGS GRID — injected by Worker or generate-listings.mjs -->
+<!-- BEGIN:LISTINGS_CONTENT (auto-generated 2026-05-11, 14 active listings) -->
     <!-- Listings Grid -->
     <section class="services-area services-two pt-20 pb-80">
         <div class="container">
+            <div style="text-align:center;margin-bottom:30px;">
+                <span style="color:#999;font-size:14px;">14 active listings from <strong>L2 Realty, Inc.</strong> &mdash; Click any listing to view full details on their website.</span>
+            </div>
             <div class="row">
-                <!-- Example Listing 1 -->
+
                 <div class="col-lg-4 col-md-6 mb-30">
-                    <div class="s-single-services h-100" style="overflow:hidden;">
-                        <div style="background:#f5f5f5; height:220px; display:flex; align-items:center; justify-content:center; border-radius:8px 8px 0 0;">
-                            <i class="fas fa-home" style="font-size:48px; color:#c9a227;"></i>
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$1,400,000</div>
                         </div>
-                        <div class="p-30">
-                            <h5>Residential Properties</h5>
-                            <p class="mb-20" style="color:#666; font-size:14px;">Single-family homes, estates, and investment properties across central Kansas.</p>
-                            <a href="/contact.html" class="btn ss-btn btn-sm">Contact for Availability</a>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Residential Property</span><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Lakefront</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">80± Acre Private Lakefront Lodge with Hunting and Recreational Land – Montgomery Co, KS</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Havana, Montgomery Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>80+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Jake Kolb</p>
+                            <a href="https://l2realtyinc.com/property/80-acre-private-lakefront-lodge-with-hunting-and-recreational-land-montgomery-co-ks-montgomery-kansas/46245/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Example Listing 2 -->
                 <div class="col-lg-4 col-md-6 mb-30">
-                    <div class="s-single-services h-100" style="overflow:hidden;">
-                        <div style="background:#f5f5f5; height:220px; display:flex; align-items:center; justify-content:center; border-radius:8px 8px 0 0;">
-                            <i class="fas fa-tractor" style="font-size:48px; color:#c9a227;"></i>
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$380,000</div>
                         </div>
-                        <div class="p-30">
-                            <h5>Agricultural Land</h5>
-                            <p class="mb-20" style="color:#666; font-size:14px;">Farm ground, pasture, and tillable acreage. Hunting and recreational land available.</p>
-                            <a href="/contact.html" class="btn ss-btn btn-sm">Contact for Availability</a>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Residential Property</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">Fully Remodeled home on 1.6 acres in Montgomery County</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Coffeyville, Montgomery Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>1.6+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Kristina Fulk</p>
+                            <a href="https://l2realtyinc.com/property/fully-remodeled-home-on-1-6-acres-in-montgomery-county-montgomery-kansas/56046/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Example Listing 3 -->
                 <div class="col-lg-4 col-md-6 mb-30">
-                    <div class="s-single-services h-100" style="overflow:hidden;">
-                        <div style="background:#f5f5f5; height:220px; display:flex; align-items:center; justify-content:center; border-radius:8px 8px 0 0;">
-                            <i class="fas fa-building" style="font-size:48px; color:#c9a227;"></i>
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$299,999</div>
                         </div>
-                        <div class="p-30">
-                            <h5>Commercial Properties</h5>
-                            <p class="mb-20" style="color:#666; font-size:14px;">Investment opportunities and commercial real estate in growing central Kansas markets.</p>
-                            <a href="/contact.html" class="btn ss-btn btn-sm">Contact for Availability</a>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Residential Property</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">6 BED 4 BATH in Barber County!</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Kiowa, Barber Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>0.44+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Elizabeth Gaston</p>
+                            <a href="https://l2realtyinc.com/property/6-bed-4-bath-in-barber-county-barber-kansas/83096/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$265,000</div>
+                        </div>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Residential Property</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">3 bed 2 bath Farmhouse and 4 Car Garage on 10+/- acres</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Coffeyville, Montgomery Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>9.77+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Kristina Fulk</p>
+                            <a href="https://l2realtyinc.com/property/3-bed-2-bath-farmhouse-and-4-car-garage-on-10-acres-montgomery-kansas/96613/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$200,000</div>
+                        </div>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Hunting Land</span><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Recreational Land</span><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Undeveloped Land</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">North 20+/- Acre Lakeside Property with 8.5+/- Acres of Water in Montgomery Co, KS</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Havana, Montgomery Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>20+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Jake Kolb</p>
+                            <a href="https://l2realtyinc.com/property/north-20-acre-lakeside-property-with-8-5-acres-of-water-in-montgomery-co-ks-montgomery-kansas/38448/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$200,000</div>
+                        </div>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Hunting Land</span><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Recreational Land</span><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Undeveloped Land</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">South 20+/- Acre Lakeside Property with 8.5+/- Acres of Water in Montgomery Co, KS</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Havana, Montgomery Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>20+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Jake Kolb</p>
+                            <a href="https://l2realtyinc.com/property/south-20-acre-lakeside-property-with-8-5-acres-of-water-in-montgomery-co-ks-montgomery-kansas/38927/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$167,739</div>
+                        </div>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Undeveloped Land</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">Harper 56</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Attica, Harper Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>56.1+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Alex Miller</p>
+                            <a href="https://l2realtyinc.com/property/harper-56-harper-kansas/98284/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$155,000</div>
+                        </div>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Commercial</span><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Business Opportunity</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">Turnkey Car Wash Investment Opportunity in Caney, KS – Prime Highway Frontage!</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Caney, Montgomery Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>0.01+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Jamie Reister</p>
+                            <a href="https://l2realtyinc.com/property/turnkey-car-wash-investment-opportunity-in-caney-ks-prime-highway-frontage-montgomery-kansas/64417/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$155,000</div>
+                        </div>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Residential Property</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">Totally Updated Move In Ready Home In Coffeyville Kansas!!</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Coffeyville, Montgomery Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>0.25+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Jamie Reister</p>
+                            <a href="https://l2realtyinc.com/property/totally-updated-move-in-ready-home-in-coffeyville-kansas-montgomery-kansas/84666/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$98,700</div>
+                        </div>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Residential Property</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">Move-In Ready 3-Bedroom Home with Garage and Fenced Yard in Independence, Kansas</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Independence, Montgomery Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>0.19+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Sara Kattenberg</p>
+                            <a href="https://l2realtyinc.com/property/move-in-ready-3-bedroom-home-with-garage-and-fenced-yard-in-independence-kansas-montgomery-kansas/91628/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$94,999</div>
+                        </div>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Commercial</span><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Business Opportunity</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">Big Finished Commercial Building</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Neodesha, Wilson Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>0.16+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Angela Baker</p>
+                            <a href="https://l2realtyinc.com/property/big-finished-commercial-building-wilson-kansas/64955/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$68,900</div>
+                        </div>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Residential Property</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">404 S. Howard</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Howard, Elk Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>0.41+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Liz Hendricks</p>
+                            <a href="https://l2realtyinc.com/property/404-s-howard-elk-kansas/97243/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$59,000</div>
+                        </div>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Commercial</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">116 N Main Moline</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Moline, Elk Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>0.08+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Liz Hendricks</p>
+                            <a href="https://l2realtyinc.com/property/116-n-main-moline-elk-kansas/97250/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="s-single-services h-100" style="overflow:hidden;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                        <div style="position:relative;">
+                            <div style="width:100%;height:220px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;"><i class="fas fa-map-marked-alt" style="font-size:48px;color:#c9a227;"></i></div>
+                            
+                            <div style="position:absolute;bottom:10px;right:10px;background:rgba(13,27,62,0.85);color:#c9a227;font-size:13px;font-weight:700;padding:4px 12px;border-radius:4px;">$58,500</div>
+                        </div>
+                        <div class="p-25">
+                            <div style="margin-bottom:8px;"><span style="display:inline-block;background:#f0e8d0;color:#8b6914;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin:0 4px 4px 0;">Residential Property</span></div>
+                            <h6 style="font-size:14px;line-height:1.4;margin-bottom:8px;color:#0d1b3e;">Cozy Home with Character and Renovation Potential</h6>
+                            <p style="color:#666;font-size:13px;margin-bottom:6px;">
+                                <i class="fas fa-map-marker-alt" style="color:#c9a227;margin-right:5px;"></i>Neodesha, Wilson Co., KS<br>
+                                <i class="fas fa-ruler-combined" style="color:#c9a227;margin-right:5px;"></i>0.33+/- Acres
+                            </p>
+                            <p style="font-size:12px;color:#999;margin-bottom:12px;"><i class="fas fa-user" style="color:#c9a227;margin-right:5px;"></i>Jessica Blackmore</p>
+                            <a href="https://l2realtyinc.com/property/cozy-home-with-character-and-renovation-potential-wilson-kansas/83992/" target="_blank" rel="noopener" class="btn ss-btn btn-sm" style="font-size:12px;">View Listing</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Upcoming Auctions CTA -->
-    <section class="pt-40 pb-80">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <div style="background:#f8f9fa; padding:50px 40px; border-radius:8px;">
-                        <i class="fas fa-gavel" style="font-size:42px; color:#c9a227; margin-bottom:20px;"></i>
-                        <h3 style="margin-bottom:16px;">Looking for Auction Events?</h3>
-                        <p style="color:#666; margin-bottom:30px;">Check out our upcoming auctions page to see scheduled auction events, property details, and registration information.</p>
-                        <a href="/upcoming-auctions.html" class="btn ss-btn mr-10">View Upcoming Auctions</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- END:LISTINGS_CONTENT -->
 
     <!-- CTA -->
     <section class="cta-area pt-80 pb-80" style="background-color:#0d1b3e;">
@@ -343,3 +816,32 @@
         </footer>
         <!-- footer-end -->
 
+
+<script>
+function filterListings(type, btn) {
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.am-prop-card-wrap');
+    let visible = 0;
+    cards.forEach(card => {
+        const types = card.dataset.types || '';
+        const show = type === 'all' || types.includes(type);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+    });
+
+    const countEl = document.getElementById('am-count');
+    if (countEl) countEl.textContent = visible + ' listing' + (visible !== 1 ? 's' : '');
+}
+
+// Initialize count on load
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.am-prop-card-wrap');
+    const countEl = document.getElementById('am-count');
+    if (countEl && cards.length > 0) countEl.textContent = cards.length + ' listing' + (cards.length !== 1 ? 's' : '');
+});
+</script>
+</body>
+</html>

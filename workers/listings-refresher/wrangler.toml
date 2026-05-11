@@ -1,0 +1,11 @@
+name = "alex-miller-listings-refresher"
+main = "index.mjs"
+compatibility_date = "2024-09-23"
+
+[[kv_namespaces]]
+binding = "LISTINGS_KV"
+id = "c18cb31e54cc40d8a578da1dde03e1df"
+
+[triggers]
+crons = ["0 13 * * *"]
+# Runs daily at 13:00 UTC = 8:00 AM CT

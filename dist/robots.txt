@@ -1,9 +1,9 @@
-# robots.txt — All search engines and AI crawlers are welcome.
+# robots.txt - All search engines and AI crawlers are welcome.
 
 User-agent: *
 Allow: /
 
-# AI / GEO crawlers — explicitly allowed
+# AI / GEO crawlers - explicitly allowed
 
 User-agent: GPTBot
 Allow: /
@@ -38,4 +38,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://alex-miller-3ig.pages.dev/sitemap.xml
+Sitemap: https://amauctionsandrealestate.com/sitemap.xml
