@@ -93,7 +93,9 @@ function parseListings(xml) {
     const block = '<item ' + part.split('</item>')[0] + '</item>';
 
     const status = extractTag(getBlock(block, 'status'), 'name');
-    if (status.toLowerCase() !== 'available') continue;
+    // Show active listings: 'available' + 'new listing'. Exclude 'sold' and 'under contract'.
+    const statusLower = status.toLowerCase();
+    if (statusLower !== 'available' && statusLower !== 'new listing') continue;
 
     const id         = extractTag(block, 'realstack_id');
     const title      = extractTag(block, 'title');

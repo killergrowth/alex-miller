@@ -107,8 +107,9 @@ function parseListings(xml) {
   for (const part of parts) {
     const block = '<item ' + part.split('</item>')[0] + '</item>';
 
-    const status = extractTag(getBlock(block, 'status'), 'name');
-    if (status.toLowerCase() !== 'available') continue;
+    const status = extractTag(getBlock(block, 'status'), 'name').toLowerCase();
+    // Show active listings: 'available' + 'new listing' (72 items). Exclude 'sold' and 'under contract'.
+    if (status !== 'available' && status !== 'new listing') continue;
 
     const id         = extractTag(block, 'realstack_id');
     const title      = extractTag(block, 'title');
@@ -135,7 +136,7 @@ function parseListings(xml) {
     const link       = extractTag(block, 'website_url') || extractTag(block, 'external_listing_url');
     const featured   = extractTag(block, 'featured') === 'true';
 
-    listings.push({ id, title, price, acreage, city, stateAbbr, county, types, agentFirst, agentLast, image, link, featured });
+    listings.push({ id, title, price, acreage, city, stateAbbr, county, types, agentFirst, agentLast, image, link, featured, status });
   }
 
   // Featured first, then by price descending
@@ -181,7 +182,10 @@ function renderCard(l) {
     : `<div class="img-placeholder"><i class="fas fa-map-marked-alt" style="font-size:44px;color:#c9a227;opacity:0.6;"></i></div>`;
 
   const featuredBadge = l.featured
-    ? `<span class="featured-badge">Featured</span>` : '';
+    ? `<span class="featured-badge">Featured</span>`
+    : l.status === 'new listing'
+      ? `<span class="featured-badge" style="background:#0d1b3e;color:#c9a227;">New Listing</span>`
+      : '';
 
   const typeTags = types.map(t =>
     `<span class="type-tag">${esc(t)}</span>`
