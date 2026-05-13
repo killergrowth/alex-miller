@@ -1,15 +1,15 @@
 /**
- * Alex Miller Auctions — Contact Form Handler
+ * Alex Miller Auctions - Contact Form Handler
  * Cloudflare Pages Function
  *
  * Sends branded HTML email via Gmail API using Google Service Account JWT auth.
  * Matches the KillerGrowth standard pattern (same as Goff Heating, etc.)
  *
  * Environment variables (set in Cloudflare Pages dashboard → Settings → Environment Variables):
- *   GOOGLE_CLIENT_EMAIL  — openclaw-agent@killergrowth.iam.gserviceaccount.com
- *   GOOGLE_PRIVATE_KEY   — the PEM private key (-----BEGIN PRIVATE KEY-----\n...)
- *   FROM_EMAIL           — notifications@killergrowth.com
- *   TO_EMAIL             — corrie@killergrowth.com
+ *   GOOGLE_CLIENT_EMAIL  - openclaw-agent@killergrowth.iam.gserviceaccount.com
+ *   GOOGLE_PRIVATE_KEY   - the PEM private key (-----BEGIN PRIVATE KEY-----\n...)
+ *   FROM_EMAIL           - notifications@killergrowth.com
+ *   TO_EMAIL             - amiller@l2realtyinc.com
  */
 
 // ── Brand Colors ─────────────────────────────────────────────────────────────
@@ -218,7 +218,7 @@ export async function onRequestPost(context) {
     }
 
     const fromEmail = context.env.FROM_EMAIL || 'notifications@killergrowth.com';
-    const to        = context.env.TO_EMAIL   || 'corrie@killergrowth.com';
+    const to        = context.env.TO_EMAIL   || 'amiller@l2realtyinc.com';
     const from      = `Alex Miller Auctions <${fromEmail}>`;
     const subject = `New Inquiry from ${name} - Alex Miller Auctions`;
 

@@ -8,7 +8,7 @@ const path = require('path');
 const root = path.join(__dirname, '..');
 
 const OLD_EMAIL = 'alex@alexmillerauctions.com';
-const NEW_EMAIL = 'alex@amauctionandrealestate.com';
+const NEW_EMAIL = 'amiller@l2realtyinc.com';
 const L2_LINK = 'https://l2realtyinc.com/alex-miller/';
 
 const sourceFiles = [
