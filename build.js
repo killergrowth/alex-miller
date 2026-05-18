@@ -14,6 +14,9 @@ const ROOT = __dirname;
 const DIST = path.join(ROOT, 'dist');
 const PARTIALS = path.join(ROOT, '_partials');
 
+// Default Open Graph image injected into every page
+const OG_IMAGE_URL = 'https://amauctionsandrealestate.com/images/og-social-preview.png';
+
 // Core pages (root level)
 const ROOT_PAGES = [
   'index.html',
@@ -84,6 +87,22 @@ function copyDir(src, dest) {
   }
 }
 
+/**
+ * Inject default OG/Twitter social meta tags before </head> if not already present.
+ * Only injects og:image if the page doesn't already have one.
+ */
+function injectSocialMeta(html) {
+  if (html.includes('og:image')) return html; // already has one, skip
+  const socialTags = `
+    <!-- Default social preview image -->
+    <meta property="og:image" content="${OG_IMAGE_URL}">
+    <meta property="og:image:width" content="1334">
+    <meta property="og:image:height" content="889">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="${OG_IMAGE_URL}">`;
+  return html.replace('</head>', socialTags + '\n</head>');
+}
+
 // ------------------------------------------------------------------
 // Load partials
 // ------------------------------------------------------------------
@@ -145,6 +164,9 @@ for (const page of ALL_PAGES) {
   } else {
     console.warn(`WARN  ${page}: no <!-- FOOTER --> placeholder found`);
   }
+
+  // Inject social meta tags
+  html = injectSocialMeta(html);
 
   fs.writeFileSync(destPath, html, 'utf8');
   console.log(`Built ${page} -> dist/${page}`);
