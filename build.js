@@ -15,7 +15,7 @@ const DIST = path.join(ROOT, 'dist');
 const PARTIALS = path.join(ROOT, '_partials');
 
 // Default Open Graph image injected into every page
-const OG_IMAGE_URL = 'https://amauctionsandrealestate.com/images/og-social-preview.png';
+const OG_IMAGE_URL = 'https://amauctionsandrealestate.com/images/Preview_Image_May_18__2026__02_22_53_PM.png';
 
 // Core pages (root level)
 const ROOT_PAGES = [
@@ -96,8 +96,8 @@ function injectSocialMeta(html) {
   const socialTags = `
     <!-- Default social preview image -->
     <meta property="og:image" content="${OG_IMAGE_URL}">
-    <meta property="og:image:width" content="1334">
-    <meta property="og:image:height" content="889">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="800">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="${OG_IMAGE_URL}">`;
   return html.replace('</head>', socialTags + '\n</head>');
