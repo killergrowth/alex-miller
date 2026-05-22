@@ -17,6 +17,9 @@ const PARTIALS = path.join(ROOT, '_partials');
 // Default Open Graph image injected into every page
 const OG_IMAGE_URL = 'https://amauctionsandrealestate.com/images/Preview_Image_May_18__2026__02_22_53_PM.png';
 
+// Favicon image (PNG — modern browsers support PNG favicons)
+const FAVICON_PATH = '/images/ChatGPT_Image_May_22__2026__09_18_34_AM.png';
+
 // Core pages (root level)
 const ROOT_PAGES = [
   'index.html',
@@ -85,6 +88,22 @@ function copyDir(src, dest) {
       fs.copyFileSync(srcPath, destPath);
     }
   }
+}
+
+/**
+ * Replace any existing shortcut icon / favicon link with the new PNG favicon.
+ * Also injects apple-touch-icon for iOS home screen.
+ */
+function updateFavicon(html) {
+  const faviconTags = `<link rel="icon" type="image/png" href="${FAVICON_PATH}">
+    <link rel="shortcut icon" type="image/png" href="${FAVICON_PATH}">
+    <link rel="apple-touch-icon" href="${FAVICON_PATH}">`;
+  // Replace existing shortcut icon line if present
+  html = html.replace(/<link rel="shortcut icon"[^>]*>/g, '');
+  html = html.replace(/<link rel="icon"[^>]*>/g, '');
+  html = html.replace(/<link rel="apple-touch-icon"[^>]*>/g, '');
+  // Inject after <head>
+  return html.replace('<head>', '<head>\n    ' + faviconTags);
 }
 
 /**
@@ -164,6 +183,9 @@ for (const page of ALL_PAGES) {
   } else {
     console.warn(`WARN  ${page}: no <!-- FOOTER --> placeholder found`);
   }
+
+  // Update favicon on every page
+  html = updateFavicon(html);
 
   // Inject social meta tags
   html = injectSocialMeta(html);
