@@ -53,8 +53,19 @@
         .am-desc h3 { color:#0d1b3e; font-size:20px; font-weight:700; margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid #c9a227; display:inline-block; }
         .am-desc p { color:#374151; line-height:1.8; margin-bottom:14px; font-size:15px; }
         .am-photo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; margin-top:30px; }
-        .am-photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:6px; transition:opacity .2s; }
-        .am-photo-grid img:hover { opacity:.88; }
+        .am-photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:6px; transition:opacity .2s,transform .2s; cursor:pointer; }
+        .am-photo-grid img:hover { opacity:.88; transform:scale(1.02); }
+        /* Lightbox */
+        #am-lightbox { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,.92); align-items:center; justify-content:center; }
+        #am-lightbox.open { display:flex; }
+        #am-lightbox-img { max-width:90vw; max-height:88vh; object-fit:contain; border-radius:6px; box-shadow:0 8px 48px rgba(0,0,0,.6); }
+        #am-lightbox-close { position:absolute; top:18px; right:24px; font-size:32px; color:#fff; cursor:pointer; line-height:1; background:none; border:none; opacity:.8; }
+        #am-lightbox-close:hover { opacity:1; }
+        #am-lightbox-prev, #am-lightbox-next { position:absolute; top:50%; transform:translateY(-50%); font-size:36px; color:#fff; cursor:pointer; background:rgba(255,255,255,.12); border:none; border-radius:50%; width:52px; height:52px; display:flex; align-items:center; justify-content:center; opacity:.8; transition:opacity .15s,background .15s; }
+        #am-lightbox-prev { left:18px; }
+        #am-lightbox-next { right:18px; }
+        #am-lightbox-prev:hover, #am-lightbox-next:hover { opacity:1; background:rgba(255,255,255,.22); }
+        #am-lightbox-counter { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.7); font-size:13px; font-weight:600; letter-spacing:.5px; }
         .am-embed-wrap { background:#f5f7fb; padding:60px 0; }
         .am-embed-wrap iframe { display:block; width:100%; min-height:700px; border:none; border-radius:10px; box-shadow:0 4px 24px rgba(13,27,62,.10); }
         .am-cta-dark { background:#0d1b3e; padding:60px 0; }
