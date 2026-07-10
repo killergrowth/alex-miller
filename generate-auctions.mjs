@@ -32,7 +32,12 @@ const BW_FIELDS   = [
 ].join(',');
 
 const AUCTIONS_DIR = path.join(__dirname, 'auctions');
+const DIST_DIR     = path.join(__dirname, 'dist');
 const STATE_FILE   = path.join(AUCTIONS_DIR, '_state.json');
+
+// --direct flag: write assembled pages straight to dist/ (for GitHub Actions)
+// Default (no flag): write source files to auctions/ for build.js to process
+const DIRECT_MODE  = process.argv.includes('--direct');
 
 // ── Helpers ──────────────────────────────────────────────────────────────
 
@@ -591,14 +596,56 @@ ${pastSection}
 
 // ── Main ──────────────────────────────────────────────────────────────────
 
-async function main() {
-  console.log('generate-auctions.mjs starting...');
+// ── Direct mode helpers (reads partials, writes to dist/) ────────────────
 
-  // Load state
+function loadPartials() {
+  const headerPath = path.join(__dirname, '_partials', 'header.html');
+  const footerPath = path.join(__dirname, '_partials', 'footer.html');
+  const header = fs.existsSync(headerPath) ? fs.readFileSync(headerPath, 'utf8') : '';
+  const footer = fs.existsSync(footerPath) ? fs.readFileSync(footerPath, 'utf8') : '';
+  return { header, footer };
+}
+
+function assemblePage(html, header, footer) {
+  return html
+    .replace('<!-- HEADER -->', header)
+    .replace('<!-- FOOTER -->', footer);
+}
+
+function updateSitemap(newSlugs) {
+  const sitemapPath = path.join(DIST_DIR, 'sitemap.xml');
+  if (!fs.existsSync(sitemapPath)) return;
+  let xml = fs.readFileSync(sitemapPath, 'utf8');
+  let added = 0;
+  for (const slug of newSlugs) {
+    const url = `https://amauctionsandrealestate.com/auctions/${slug}/`;
+    if (!xml.includes(url)) {
+      const entry = `  <url>\n    <loc>${url}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>`;
+      xml = xml.replace('</urlset>', `${entry}\n</urlset>`);
+      added++;
+    }
+  }
+  // Also ensure /auctions/ index is in sitemap
+  const indexUrl = 'https://amauctionsandrealestate.com/auctions/';
+  if (!xml.includes(indexUrl)) {
+    const entry = `  <url>\n    <loc>${indexUrl}</loc>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>`;
+    xml = xml.replace('</urlset>', `${entry}\n</urlset>`);
+    added++;
+  }
+  if (added > 0) {
+    fs.writeFileSync(sitemapPath, xml, 'utf8');
+    console.log(`  Sitemap: added ${added} URL(s)`);
+  }
+}
+
+// ── Main ──────────────────────────────────────────────────────────────────────
+
+async function main() {
+  console.log(`generate-auctions.mjs starting... (mode: ${DIRECT_MODE ? 'direct → dist/' : 'source → auctions/'})`);
+
   const state = loadState();
   const prevAuctions = state.auctions || {};
 
-  // Fetch from BidWrangler
   let auctions;
   try {
     auctions = await fetchAllAuctions();
@@ -608,52 +655,76 @@ async function main() {
   }
 
   if (!auctions.length) {
-    console.warn('No auctions returned from API — aborting to avoid overwriting pages.');
+    console.warn('No auctions returned — aborting to avoid overwriting pages.');
     process.exit(0);
   }
 
-  // Ensure auctions/ dir exists
   fs.mkdirSync(AUCTIONS_DIR, { recursive: true });
+
+  // Load partials for direct mode
+  const { header, footer } = DIRECT_MODE ? loadPartials() : { header: '', footer: '' };
 
   let created = 0;
   let updated = 0;
   const newState = { lastFetch: new Date().toISOString(), auctions: { ...prevAuctions } };
+  const newSlugs = [];
 
   for (const auction of auctions) {
     const id  = String(auction.id);
     const prev = prevAuctions[id];
     const slug = prev?.slug || slugify(auction.name, auction.id);
-
-    // Store/update state
     const statusChanged = prev && prev.status !== auction.status;
-    newState.auctions[id] = { slug, status: auction.status, name: auction.name, generated: prev?.generated || new Date().toISOString() };
-    if (statusChanged) newState.auctions[id].updated = new Date().toISOString();
 
-    // Create the page directory
-    const pageDir = path.join(AUCTIONS_DIR, slug);
-    fs.mkdirSync(pageDir, { recursive: true });
+    newState.auctions[id] = {
+      slug, status: auction.status, name: auction.name,
+      generated: prev?.generated || new Date().toISOString(),
+      ...(statusChanged ? { updated: new Date().toISOString() } : {})
+    };
 
-    const pagePath  = path.join(pageDir, 'index.html');
-    const pageExists = fs.existsSync(pagePath);
+    if (!prev) newSlugs.push(slug); // track genuinely new pages
 
-    // Write page if new OR status changed
-    if (!pageExists || statusChanged) {
-      const html = renderAuctionPage(auction);
-      fs.writeFileSync(pagePath, html, 'utf8');
-      if (!pageExists) { console.log(`  Created: auctions/${slug}/`); created++; }
-      else             { console.log(`  Updated (${auction.status}): auctions/${slug}/`); updated++; }
+    if (DIRECT_MODE) {
+      // Write assembled pages directly to dist/auctions/
+      const distDir  = path.join(DIST_DIR, 'auctions', slug);
+      const distPath = path.join(distDir, 'index.html');
+      fs.mkdirSync(distDir, { recursive: true });
+      if (!fs.existsSync(distPath) || statusChanged) {
+        const raw  = renderAuctionPage(auction);
+        const html = assemblePage(raw, header, footer);
+        fs.writeFileSync(distPath, html, 'utf8');
+        if (!fs.existsSync(distPath) || !prev) { console.log(`  Created (dist): auctions/${slug}/`); created++; }
+        else                                   { console.log(`  Updated (dist, ${auction.status}): auctions/${slug}/`); updated++; }
+      }
+    } else {
+      // Write source files for build.js to process
+      const srcDir  = path.join(AUCTIONS_DIR, slug);
+      const srcPath = path.join(srcDir, 'index.html');
+      fs.mkdirSync(srcDir, { recursive: true });
+      if (!fs.existsSync(srcPath) || statusChanged) {
+        fs.writeFileSync(srcPath, renderAuctionPage(auction), 'utf8');
+        if (!prev) { console.log(`  Created: auctions/${slug}/`); created++; }
+        else       { console.log(`  Updated (${auction.status}): auctions/${slug}/`); updated++; }
+      }
     }
   }
 
-  // Always regenerate the index (reflects current active auctions)
+  // Write index page
   const indexHtml = renderIndexPage(auctions, newState.auctions);
-  fs.writeFileSync(path.join(AUCTIONS_DIR, 'index.html'), indexHtml, 'utf8');
-  console.log('  Wrote: auctions/index.html');
+  if (DIRECT_MODE) {
+    const distIndexDir = path.join(DIST_DIR, 'auctions');
+    fs.mkdirSync(distIndexDir, { recursive: true });
+    fs.writeFileSync(path.join(distIndexDir, 'index.html'), assemblePage(indexHtml, header, footer), 'utf8');
+    console.log('  Wrote: dist/auctions/index.html');
+    // Update sitemap with any new URLs
+    if (newSlugs.length) updateSitemap(newSlugs);
+  } else {
+    fs.writeFileSync(path.join(AUCTIONS_DIR, 'index.html'), indexHtml, 'utf8');
+    console.log('  Wrote: auctions/index.html');
+  }
 
-  // Save state
   saveState(newState);
   console.log(`\nDone. ${created} created, ${updated} updated. Total: ${auctions.length} auctions.`);
-  console.log('Now run: node build.js');
+  if (!DIRECT_MODE) console.log('Now run: node build.js');
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

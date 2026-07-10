@@ -25,16 +25,16 @@ jobs:
           node-version: '20'
 
       - name: Generate auction pages
-        run: node generate-auctions.mjs
-
-      - name: Build site
-        run: node build.js
+        # generate-auctions.mjs writes directly to dist/auctions/ and updates
+        # dist/sitemap.xml. We do NOT run build.js here because it has
+        # hardcoded Windows absolute paths that don't work on Ubuntu.
+        run: node generate-auctions.mjs --direct
 
       - name: Commit changes (if any)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add dist/auctions/ dist/sitemap.xml auctions/_state.json
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
