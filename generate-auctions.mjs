@@ -228,7 +228,9 @@ const PAGE_CSS = `
         .am-card-meta i { color:#c9a227; margin-right:6px; }
         .am-card-link { margin-top:auto; padding-top:14px; color:#c9a227; font-weight:700; font-size:13px; text-decoration:none; display:inline-block; }
         .am-card-link:hover { color:#0d1b3e; }
-        .am-card { position:relative; cursor:pointer; }
+        .am-card-wrap { display:block; text-decoration:none; color:inherit; height:100%; }
+        .am-card-wrap:hover .am-card { box-shadow:0 8px 32px rgba(13,27,62,.18); transform:translateY(-2px); }
+        .am-card { position:relative; cursor:pointer; transition:box-shadow .2s, transform .2s; }
         .am-eyebrow { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#c9a227; display:block; margin-bottom:8px; }
         .sold-overlay { position:absolute; inset:0; background:rgba(13,27,62,.45); display:flex; align-items:center; justify-content:center; }
         .sold-overlay span { background:#0d1b3e; color:#ccc; padding:6px 16px; border-radius:4px; font-weight:700; font-size:13px; letter-spacing:.08em; }
@@ -467,17 +469,19 @@ function renderCard(auction, slug) {
     ? `\n                <div class="sold-overlay"><span>SOLD</span></div>` : '';
 
   return `        <div class="col-lg-4 col-md-6 mb-30">
-            <div class="am-card">
-                <div class="am-card-img" ${cardImg}>
-                    <span class="am-card-badge ${badgeClass}">${badgeLabel}</span>${soldOverlay}
+            <a href="/auctions/${esc(slug)}/" class="am-card-wrap" target="_blank" rel="noopener">
+                <div class="am-card">
+                    <div class="am-card-img" ${cardImg}>
+                        <span class="am-card-badge ${badgeClass}">${badgeLabel}</span>${soldOverlay}
+                    </div>
+                    <div class="am-card-body">
+                        <p class="am-card-title">${esc(auction.name || 'Auction')}</p>
+                        ${loc     ? `<p class="am-card-meta"><i class="fas fa-map-marker-alt"></i>${esc(loc)}</p>` : ''}
+                        ${startDt ? `<p class="am-card-meta"><i class="fas fa-calendar-alt"></i>${esc(startDt)}</p>` : ''}
+                        <span class="am-card-link">View Auction Details &rarr;</span>
+                    </div>
                 </div>
-                <div class="am-card-body">
-                    <p class="am-card-title">${esc(auction.name || 'Auction')}</p>
-                    ${loc     ? `<p class="am-card-meta"><i class="fas fa-map-marker-alt"></i>${esc(loc)}</p>` : ''}
-                    ${startDt ? `<p class="am-card-meta"><i class="fas fa-calendar-alt"></i>${esc(startDt)}</p>` : ''}
-                    <a href="/auctions/${esc(slug)}/" class="am-card-link stretched-link" target="_blank" rel="noopener">View Auction Details &rarr;</a>
-                </div>
-            </div>
+            </a>
         </div>`;
 }
 
