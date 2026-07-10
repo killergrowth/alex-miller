@@ -453,7 +453,7 @@ ${bwEmbed}
 
 // ── Master index page ─────────────────────────────────────────────────────
 
-function renderCard(auction, slug) {
+function renderCard(auction, slug, cardIndex) {
   const imgUrl    = bestImage(auction.featured_images, 'sm');
   const loc       = formatLocation(auction.location);
   const startDt   = formatDateTime(auction.starts_at);
@@ -468,9 +468,10 @@ function renderCard(auction, slug) {
   const soldOverlay = !active
     ? `\n                <div class="sold-overlay"><span>SOLD</span></div>` : '';
 
+  const cardId = cardIndex !== undefined ? ` id="card-${auction.id}"` : '';
   return `        <div class="col-lg-4 col-md-6 mb-30">
             <a href="/auctions/${esc(slug)}/" class="am-card-wrap" target="_blank" rel="noopener">
-                <div class="am-card">
+                <div class="am-card"${cardId}>
                     <div class="am-card-img" ${cardImg}>
                         <span class="am-card-badge ${badgeClass}">${badgeLabel}</span>${soldOverlay}
                     </div>
@@ -489,8 +490,31 @@ function renderIndexPage(auctions, stateAuctions) {
   const active = auctions.filter(a => isActive(a.status));
   const past   = auctions.filter(a => !isActive(a.status));
 
+  // Build map pin data for active auctions
+  const mapPins = active
+    .map((a, i) => {
+      const loc = a.location;
+      if (!loc || !loc.lat || !loc.lng) return null;
+      const slug = stateAuctions[String(a.id)]?.slug || slugify(a.name, a.id);
+      const startDt = a.starts_at ? new Date(a.starts_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric', timeZone:'America/Chicago' }) : '';
+      return {
+        id: `card-${a.id}`,
+        lat: parseFloat(loc.lat),
+        lng: parseFloat(loc.lng),
+        title: a.name,
+        city: loc.city || '',
+        state: loc.state || '',
+        date: startDt,
+        url: `/auctions/${slug}/`,
+        index: i
+      };
+    })
+    .filter(Boolean);
+
+  const mapPinsJson = JSON.stringify(mapPins);
+
   const activeCards = active.length
-    ? active.map(a => renderCard(a, stateAuctions[String(a.id)]?.slug || slugify(a.name, a.id))).join('\n')
+    ? active.map((a, i) => renderCard(a, stateAuctions[String(a.id)]?.slug || slugify(a.name, a.id), i)).join('\n')
     : `        <div class="col-12 text-center py-40">
             <p style="color:#6b7280;font-size:16px;">No active auctions at this time. Check back soon or <a href="/contact.html" style="color:#c9a227;">contact Alex</a> directly.</p>
         </div>`;
@@ -534,7 +558,27 @@ ${pastCards}
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/alex-miller.css">
-    <style>${PAGE_CSS}    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <style>${PAGE_CSS}
+        .am-view-toggle { display:flex; gap:8px; justify-content:flex-end; margin-bottom:28px; }
+        .am-view-btn { display:inline-flex; align-items:center; gap:7px; padding:8px 20px; border-radius:6px; font-size:13px; font-weight:700; cursor:pointer; border:2px solid #0d1b3e; background:#fff; color:#0d1b3e; transition:all .15s; text-decoration:none; }
+        .am-view-btn.active { background:#0d1b3e; color:#c9a227; border-color:#0d1b3e; }
+        .am-view-btn:hover:not(.active) { background:#f5f7fb; color:#0d1b3e; text-decoration:none; }
+        .am-map-layout { display:none; }
+        .am-map-layout.visible { display:flex; gap:0; align-items:flex-start; }
+        .am-map-col { position:sticky; top:84px; flex:0 0 45%; height:calc(100vh - 110px); max-height:680px; border-radius:10px; overflow:hidden; box-shadow:0 4px 24px rgba(13,27,62,.12); }
+        #am-map { height:100%; width:100%; }
+        .am-grid-col { flex:1; overflow-y:auto; max-height:calc(100vh - 110px); padding-left:24px; }
+        .am-grid-col::-webkit-scrollbar { width:5px; }
+        .am-grid-col::-webkit-scrollbar-thumb { background:#c9a227; border-radius:3px; }
+        .am-card.pin-active { outline:3px solid #c9a227; outline-offset:2px; box-shadow:0 8px 32px rgba(201,162,39,.3) !important; }
+        .am-grid-section.map-mode-hidden { display:none; }
+        @media(max-width:900px) {
+            .am-map-layout.visible { flex-direction:column; }
+            .am-map-col { position:static; flex:none; width:100%; height:320px; max-height:320px; }
+            .am-grid-col { padding-left:0; max-height:none; overflow-y:visible; }
+        }
+    </style>
 </head>
 <body>
 
@@ -562,15 +606,39 @@ ${pastCards}
         </div>
     </section>
 
-    <section class="pt-60 pb-60">
+    <section class="pt-60 pb-60 am-grid-section" id="active-section">
         <div class="container">
-            <div class="section-title text-center wow fadeInDown animated mb-50">
+            <div class="section-title text-center wow fadeInDown animated mb-40">
                 <span class="am-eyebrow">Active &amp; Upcoming</span>
                 <h2>Current Auctions</h2>
                 <div class="divider-gold"></div>
                 <p class="mt-15" style="max-width:650px;margin:12px auto 0;color:#6b7280;font-size:15px;">Browse live auction opportunities through Alex Miller Real Estate Auctions and L2 Realty. Click any listing for full details, photos, and online bidding.</p>
             </div>
-            <div class="row">
+
+            <!-- Grid / Map toggle -->
+            <div class="am-view-toggle">
+                <button class="am-view-btn active" id="btn-grid" onclick="setView('grid')">
+                    <i class="fas fa-th"></i> Grid
+                </button>
+                <button class="am-view-btn" id="btn-map" onclick="setView('map')">
+                    <i class="fas fa-map-marker-alt"></i> Map
+                </button>
+            </div>
+
+            <!-- Map layout (hidden until map mode) -->
+            <div class="am-map-layout" id="map-layout">
+                <div class="am-map-col">
+                    <div id="am-map"></div>
+                </div>
+                <div class="am-grid-col">
+                    <div class="row" id="map-grid-cards">
+${activeCards}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid layout (default) -->
+            <div class="row" id="grid-cards">
 ${activeCards}
             </div>
         </div>
@@ -597,6 +665,90 @@ ${pastSection}
 <script src="/js/wow.min.js"></script>
 <script src="/js/jquery.scrollUp.min.js"></script>
 <script src="/js/main.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLkI=" crossorigin=""></script>
+<script>
+const AUCTION_PINS = ${mapPinsJson};
+let map = null, markers = {}, activeMarker = null;
+
+function goldIcon() {
+  return L.divIcon({ className:'', html:'<div style="width:34px;height:34px;background:#0d1b3e;border:3px solid #c9a227;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(0,0,0,.3);"></div>', iconSize:[34,34], iconAnchor:[17,34], popupAnchor:[0,-36] });
+}
+function goldIconActive() {
+  return L.divIcon({ className:'', html:'<div style="width:40px;height:40px;background:#c9a227;border:3px solid #0d1b3e;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 12px rgba(201,162,39,.6);"></div>', iconSize:[40,40], iconAnchor:[20,40], popupAnchor:[0,-42] });
+}
+
+function initMap() {
+  if (map) return;
+  map = L.map('am-map', { zoomControl:true, scrollWheelZoom:false });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution:'&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+    subdomains:'abcd', maxZoom:19
+  }).addTo(map);
+
+  var bounds = [];
+  AUCTION_PINS.forEach(function(pin) {
+    var gi = goldIcon();
+    var m = L.marker([pin.lat, pin.lng], { icon: gi })
+      .bindPopup(
+        '<div style="min-width:190px;">'
+        + '<strong style="color:#0d1b3e;font-size:13px;display:block;margin-bottom:4px;">' + pin.title + '</strong>'
+        + (pin.city ? '<span style="color:#6b7280;font-size:12px;">' + pin.city + ', ' + pin.state + '</span>' : '')
+        + (pin.date ? '<br><span style="color:#c9a227;font-size:12px;font-weight:700;margin-top:4px;display:block;">📅 ' + pin.date + '</span>' : '')
+        + '<br><a href="' + pin.url + '" target="_blank" style="display:inline-block;margin-top:8px;background:#c9a227;color:#0d1b3e;padding:5px 12px;border-radius:4px;font-size:12px;font-weight:700;text-decoration:none;">View Details →</a>'
+        + '</div>',
+        { maxWidth: 260 }
+      )
+      .addTo(map);
+
+    m.on('click', function() {
+      highlightCard(pin.id);
+      if (activeMarker) { activeMarker.m.setIcon(activeMarker.gi); }
+      m.setIcon(goldIconActive());
+      activeMarker = { m: m, gi: gi };
+    });
+
+    markers[pin.id] = m;
+    bounds.push([pin.lat, pin.lng]);
+  });
+
+  if (bounds.length > 1) map.fitBounds(bounds, { padding:[50,50] });
+  else if (bounds.length === 1) map.setView(bounds[0], 10);
+  else map.setView([38.5, -98.35], 7);
+}
+
+function highlightCard(cardId) {
+  document.querySelectorAll('.am-card.pin-active').forEach(function(el) { el.classList.remove('pin-active'); });
+  document.querySelectorAll('#' + cardId).forEach(function(card) {
+    card.classList.add('pin-active');
+    var col = card.closest('.am-grid-col');
+    if (col) {
+      var row = card.closest('[class*="col-"]');
+      if (row) col.scrollTo({ top: row.offsetTop - 16, behavior:'smooth' });
+    }
+  });
+}
+
+function setView(mode) {
+  var gc = document.getElementById('grid-cards');
+  var ml = document.getElementById('map-layout');
+  var pastSec = document.querySelector('.am-grid-section:not(#active-section)');
+  if (mode === 'map') {
+    gc.style.display = 'none';
+    ml.classList.add('visible');
+    document.getElementById('btn-grid').classList.remove('active');
+    document.getElementById('btn-map').classList.add('active');
+    if (pastSec) pastSec.classList.add('map-mode-hidden');
+    setTimeout(initMap, 60);
+    setTimeout(function() { if (map) map.invalidateSize(); }, 350);
+  } else {
+    gc.style.display = '';
+    ml.classList.remove('visible');
+    document.getElementById('btn-grid').classList.add('active');
+    document.getElementById('btn-map').classList.remove('active');
+    if (pastSec) pastSec.classList.remove('map-mode-hidden');
+  }
+}
+</script>
 </body>
 </html>
 `;
