@@ -271,7 +271,7 @@ function renderInfoCard(auction) {
   const bwUrl   = `${BW_BASE_URL}/ui/auctions/${auction.id}`;
 
   const cta = active
-    ? `        <a href="${esc(bwUrl)}" target="_blank" rel="noopener" class="btn-bid">Register to Bid &rarr;</a>
+    ? `        <a href="#am-embed" class="btn-bid" onclick="document.getElementById('am-embed').scrollIntoView({behavior:'smooth'});return false;">Register to Bid &rarr;</a>
         <a href="/auctions/" class="btn-all">&larr; All Auctions</a>`
     : `        <p style="font-size:13px;color:#6b7280;margin-top:16px;text-align:center;">This auction has closed.</p>
         <a href="/auctions/" class="btn-bid" style="background:#0d1b3e;color:#fff!important;">View Active Auctions &rarr;</a>`;
@@ -329,7 +329,7 @@ function renderAuctionPage(auction) {
 
   const bwEmbed = active ? `
     <!-- BidWrangler live embed for this auction -->
-    <div class="am-embed-wrap">
+    <div class="am-embed-wrap" id="am-embed">
         <div class="container">
             <div class="section-title text-center wow fadeInDown animated mb-40">
                 <span>Online Bidding</span>
