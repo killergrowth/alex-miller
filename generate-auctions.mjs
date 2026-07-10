@@ -568,6 +568,9 @@ ${pastCards}
         .am-map-layout.visible { display:flex; gap:0; align-items:flex-start; }
         .am-map-col { position:sticky; top:84px; flex:0 0 45%; height:calc(100vh - 110px); max-height:680px; border-radius:10px; overflow:hidden; box-shadow:0 4px 24px rgba(13,27,62,.12); }
         #am-map { height:100%; min-height:400px; width:100%; display:block; }
+        /* Fix Bootstrap img max-width:100% breaking Leaflet tiles */
+        .leaflet-container img { max-width:none !important; max-height:none !important; }
+        .leaflet-tile { max-width:none !important; width:256px !important; height:256px !important; }
         .am-grid-col { flex:1; overflow-y:auto; max-height:calc(100vh - 110px); padding-left:24px; }
         .am-grid-col::-webkit-scrollbar { width:5px; }
         .am-grid-col::-webkit-scrollbar-thumb { background:#c9a227; border-radius:3px; }
