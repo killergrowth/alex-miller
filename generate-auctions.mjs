@@ -255,12 +255,62 @@ const PAGE_CSS = `
 // ── Individual auction page ───────────────────────────────────────────────
 
 function renderPhotoGrid(images) {
-  if (!images || images.length <= 1) return '';
-  const imgs = images.slice(0, 12).map(img => {
-    const src = img.lg || img.sm || img.xs || '';
-    return src ? `        <img src="${esc(src)}" alt="Property photo" loading="lazy">` : '';
-  }).filter(Boolean).join('\n');
-  return imgs ? `\n    <div class="am-photo-grid">\n${imgs}\n    </div>` : '';
+  if (!images || images.length === 0) return '';
+  const srcs = images.slice(0, 20).map(img => img.xl || img.lg || img.sm || img.xs || '').filter(Boolean);
+  if (srcs.length === 0) return '';
+
+  const thumbs = srcs.map((src, i) =>
+    `        <img src="${esc(src)}" alt="Property photo ${i + 1}" loading="lazy" data-idx="${i}" class="am-gallery-thumb" tabindex="0">`
+  ).join('\n');
+
+  const lightbox = `
+    <div id="am-lightbox" role="dialog" aria-modal="true" aria-label="Photo gallery">
+      <button id="am-lightbox-close" aria-label="Close">&times;</button>
+      <button id="am-lightbox-prev" aria-label="Previous">&#8249;</button>
+      <img id="am-lightbox-img" src="" alt="Property photo">
+      <button id="am-lightbox-next" aria-label="Next">&#8250;</button>
+      <span id="am-lightbox-counter"></span>
+    </div>`;
+
+  const srcJson = JSON.stringify(srcs);
+
+  const script = `
+    <script>
+    (function() {
+      var SRCS = ${srcJson};
+      var cur = 0;
+      var lb = document.getElementById('am-lightbox');
+      var img = document.getElementById('am-lightbox-img');
+      var counter = document.getElementById('am-lightbox-counter');
+      function show(idx) {
+        cur = (idx + SRCS.length) % SRCS.length;
+        img.src = SRCS[cur];
+        counter.textContent = (cur + 1) + ' / ' + SRCS.length;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      document.querySelectorAll('.am-gallery-thumb').forEach(function(el) {
+        el.addEventListener('click', function() { show(parseInt(el.dataset.idx)); });
+        el.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') show(parseInt(el.dataset.idx)); });
+      });
+      document.getElementById('am-lightbox-close').addEventListener('click', close);
+      document.getElementById('am-lightbox-prev').addEventListener('click', function() { show(cur - 1); });
+      document.getElementById('am-lightbox-next').addEventListener('click', function() { show(cur + 1); });
+      lb.addEventListener('click', function(e) { if (e.target === lb) close(); });
+      document.addEventListener('keydown', function(e) {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(cur - 1);
+        if (e.key === 'ArrowRight') show(cur + 1);
+      });
+    })();
+    <\/script>`;
+
+  return `\n    <div class="am-photo-grid">\n${thumbs}\n    </div>${lightbox}${script}`;
 }
 
 function renderInfoCard(auction) {
