@@ -228,6 +228,7 @@ const PAGE_CSS = `
         .am-card-meta i { color:#c9a227; margin-right:6px; }
         .am-card-link { margin-top:auto; padding-top:14px; color:#c9a227; font-weight:700; font-size:13px; text-decoration:none; display:inline-block; }
         .am-card-link:hover { color:#0d1b3e; }
+        .am-card { position:relative; cursor:pointer; }
         .am-eyebrow { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#c9a227; display:block; margin-bottom:8px; }
         .sold-overlay { position:absolute; inset:0; background:rgba(13,27,62,.45); display:flex; align-items:center; justify-content:center; }
         .sold-overlay span { background:#0d1b3e; color:#ccc; padding:6px 16px; border-radius:4px; font-weight:700; font-size:13px; letter-spacing:.08em; }
@@ -474,7 +475,7 @@ function renderCard(auction, slug) {
                     <p class="am-card-title">${esc(auction.name || 'Auction')}</p>
                     ${loc     ? `<p class="am-card-meta"><i class="fas fa-map-marker-alt"></i>${esc(loc)}</p>` : ''}
                     ${startDt ? `<p class="am-card-meta"><i class="fas fa-calendar-alt"></i>${esc(startDt)}</p>` : ''}
-                    <a href="/auctions/${esc(slug)}/" class="am-card-link">View Auction Details &rarr;</a>
+                    <a href="/auctions/${esc(slug)}/" class="am-card-link stretched-link" target="_blank" rel="noopener">View Auction Details &rarr;</a>
                 </div>
             </div>
         </div>`;
