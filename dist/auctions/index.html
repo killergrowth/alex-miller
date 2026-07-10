@@ -99,7 +99,7 @@
         .am-map-layout { display:none; }
         .am-map-layout.visible { display:flex; gap:0; align-items:flex-start; }
         .am-map-col { position:sticky; top:84px; flex:0 0 45%; height:calc(100vh - 110px); max-height:680px; border-radius:10px; overflow:hidden; box-shadow:0 4px 24px rgba(13,27,62,.12); }
-        #am-map { height:100%; width:100%; }
+        #am-map { height:100%; min-height:400px; width:100%; display:block; }
         .am-grid-col { flex:1; overflow-y:auto; max-height:calc(100vh - 110px); padding-left:24px; }
         .am-grid-col::-webkit-scrollbar { width:5px; }
         .am-grid-col::-webkit-scrollbar-thumb { background:#c9a227; border-radius:3px; }
@@ -1027,8 +1027,14 @@ function setView(mode) {
     document.getElementById('btn-grid').classList.remove('active');
     document.getElementById('btn-map').classList.add('active');
     if (pastSec) pastSec.classList.add('map-mode-hidden');
-    setTimeout(initMap, 60);
-    setTimeout(function() { if (map) map.invalidateSize(); }, 350);
+    // Show layout first, then init — Leaflet needs visible dimensions
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        initMap();
+        setTimeout(function() { if (map) map.invalidateSize(true); }, 100);
+        setTimeout(function() { if (map) map.invalidateSize(true); }, 500);
+      });
+    });
   } else {
     gc.style.display = '';
     ml.classList.remove('visible');
