@@ -1,0 +1,451 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <link rel="icon" type="image/png" href="/images/ChatGPT_Image_May_22__2026__09_18_34_AM.png">
+    <link rel="shortcut icon" type="image/png" href="/images/ChatGPT_Image_May_22__2026__09_18_34_AM.png">
+    <link rel="apple-touch-icon" href="/images/ChatGPT_Image_May_22__2026__09_18_34_AM.png">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Real Estate Auctions | Alex Miller Real Estate Auctions</title>
+    <meta name="description" content="Browse active and past real estate auctions in Central Kansas from Alex Miller, licensed auctioneer with L2 Realty. Bid online or contact Alex to learn more.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://amauctionsandrealestate.com/auctions/">
+    <meta property="og:title" content="Real Estate Auctions | Alex Miller Real Estate Auctions">
+    <meta property="og:description" content="Browse active and past real estate auctions in Central Kansas from Alex Miller, licensed auctioneer with L2 Realty.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://amauctionsandrealestate.com/auctions/">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/css/dripicons.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/alex-miller.css">
+    <style>
+        /* ── Auction page styles ── */
+        .am-auction-hero {
+            background-size: cover; background-position: center;
+            min-height: 320px; position: relative;
+            display: flex; align-items: flex-end;
+        }
+        .am-auction-hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(13,27,62,.4) 0%, rgba(13,27,62,.78) 100%);
+        }
+        .am-auction-hero .hero-inner { position: relative; z-index: 2; width: 100%; padding: 40px 0 36px; }
+        .am-spill { display:inline-block; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px; }
+        .pill-active   { background:#16a34a; color:#fff; }
+        .pill-upcoming { background:#c9a227; color:#0d1b3e; }
+        .pill-sold     { background:rgba(255,255,255,.2); color:#fff; border:1px solid rgba(255,255,255,.4); }
+        .am-sold-banner { background:#0d1b3e; border-left:4px solid #c9a227; padding:18px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
+        .am-sold-banner p { margin:0; color:#fff; font-weight:600; font-size:15px; }
+        .am-sold-banner .btn-go { background:#c9a227; color:#0d1b3e; padding:9px 22px; border-radius:4px; font-weight:700; font-size:13px; text-decoration:none; white-space:nowrap; }
+        .am-info-card { background:#fff; border-radius:10px; box-shadow:0 4px 24px rgba(13,27,62,.10); padding:28px; position:sticky; top:90px; }
+        .am-info-card h4 { color:#0d1b3e; font-size:15px; font-weight:700; margin-bottom:18px; padding-bottom:12px; border-bottom:2px solid #c9a227; }
+        .am-meta-list { list-style:none; padding:0; margin:0; }
+        .am-meta-list li { display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid #f0f0f0; font-size:14px; color:#374151; }
+        .am-meta-list li:last-child { border-bottom:none; }
+        .am-meta-list .mlabel { color:#9ca3af; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; display:block; margin-bottom:2px; }
+        .am-meta-list i { color:#c9a227; width:18px; flex-shrink:0; margin-top:3px; }
+        .btn-bid { display:block; background:#c9a227; color:#0d1b3e!important; text-align:center; padding:13px; border-radius:6px; font-weight:700; font-size:14px; margin-top:20px; text-decoration:none; }
+        .btn-bid:hover { background:#b8911e; }
+        .btn-all { display:block; background:transparent; color:#0d1b3e!important; text-align:center; padding:11px; border-radius:6px; font-weight:600; font-size:13px; margin-top:12px; text-decoration:none; border:2px solid #0d1b3e; }
+        .btn-all:hover { background:#f5f7fb; }
+        .am-desc h3 { color:#0d1b3e; font-size:20px; font-weight:700; margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid #c9a227; display:inline-block; }
+        .am-desc p { color:#374151; line-height:1.8; margin-bottom:14px; font-size:15px; }
+        .am-photo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; margin-top:30px; }
+        .am-photo-grid img { width:100%; height:160px; object-fit:cover; border-radius:6px; transition:opacity .2s; }
+        .am-photo-grid img:hover { opacity:.88; }
+        .am-embed-wrap { background:#f5f7fb; padding:60px 0; }
+        .am-embed-wrap iframe { display:block; width:100%; min-height:700px; border:none; border-radius:10px; box-shadow:0 4px 24px rgba(13,27,62,.10); }
+        .am-cta-dark { background:#0d1b3e; padding:60px 0; }
+        .am-cta-dark h3 { color:#fff; font-size:22px; font-weight:700; margin-bottom:16px; }
+        .btn-gold { display:inline-block; background:#c9a227; color:#0d1b3e; padding:13px 30px; border-radius:6px; font-weight:700; font-size:14px; text-decoration:none; }
+        .btn-gold:hover { background:#b8911e; color:#0d1b3e; }
+        .btn-outline-white { display:inline-block; background:transparent; color:#fff; padding:11px 28px; border-radius:6px; font-weight:600; font-size:14px; text-decoration:none; border:2px solid rgba(255,255,255,.4); margin-left:12px; }
+        .btn-outline-white:hover { background:rgba(255,255,255,.08); color:#fff; }
+
+        /* Index card styles */
+        .am-card { background:#fff; border-radius:10px; box-shadow:0 4px 18px rgba(13,27,62,.08); overflow:hidden; height:100%; display:flex; flex-direction:column; }
+        .am-card-img { height:200px; background-size:cover; background-position:center; position:relative; flex-shrink:0; }
+        .am-card-badge { position:absolute; top:12px; left:12px; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+        .am-card-badge.active   { background:#16a34a; color:#fff; }
+        .am-card-badge.upcoming { background:#c9a227; color:#0d1b3e; }
+        .am-card-badge.sold     { background:rgba(0,0,0,.55); color:#ddd; }
+        .am-card-body { padding:20px; flex:1; display:flex; flex-direction:column; }
+        .am-card-title { font-size:16px; font-weight:700; color:#0d1b3e; margin-bottom:8px; line-height:1.4; }
+        .am-card-meta  { font-size:13px; color:#6b7280; margin-bottom:5px; }
+        .am-card-meta i { color:#c9a227; margin-right:6px; }
+        .am-card-link { margin-top:auto; padding-top:14px; color:#c9a227; font-weight:700; font-size:13px; text-decoration:none; display:inline-block; }
+        .am-card-link:hover { color:#0d1b3e; }
+        .am-eyebrow { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#c9a227; display:block; margin-bottom:8px; }
+        .sold-overlay { position:absolute; inset:0; background:rgba(13,27,62,.45); display:flex; align-items:center; justify-content:center; }
+        .sold-overlay span { background:#0d1b3e; color:#ccc; padding:6px 16px; border-radius:4px; font-weight:700; font-size:13px; letter-spacing:.08em; }
+        @media(max-width:768px) {
+            .am-embed-wrap iframe { min-height:500px; }
+            .am-info-card { position:static; margin-top:30px; }
+            .am-sold-banner { flex-direction:column; }
+            .btn-outline-white { margin-left:0; margin-top:12px; }
+        }    </style>
+
+    <!-- Default social preview image -->
+    <meta property="og:image" content="https://amauctionsandrealestate.com/images/Preview_Image_May_18__2026__02_22_53_PM.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="800">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://amauctionsandrealestate.com/images/Preview_Image_May_18__2026__02_22_53_PM.png">
+<script type="text/javascript">
+ (function(k) {
+ let s=document.createElement('script');s.defer=true;
+ s.src="https://cdn.feedbucket.app/assets/feedbucket.js";
+ s.dataset.feedbucket=k;document.head.appendChild(s);
+ })('t5pZRdMNCLsQ93aey77L')
+</script>
+</head>
+<body>
+
+<!-- header -->
+        <header class="header-area">
+            <!-- Top bar: phone / email / hours -->
+            <div class="header-top second-header d-none d-md-block">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="wellcome-text text-center text-lg-left">
+                                <p>Central Kansas Real Estate Auctions &mdash; Brokered by <a href="https://l2realtyinc.com/alex-miller/" target="_blank" rel="noopener">L2 Realty Inc.</a></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-none d-lg-block">
+                            <div class="header-cta text-right">
+                                <ul>
+                                    <li>
+                                        <i class="icon dripicons-mail"></i>
+                                        <span><a href="mailto:amiller@l2realtyinc.com" style="color:inherit;">amiller@l2realtyinc.com</a></span>
+                                    </li>
+                                    <li>
+                                        <i class="icon dripicons-phone"></i>
+                                        <span><a href="tel:3163134759" style="color:inherit;">316-313-4759</a></span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sticky nav -->
+            <div id="header-sticky" class="menu-area">
+                <div class="container">
+                    <div class="second-menu">
+                        <div class="row align-items-center">
+                            <div class="col-6 col-lg-3">
+                                <div class="logo">
+                                    <!-- ASSET: Alex Miller logo PNG (Drive ID: 1-IqfpZ4TUi204euD9DPUnd0T2Qd0m7gF) -->
+                                    <!-- Replace img src with /images/logo.png once pulled from Drive -->
+                                    <a href="/index.html">
+                                        <img src="/images/alex-miller.png"
+                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                                             alt="Alex Miller Real Estate Auctions" style="max-height:60px;">
+                                        <span class="logo-text-fallback" style="display:none; color:#c9a227; font-weight:800; font-size:18px; letter-spacing:0.02em;">Alex Miller<br><small style="font-size:12px; font-weight:400; color:rgba(255,255,255,0.85);">Real Estate Auctions</small></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-9">
+                                <div class="responsive"><i class="icon dripicons-align-right"></i></div>
+                                <div class="main-menu text-right text-xl-right">
+                                    <nav id="mobile-menu">
+                                        <ul>
+                                            <li><a href="/index.html">Home</a></li>
+                                            <li><a href="/services.html">Services</a></li>
+                                            <li><a href="/listings.html">Listings</a></li>
+                                            <li><a href="/upcoming-auctions.html">Upcoming Auctions</a></li>
+                                            <li><a href="/service-areas.html">Service Areas</a></li>
+                                            <li><a href="/about.html">About</a></li>
+                                            <li><a href="/contact.html" class="top-btn">Contact</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header-end -->
+
+<main>
+
+    <section class="am-auction-hero" style="background-image:url('/images/barton-48.jpg')">
+        <div class="hero-inner">
+            <div class="container">
+                <div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
+                    <div class="text-center">
+                        <div style="margin-bottom:12px;"><span style="color:#c9a227;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;">L2 Realty Inc.</span></div>
+                        <h1 style="color:#fff;font-size:clamp(28px,5vw,46px);font-weight:800;margin-bottom:10px;">Real Estate Auctions</h1>
+                        <p style="color:rgba(255,255,255,.82);font-size:15px;margin-bottom:0;">Active and past auction opportunities in Central Kansas</p>
+                        <nav aria-label="breadcrumb" style="margin-top:16px;">
+                            <ol class="breadcrumb justify-content-center" style="background:transparent;margin:0;">
+                                <li class="breadcrumb-item"><a href="/index.html" style="color:rgba(255,255,255,.7);">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page" style="color:#c9a227;">Auctions</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-60 pb-60">
+        <div class="container">
+            <div class="section-title text-center wow fadeInDown animated mb-50">
+                <span class="am-eyebrow">Active &amp; Upcoming</span>
+                <h2>Current Auctions</h2>
+                <div class="divider-gold"></div>
+                <p class="mt-15" style="max-width:650px;margin:12px auto 0;color:#6b7280;font-size:15px;">Browse live auction opportunities through Alex Miller Real Estate Auctions and L2 Realty. Click any listing for full details, photos, and online bidding.</p>
+            </div>
+            <div class="row">
+        <div class="col-12 text-center py-40">
+            <p style="color:#6b7280;font-size:16px;">No active auctions at this time. Check back soon or <a href="/contact.html" style="color:#c9a227;">contact Alex</a> directly.</p>
+        </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-0 pb-80" style="background:#f5f7fb;">
+        <div class="container">
+            <div class="section-title text-center wow fadeInDown animated mb-50">
+                <span class="am-eyebrow">Archives</span>
+                <h2>Past Auctions</h2>
+                <div class="divider-gold"></div>
+                <p class="mt-15" style="max-width:600px;margin:12px auto 0;color:#6b7280;font-size:15px;">Sold properties below. Each page includes property details, photos, and location — great for research or finding what moves in this market.</p>
+            </div>
+            <div class="row">
+        <div class="col-lg-4 col-md-6 mb-30">
+            <div class="am-card">
+                <div class="am-card-img" style="background-image:url('https://d37cbsn538t2ha.cloudfront.net/eyJidWNrZXQiOiJid3BhcGVyY2xpcC1wcm9kdWN0aW9uIiwia2V5IjoiYXVjdGlvbl9pbWFnZXMvYXNzZXRzLzQ4OS8xNTYvMzQzLzc4Mi9vcmlnaW5hbC9CcmFuZGVkLmpwZyIsInYiOjE3ODIzOTgyNzEsImVkaXRzIjp7InJlc2l6ZSI6eyJ3Ijo3NTAsImgiOjQ3M30sImF2aWYiOnsicSI6NzAsInN0eWxlIjoic20ifSwianBlZyI6eyJxIjo4NX19LCJlZnMiOnRydWV9?signature=e02c199e94d66f2ef05093e2c963ac3dab5c1f4d0fe04ee5f19859487ce4525c')" >
+                    <span class="am-card-badge sold">PENDING</span>
+                <div class="sold-overlay"><span>SOLD</span></div>
+                </div>
+                <div class="am-card-body">
+                    <p class="am-card-title">Home in Hutchinson, KS</p>
+                    
+                    <p class="am-card-meta"><i class="fas fa-calendar-alt"></i>July 24, 2026 at 5:00 PM CDT</p>
+                    <a href="/auctions/home-in-hutchinson-ks-164706/" class="am-card-link">View Auction Details &rarr;</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-30">
+            <div class="am-card">
+                <div class="am-card-img" style="background-image:url('https://d37cbsn538t2ha.cloudfront.net/eyJidWNrZXQiOiJid3BhcGVyY2xpcC1wcm9kdWN0aW9uIiwia2V5IjoiYXVjdGlvbl9pbWFnZXMvYXNzZXRzLzQ4OS8xNTYvMDc2LzMwNi9vcmlnaW5hbC9CUkFOREVEXzJfKDgpLmpwZyIsInYiOjE3ODIxNTczNzgsImVkaXRzIjp7InJlc2l6ZSI6eyJ3Ijo3NTAsImgiOjQ3M30sImF2aWYiOnsicSI6NzAsInN0eWxlIjoic20ifSwianBlZyI6eyJxIjo4NX19LCJlZnMiOnRydWV9?signature=8a978479751d10ae033c002598ffbb47e26f1ed4c2a21ca6cc61834708fe33e1')" >
+                    <span class="am-card-badge sold">PENDING</span>
+                <div class="sold-overlay"><span>SOLD</span></div>
+                </div>
+                <div class="am-card-body">
+                    <p class="am-card-title">Coffeyville, KS 160 +/- Acres</p>
+                    <p class="am-card-meta"><i class="fas fa-map-marker-alt"></i>Independence, KS</p>
+                    <p class="am-card-meta"><i class="fas fa-calendar-alt"></i>July 28, 2026 at 8:00 AM CDT</p>
+                    <a href="/auctions/coffeyville-ks-160-acres-164505/" class="am-card-link">View Auction Details &rarr;</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-30">
+            <div class="am-card">
+                <div class="am-card-img" style="background-image:url('https://d37cbsn538t2ha.cloudfront.net/eyJidWNrZXQiOiJid3BhcGVyY2xpcC1wcm9kdWN0aW9uIiwia2V5IjoiYXVjdGlvbl9pbWFnZXMvYXNzZXRzLzQ4OS8xNTYvMDcyLzEzOS9vcmlnaW5hbC9CUkFOREVEXzJfKDcpLmpwZyIsInYiOjE3ODIxNTU1MjUsImVkaXRzIjp7InJlc2l6ZSI6eyJ3Ijo3NTAsImgiOjQ3M30sImF2aWYiOnsicSI6NzAsInN0eWxlIjoic20ifSwianBlZyI6eyJxIjo4NX19LCJlZnMiOnRydWV9?signature=553f0485c66b4860def009019ad5b529f26d30edb1f213d654387d5bfc7d3bee')" >
+                    <span class="am-card-badge sold">PENDING</span>
+                <div class="sold-overlay"><span>SOLD</span></div>
+                </div>
+                <div class="am-card-body">
+                    <p class="am-card-title">Longton, KS 147 +/- Acres</p>
+                    <p class="am-card-meta"><i class="fas fa-map-marker-alt"></i>Independence, KS</p>
+                    <p class="am-card-meta"><i class="fas fa-calendar-alt"></i>August 3, 2026 at 8:00 AM CDT</p>
+                    <a href="/auctions/longton-ks-147-acres-164500/" class="am-card-link">View Auction Details &rarr;</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-30">
+            <div class="am-card">
+                <div class="am-card-img" style="background-image:url('https://d37cbsn538t2ha.cloudfront.net/eyJidWNrZXQiOiJid3BhcGVyY2xpcC1wcm9kdWN0aW9uIiwia2V5IjoiYXVjdGlvbl9pbWFnZXMvYXNzZXRzLzQ4OS8xNTYvODI3LzMxMC9vcmlnaW5hbC9CUkFOREVEXzJfKDEwKS5qcGciLCJ2IjoxNzgyOTE1ODQ5LCJlZGl0cyI6eyJyZXNpemUiOnsidyI6NzUwLCJoIjo0NzN9LCJhdmlmIjp7InEiOjcwLCJzdHlsZSI6InNtIn0sImpwZWciOnsicSI6ODV9fSwiZWZzIjp0cnVlfQ==?signature=7bce00a567552e1c3391ecd12a75f1eb7917efe3aa6f8558e6ecde91db8ef2c3')" >
+                    <span class="am-card-badge sold">PENDING</span>
+                <div class="sold-overlay"><span>SOLD</span></div>
+                </div>
+                <div class="am-card-body">
+                    <p class="am-card-title">LeRoy, KS 109.1 +/- Acres</p>
+                    <p class="am-card-meta"><i class="fas fa-map-marker-alt"></i>LeRoy, KS</p>
+                    <p class="am-card-meta"><i class="fas fa-calendar-alt"></i>August 10, 2026 at 12:00 PM CDT</p>
+                    <a href="/auctions/leroy-ks-1091-acres-165029/" class="am-card-link">View Auction Details &rarr;</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-30">
+            <div class="am-card">
+                <div class="am-card-img" style="background-image:url('https://d37cbsn538t2ha.cloudfront.net/eyJidWNrZXQiOiJid3BhcGVyY2xpcC1wcm9kdWN0aW9uIiwia2V5IjoiYXVjdGlvbl9pbWFnZXMvYXNzZXRzLzQ4OS8xNTcvNDcxLzcxNS9vcmlnaW5hbC9CUkFOREVEXzJfKDIwKS5qcGciLCJ2IjoxNzgzNjA0NjkxLCJlZGl0cyI6eyJyZXNpemUiOnsidyI6NzUwLCJoIjo0NzN9LCJhdmlmIjp7InEiOjcwLCJzdHlsZSI6InNtIn0sImpwZWciOnsicSI6ODV9fSwiZWZzIjp0cnVlfQ==?signature=49b3b93c5a28c7a2f8a91807d3fa8fb2961f19f44818f3c3703b412fd6dda5c2')" >
+                    <span class="am-card-badge sold">PENDING</span>
+                <div class="sold-overlay"><span>SOLD</span></div>
+                </div>
+                <div class="am-card-body">
+                    <p class="am-card-title">Cherryvale, KS 315 +/- Acres</p>
+                    <p class="am-card-meta"><i class="fas fa-map-marker-alt"></i>Dennis, KS</p>
+                    <p class="am-card-meta"><i class="fas fa-calendar-alt"></i>August 6, 2026 at 10:00 AM CDT</p>
+                    <a href="/auctions/cherryvale-ks-315-acres-165168/" class="am-card-link">View Auction Details &rarr;</a>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="am-cta-dark">
+        <div class="container text-center">
+            <h3>Ready to Bid or Have a Property to Sell?</h3>
+            <p style="color:rgba(255,255,255,.75);max-width:520px;margin:0 auto 28px;font-size:15px;">Alex Miller handles every auction with transparency and a commitment to getting sellers the best outcome.</p>
+            <a href="/contact.html" class="btn-gold">Contact Alex &rarr;</a>
+            <a href="/upcoming-auctions.html" class="btn-outline-white">Live Auction Feed</a>
+        </div>
+    </section>
+
+</main>
+
+<!-- footer -->
+        <footer class="footer-bg footer-p pt-80 pb-60">
+
+            <div class="footer-top pb-30">
+                <div class="container">
+                    <div class="row">
+                        <!-- Col 1: Brand + bio -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
+                            <div class="footer-widget">
+                                <div class="logo mb-25">
+                                    <a href="/index.html">
+                                        <img src="/images/alex-miller.png"
+                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                                             alt="Alex Miller Real Estate Auctions" style="max-height:54px;">
+                                        <span class="logo-text-fallback" style="display:none; color:#c9a227; font-weight:800; font-size:16px;">Alex Miller Real Estate Auctions</span>
+                                    </a>
+                                </div>
+                                <div class="footer-text mb-20">
+                                    <p>Alex Miller is a licensed real estate auctioneer serving central Kansas. Every auction is handled with transparency, professionalism, and a commitment to getting sellers the best possible outcome.</p>
+                                </div>
+                                <!-- <a href="https://l2realtyinc.com/alex-miller/" target="_blank" rel="noopener">L2 Realty Inc.</a> logo + link -->
+                                <div class="mt-20">
+                                    <a href="https://l2realtyinc.com/alex-miller/" target="_blank" rel="noopener">
+                                        <img src="/images/l2-realty-logo.svg"
+                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"
+                                             alt="L2 Realty Inc." style="max-height:40px; opacity:0.7;">
+                                        <span class="l2-text-fallback" style="display:none; color:#ddd; font-size:13px;">L2 Realty Inc.</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Col 2: Quick Links -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
+                            <div class="footer-widget">
+                                <div class="f-widget-title">
+                                    <h5>Quick Links</h5>
+                                </div>
+                                <div class="footer-link">
+                                    <ul>
+                                        <li><a href="/index.html">Home</a></li>
+                                        <li><a href="/about.html">About Alex</a></li>
+                                        <li><a href="/services.html">Services</a></li>
+                                        <li><a href="/listings.html">Listings</a></li>
+                                        <li><a href="/upcoming-auctions.html">Upcoming Auctions</a></li>
+                                        <li><a href="/service-areas.html">Service Areas</a></li>
+                                        <li><a href="/resources.html">Resources</a></li>
+                                        <li><a href="/contact.html">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Col 3: Services -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
+                            <div class="footer-widget">
+                                <div class="f-widget-title">
+                                    <h5>Services</h5>
+                                </div>
+                                <div class="footer-link">
+                                    <ul>
+                                        <li><a href="/services/real-estate-auctions.html">Real Estate Auctions</a></li>
+                                        <li><a href="/services/land-auctions.html">Land Auctions</a></li>
+                                        <li><a href="/services/agent-services.html">Agent Services</a></li>
+                                        <li><a href="/services/auction-101.html">Auction 101</a></li>
+                                        <li><a href="/resources.html">Resources</a></li>
+                                        <li><a href="https://l2realtyinc.com/alex-miller/" target="_blank" rel="noopener">L2 Realty Profile</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Col 4: Contact Info -->
+                        <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
+                            <div class="footer-widget">
+                                <div class="f-widget-title">
+                                    <h5>Get in Touch</h5>
+                                </div>
+                                <div class="footer-link">
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-phone" style="color:#c9a227; margin-right:8px;"></i>
+                                            <a href="tel:3163134759">316-313-4759</a>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-envelope" style="color:#c9a227; margin-right:8px;"></i>
+                                            <a href="mailto:amiller@l2realtyinc.com" style="word-break:break-all;">amiller@l2realtyinc.com</a>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-map-marker-alt" style="color:#c9a227; margin-right:8px;"></i>
+                                            <span>Central Kansas</span>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-clock" style="color:#c9a227; margin-right:8px;"></i>
+                                            <span>Mon&ndash;Fri: 8am &ndash; 5pm</span>
+                                        </li>
+                                        <li style="margin-top:15px;">
+                                            <a href="/contact.html" class="btn" style="background:#c9a227; color:#fff; padding:8px 20px; border-radius:4px; font-size:13px; font-weight:600;">Send a Message</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="copyright-wrap">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="copyright-text">
+                                <p>&copy; <script>document.write(new Date().getFullYear())</script> Alex Miller Real Estate Auctions. All rights reserved.</p>
+                                <p class="footer-brokered">Brokered by <a href="https://l2realtyinc.com/alex-miller/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7);"><strong>L2 Realty Inc.</strong></a> &mdash; Licensed in Kansas.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-md-right">
+                            <div class="copyright-text">
+                                <p>
+                                    <a href="/contact.html">Contact</a> &nbsp;|&nbsp;
+                                    <a href="/privacy-policy.html">Privacy Policy</a>
+                                </p>
+                                <p>Website built by <a href="https://killergrowth.com" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.7);">KillerGrowth</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer-end -->
+
+
+<script src="/js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/jquery.scrollUp.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -9,6 +9,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const { generateSitemap } = require('C:\\Users\\KillerGrowth\\.openclaw\\workspace\\tools\\kg-site-builder\\lib\\gen-sitemap');
+const SITE_DOMAIN = 'amauctionsandrealestate.com';
+const SITE_ID     = 'alex-miller';
+const { injectScripts, loadSiteScripts } = require('C:\\Users\\KillerGrowth\\.openclaw\\workspace\\tools\\kg-site-builder\\lib\\inject-scripts');
 
 const ROOT = __dirname;
 const DIST = path.join(ROOT, 'dist');
@@ -30,16 +34,14 @@ const ROOT_PAGES = [
   'service-areas.html',
   'upcoming-auctions.html',
   'resources.html',
-  'privacy-policy.html',
-];
+  'privacy-policy.html'];
 
 // Service sub-pages
 const SERVICE_PAGES = [
   'services/real-estate-auctions.html',
   'services/land-auctions.html',
   'services/agent-services.html',
-  'services/auction-101.html',
-];
+  'services/auction-101.html'];
 
 // Location pages (auto-discovered)
 function discoverLocationPages() {
@@ -58,11 +60,33 @@ function discoverLocationPages() {
   return pages;
 }
 
+// Auction pages (auto-discovered from auctions/ source dir)
+function discoverAuctionPages() {
+  const auctDir = path.join(ROOT, 'auctions');
+  if (!fs.existsSync(auctDir)) return [];
+  const pages = [];
+  // Master index
+  if (fs.existsSync(path.join(auctDir, 'index.html'))) {
+    pages.push('auctions/index.html');
+  }
+  // Individual auction slugs
+  const entries = fs.readdirSync(auctDir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.isDirectory() && !entry.name.startsWith('_')) {
+      const idx = path.join('auctions', entry.name, 'index.html');
+      if (fs.existsSync(path.join(ROOT, idx))) {
+        pages.push(idx);
+      }
+    }
+  }
+  return pages;
+}
+
 const ALL_PAGES = [
   ...ROOT_PAGES,
   ...SERVICE_PAGES,
   ...discoverLocationPages(),
-];
+  ...discoverAuctionPages()];
 
 // Asset folders to copy into dist (paths relative to ROOT)
 const ASSET_DIRS = ['css', 'js', 'img', 'images', 'fonts', 'fontawesome'];
@@ -190,9 +214,13 @@ for (const page of ALL_PAGES) {
   // Inject social meta tags
   html = injectSocialMeta(html);
 
+  html = injectScripts(html, loadSiteScripts(SITE_ID));
   fs.writeFileSync(destPath, html, 'utf8');
   console.log(`Built ${page} -> dist/${page}`);
   built++;
 }
 
 console.log(`\nDone. ${built} pages built, ${skipped} skipped.`);
+
+// Generate sitemap from actual dist/ contents
+generateSitemap({ distDir: DIST, siteRoot: ROOT, domain: SITE_DOMAIN });

@@ -1,0 +1,35 @@
+{
+  "lastFetch": "2026-07-10T15:41:41.054Z",
+  "auctions": {
+    "164500": {
+      "slug": "longton-ks-147-acres-164500",
+      "status": "pending",
+      "name": "Longton, KS 147 +/- Acres",
+      "generated": "2026-07-10T15:41:41.076Z"
+    },
+    "164505": {
+      "slug": "coffeyville-ks-160-acres-164505",
+      "status": "pending",
+      "name": "Coffeyville, KS 160 +/- Acres",
+      "generated": "2026-07-10T15:41:41.074Z"
+    },
+    "164706": {
+      "slug": "home-in-hutchinson-ks-164706",
+      "status": "pending",
+      "name": "Home in Hutchinson, KS",
+      "generated": "2026-07-10T15:41:41.055Z"
+    },
+    "165029": {
+      "slug": "leroy-ks-1091-acres-165029",
+      "status": "pending",
+      "name": "LeRoy, KS 109.1 +/- Acres",
+      "generated": "2026-07-10T15:41:41.078Z"
+    },
+    "165168": {
+      "slug": "cherryvale-ks-315-acres-165168",
+      "status": "pending",
+      "name": "Cherryvale, KS 315 +/- Acres",
+      "generated": "2026-07-10T15:41:41.080Z"
+    }
+  }
+}
