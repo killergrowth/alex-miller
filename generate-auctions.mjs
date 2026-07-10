@@ -72,7 +72,8 @@ function truncate(str, len) {
 }
 
 function isActive(status) {
-  return ['active', 'upcoming', 'preview'].includes((status || '').toLowerCase());
+  // BidWrangler uses 'pending' for scheduled/upcoming auctions
+  return ['active', 'upcoming', 'preview', 'pending', 'scheduled'].includes((status || '').toLowerCase());
 }
 
 function statusLabel(status) {
@@ -126,12 +127,14 @@ async function fetchAllAuctions() {
   if (!res.ok) throw new Error(`BidWrangler API ${res.status}`);
   const data = await res.json();
 
-  const active   = (data.active   || {}).results || [];
-  const complete = (data.complete || {}).results || [];
-  const all      = [...active, ...complete];
+  const active   = (data.active || {}).results || [];
+  // API uses 'past' or 'complete' depending on context — handle both
+  const pastData  = data.past || data.complete || {};
+  const complete  = pastData.results || [];
+  const all       = [...active, ...complete];
 
-  // Paginate complete if needed
-  const total = (data.complete || {}).total_count || 0;
+  // Paginate past/complete if needed
+  const total = pastData.total || pastData.total_count || 0;
   let fetched = complete.length;
   let page = 2;
   while (fetched < total && page <= 10) {
@@ -141,7 +144,7 @@ async function fetchAllAuctions() {
     );
     if (!r.ok) break;
     const d  = await r.json();
-    const rs = (d.complete || {}).results || [];
+    const rs = ((d.past || d.complete) || {}).results || [];
     if (!rs.length) break;
     all.push(...rs);
     fetched += rs.length;
