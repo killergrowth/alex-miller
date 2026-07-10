@@ -79,7 +79,7 @@ function isActive(status) {
 function statusLabel(status) {
   const s = (status || '').toLowerCase();
   if (s === 'active')    return 'ACTIVE';
-  if (s === 'upcoming')  return 'UPCOMING';
+  if (s === 'upcoming' || s === 'pending' || s === 'scheduled') return 'UPCOMING';
   if (s === 'preview')   return 'PREVIEW';
   if (s === 'complete' || s === 'completed') return 'SOLD';
   if (s === 'cancelled') return 'CANCELLED';
@@ -89,7 +89,7 @@ function statusLabel(status) {
 function statusPillClass(status) {
   const s = (status || '').toLowerCase();
   if (s === 'active')   return 'pill-active';
-  if (s === 'upcoming') return 'pill-upcoming';
+  if (s === 'upcoming' || s === 'pending' || s === 'scheduled') return 'pill-upcoming';
   return 'pill-sold';
 }
 
