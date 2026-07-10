@@ -558,7 +558,7 @@ ${pastCards}
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/alex-miller.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
     <style>${PAGE_CSS}
         .am-view-toggle { display:flex; gap:8px; justify-content:flex-end; margin-bottom:28px; }
         .am-view-btn { display:inline-flex; align-items:center; gap:7px; padding:8px 20px; border-radius:6px; font-size:13px; font-weight:700; cursor:pointer; border:2px solid #0d1b3e; background:#fff; color:#0d1b3e; transition:all .15s; text-decoration:none; }
@@ -668,7 +668,7 @@ ${pastSection}
 <script src="/js/wow.min.js"></script>
 <script src="/js/jquery.scrollUp.min.js"></script>
 <script src="/js/main.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLkI=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
 const AUCTION_PINS = ${mapPinsJson};
 let map = null, markers = {}, activeMarker = null;
