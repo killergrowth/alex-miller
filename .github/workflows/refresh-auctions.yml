@@ -39,5 +39,27 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "chore: refresh auction pages $(date -u '+%Y-%m-%d %H:%M UTC')"
-            git push
+            git push origin main
+            # Keep staging in sync with main after every refresh
+            git push origin main:staging
           fi
+
+      - name: Deploy to Cloudflare Pages (main)
+        if: success()
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 27cafbbee6f8e1db0d9499405d4755c1
+          projectName: alex-miller
+          directory: dist
+          branch: main
+
+      - name: Deploy to Cloudflare Pages (staging)
+        if: success()
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 27cafbbee6f8e1db0d9499405d4755c1
+          projectName: alex-miller
+          directory: dist
+          branch: staging
