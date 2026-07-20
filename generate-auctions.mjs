@@ -377,25 +377,7 @@ function renderAuctionPage(auction) {
   const photoGrid = renderPhotoGrid(auction.featured_images);
   const infoCard  = renderInfoCard(auction);
 
-  const bwEmbed = active ? `
-    <!-- BidWrangler live embed for this auction -->
-    <div class="am-embed-wrap" id="am-embed">
-        <div class="container">
-            <div class="section-title text-center wow fadeInDown animated mb-40">
-                <span>Online Bidding</span>
-                <h2>Place Your Bid</h2>
-                <div class="divider-gold"></div>
-                <p class="mt-15" style="max-width:600px;margin:12px auto 0;color:#6b7280;font-size:15px;">Register below to participate in this auction online. Create a free account to get started.</p>
-            </div>
-            <iframe
-                src="${esc(`${BW_BASE_URL}/ui/auctions/${auction.id}`)}"
-                title="${esc(auction.name)} — Online Bidding"
-                allowfullscreen
-                loading="lazy"
-                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation">
-            </iframe>
-        </div>
-    </div>` : '';
+  // Embed removed 2026-07-20 — "Register to Bid" now links directly to BidWrangler in a new tab.
 
   const schema = JSON.stringify({
     '@context': 'https://schema.org',
@@ -485,9 +467,7 @@ ${infoCard}
             </div>
         </div>
     </section>
-${bwEmbed}
-
-    <section class="am-cta-dark">
+<section class="am-cta-dark">
         <div class="container text-center">
             <h3>Looking for More Opportunities?</h3>
             <p style="color:rgba(255,255,255,.75);max-width:520px;margin:0 auto 28px;font-size:15px;">Browse all active and past real estate auctions from Alex Miller and L2 Realty in Central Kansas.</p>

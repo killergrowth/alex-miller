@@ -1,467 +1,467 @@
 {
-  "lastFetch": "2026-07-20T16:25:43.076Z",
+  "lastFetch": "2026-07-20T20:38:15.899Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
       "status": "complete",
       "name": "Southern Forest Products Auction - 6 Tracts to be Auctioned ",
-      "generated": "2026-07-10T16:10:11.783Z"
+      "generated": "2026-07-20T20:38:15.911Z"
     },
     "83707": {
       "slug": "voegeli-40-acres-valley-center-ks-83707",
       "status": "complete",
       "name": "Voegeli 40+/- Acres ~ Valley Center, Ks ",
-      "generated": "2026-07-10T16:10:11.782Z"
+      "generated": "2026-07-20T20:38:15.911Z"
     },
     "84942": {
       "slug": "1572-acres-for-auction-90-tillable-acres-buffalo-ks-84942",
       "status": "complete",
       "name": "157.2 Acres for Auction, 90 Tillable Acres - Buffalo, KS ",
-      "generated": "2026-07-10T16:10:11.781Z"
+      "generated": "2026-07-20T20:38:15.911Z"
     },
     "85143": {
       "slug": "counsil-auction-657-acres-in-neodesha-85143",
       "status": "complete",
       "name": "Counsil Auction 65.7+/- acres in Neodesha",
-      "generated": "2026-07-10T16:10:11.780Z"
+      "generated": "2026-07-20T20:38:15.911Z"
     },
     "87333": {
       "slug": "cox-5-acres-in-thayer-ks-87333",
       "status": "complete",
       "name": "Cox - 5 Acres in Thayer, KS ",
-      "generated": "2026-07-10T16:10:11.779Z"
+      "generated": "2026-07-20T20:38:15.911Z"
     },
     "88700": {
       "slug": "mcdonald-family-holdings-88700",
       "status": "complete",
       "name": "McDonald Family Holdings",
-      "generated": "2026-07-10T16:10:11.776Z"
+      "generated": "2026-07-20T20:38:15.910Z"
     },
     "88935": {
       "slug": "brackettoetinger-88935",
       "status": "complete",
       "name": "Brackett-Oetinger",
-      "generated": "2026-07-10T16:10:11.777Z"
+      "generated": "2026-07-20T20:38:15.911Z"
     },
     "89006": {
       "slug": "mcconn-89006",
       "status": "complete",
       "name": "McConn",
-      "generated": "2026-07-10T16:10:11.775Z"
+      "generated": "2026-07-20T20:38:15.910Z"
     },
     "90803": {
       "slug": "biller-139-acres-in-coffeyville-ks-90803",
       "status": "complete",
       "name": "Biller 139+/- acres in Coffeyville, KS",
-      "generated": "2026-07-10T16:10:11.774Z"
+      "generated": "2026-07-20T20:38:15.910Z"
     },
     "91968": {
       "slug": "deramus-rainbow-lake-auction-terms-91968",
       "status": "complete",
       "name": "Deramus Rainbow Lake Auction Terms",
-      "generated": "2026-07-10T16:10:11.772Z"
+      "generated": "2026-07-20T20:38:15.910Z"
     },
     "92252": {
       "slug": "deramus-grow-house-auction-92252",
       "status": "complete",
       "name": "Deramus Grow House Auction",
-      "generated": "2026-07-10T16:10:11.771Z"
+      "generated": "2026-07-20T20:38:15.910Z"
     },
     "93196": {
       "slug": "potter-4-tract-auction-93196",
       "status": "complete",
       "name": "Potter 4 Tract Auction",
-      "generated": "2026-07-10T16:10:11.770Z"
+      "generated": "2026-07-20T20:38:15.910Z"
     },
     "100005": {
       "slug": "zimmerman-84-acres-in-harper-county-ks-100005",
       "status": "complete",
       "name": "Zimmerman ~ 84 +/- Acres in Harper County, KS",
-      "generated": "2026-07-10T16:10:11.769Z"
+      "generated": "2026-07-20T20:38:15.909Z"
     },
     "109193": {
       "slug": "settlemyer-family-8014-acre-auction-109193",
       "status": "complete",
       "name": "Settlemyer Family 80.14+/- Acre Auction",
-      "generated": "2026-07-10T16:10:11.767Z"
+      "generated": "2026-07-20T20:38:15.909Z"
     },
     "111601": {
       "slug": "444-acres-in-wilson-county-ks-111601",
       "status": "complete",
       "name": "44.4 +/- Acres in Wilson County, KS",
-      "generated": "2026-07-10T16:10:11.766Z"
+      "generated": "2026-07-20T20:38:15.909Z"
     },
     "113385": {
       "slug": "2394-acres-for-auction-in-harper-county-113385",
       "status": "complete",
       "name": "239.4+/- acres for Auction in Harper County",
-      "generated": "2026-07-10T16:10:11.765Z"
+      "generated": "2026-07-20T20:38:15.909Z"
     },
     "114134": {
       "slug": "160-acres-kansas-recreational-head-quarters-114134",
       "status": "complete",
       "name": "160 +/- Acres Kansas Recreational Head Quarters",
-      "generated": "2026-07-10T16:10:11.763Z"
+      "generated": "2026-07-20T20:38:15.909Z"
     },
     "114444": {
       "slug": "butler-county-81acre-development-land-auction-114444",
       "status": "complete",
       "name": "Butler County 81-Acre Development Land Auction",
-      "generated": "2026-07-10T16:10:11.764Z"
+      "generated": "2026-07-20T20:38:15.909Z"
     },
     "115477": {
       "slug": "142-multiparcel-auction-wilson-county-ks-115477",
       "status": "complete",
       "name": "142 +/- Multiparcel Auction Wilson County KS",
-      "generated": "2026-07-10T16:10:11.761Z"
+      "generated": "2026-07-20T20:38:15.909Z"
     },
     "115938": {
       "slug": "edwards-county-farm-land-115938",
       "status": "complete",
       "name": "Edwards County Farm Land ",
-      "generated": "2026-07-10T16:10:11.760Z"
+      "generated": "2026-07-20T20:38:15.908Z"
     },
     "116678": {
       "slug": "cross-auction-116678",
       "status": "complete",
       "name": "Cross Auction",
-      "generated": "2026-07-10T16:10:11.754Z"
+      "generated": "2026-07-20T20:38:15.908Z"
     },
     "117464": {
       "slug": "peters-auction-0000-west-virginia-moran-ks-117464",
       "status": "complete",
       "name": "Peters Auction - 0000 West Virginia  Moran, KS",
-      "generated": "2026-07-10T16:10:11.755Z"
+      "generated": "2026-07-20T20:38:15.908Z"
     },
     "117549": {
       "slug": "schlegel-6291-cr-3925-neodesha-ks-117549",
       "status": "complete",
       "name": "Schlegel 6291 CR 3925 Neodesha, KS ",
-      "generated": "2026-07-10T16:10:11.759Z"
+      "generated": "2026-07-20T20:38:15.908Z"
     },
     "117557": {
       "slug": "schlegel-0000-cr-6400-neodesha-ks-117557",
       "status": "complete",
       "name": "Schlegel - 0000 CR 6400 Neodesha, KS",
-      "generated": "2026-07-10T16:10:11.758Z"
+      "generated": "2026-07-20T20:38:15.908Z"
     },
     "117566": {
       "slug": "schlegel-0000-300-rd-neodesha-ks-117566",
       "status": "complete",
       "name": "Schlegel 0000 300 Rd. Neodesha, KS",
-      "generated": "2026-07-10T16:10:11.756Z"
+      "generated": "2026-07-20T20:38:15.908Z"
     },
     "118719": {
       "slug": "1595-acres-in-elk-county-ks-118719",
       "status": "complete",
       "name": "159.5+/- Acres in Elk County, KS",
-      "generated": "2026-07-10T16:10:11.752Z"
+      "generated": "2026-07-20T20:38:15.908Z"
     },
     "119131": {
       "slug": "84-acre-tract-in-niotaze-ks-119131",
       "status": "complete",
       "name": "8.4 Acre Tract in Niotaze, KS",
-      "generated": "2026-07-10T16:10:11.749Z"
+      "generated": "2026-07-20T20:38:15.907Z"
     },
     "119475": {
       "slug": "pawnee-county-tillable-119475",
       "status": "complete",
       "name": "Pawnee County Tillable",
-      "generated": "2026-07-10T16:10:11.751Z"
+      "generated": "2026-07-20T20:38:15.907Z"
     },
     "119877": {
       "slug": "1826-acres-fredonia-ks-119877",
       "status": "complete",
       "name": "182.6+/- Acres- Fredonia, KS",
-      "generated": "2026-07-10T16:10:11.748Z"
+      "generated": "2026-07-20T20:38:15.907Z"
     },
     "120833": {
       "slug": "neosho-river-bucks-ducks-and-tillable-120833",
       "status": "complete",
       "name": "Neosho River Bucks, Ducks and Tillable ",
-      "generated": "2026-07-10T16:10:11.747Z"
+      "generated": "2026-07-20T20:38:15.907Z"
     },
     "124290": {
       "slug": "norwich-ks-266-acres-124290",
       "status": "complete",
       "name": "Norwich, KS 26.6+/- acres",
-      "generated": "2026-07-10T16:10:11.746Z"
+      "generated": "2026-07-20T20:38:15.907Z"
     },
     "124477": {
       "slug": "towanda-ks-768-acres-124477",
       "status": "complete",
       "name": "Towanda, KS 76.8 +/- Acres",
-      "generated": "2026-07-10T16:10:11.745Z"
+      "generated": "2026-07-20T20:38:15.907Z"
     },
     "127135": {
       "slug": "harper-ks-753-acres-127135",
       "status": "complete",
       "name": "Harper, KS 75.3 +/- Acres",
-      "generated": "2026-07-10T16:10:11.744Z"
+      "generated": "2026-07-20T20:38:15.907Z"
     },
     "127230": {
       "slug": "leroy-ks-260-acres-127230",
       "status": "complete",
       "name": "Leroy, KS 260 +/- Acres",
-      "generated": "2026-07-10T16:10:11.742Z"
+      "generated": "2026-07-20T20:38:15.906Z"
     },
     "127347": {
       "slug": "cherryvale-ks-145-acres-127347",
       "status": "complete",
       "name": "Cherryvale, KS 145 +/- Acres",
-      "generated": "2026-07-10T16:10:11.741Z"
+      "generated": "2026-07-20T20:38:15.906Z"
     },
     "127430": {
       "slug": "independence-ks-9531-acres-127430",
       "status": "complete",
       "name": "Independence, KS 95.31 +/- Acres",
-      "generated": "2026-07-10T16:10:11.740Z"
+      "generated": "2026-07-20T20:38:15.906Z"
     },
     "128618": {
       "slug": "marion-ks-3946-acres-multiple-parcels-auction-128618",
       "status": "complete",
       "name": "Marion, KS 394.6 +/- Acres Multiple Parcels Auction",
-      "generated": "2026-07-10T16:10:11.739Z"
+      "generated": "2026-07-20T20:38:15.906Z"
     },
     "128720": {
       "slug": "inman-ks-1175-acre-2-tracts-128720",
       "status": "complete",
       "name": "Inman, KS 117.5 +/- Acre: 2 tracts",
-      "generated": "2026-07-10T16:10:11.737Z"
+      "generated": "2026-07-20T20:38:15.906Z"
     },
     "129238": {
       "slug": "newton-ks-1174-acres-129238",
       "status": "complete",
       "name": "Newton, KS 117.4 +/- Acres",
-      "generated": "2026-07-10T16:10:11.735Z"
+      "generated": "2026-07-20T20:38:15.906Z"
     },
     "129881": {
       "slug": "st-john-ks-7988-acres-129881",
       "status": "complete",
       "name": "St John, KS 79.88 +/- Acres",
-      "generated": "2026-07-10T16:10:11.734Z"
+      "generated": "2026-07-20T20:38:15.905Z"
     },
     "133713": {
       "slug": "cedar-vale-ks-200-acres-133713",
       "status": "complete",
       "name": "Cedar Vale, KS 200 +/- Acres",
-      "generated": "2026-07-10T16:10:11.732Z"
+      "generated": "2026-07-20T20:38:15.905Z"
     },
     "133717": {
       "slug": "dexter-ks-27289-acres-133717",
       "status": "complete",
       "name": "Dexter, KS 272.89 +/- Acres",
-      "generated": "2026-07-10T16:10:11.733Z"
+      "generated": "2026-07-20T20:38:15.905Z"
     },
     "134406": {
       "slug": "sedan-ks-218-acres-134406",
       "status": "complete",
       "name": "Sedan, KS 218 +/- Acres",
-      "generated": "2026-07-10T16:10:11.730Z"
+      "generated": "2026-07-20T20:38:15.905Z"
     },
     "134614": {
       "slug": "liberty-ks-137-acres-134614",
       "status": "complete",
       "name": "Liberty, KS 137 +/- Acres",
-      "generated": "2026-07-10T16:10:11.729Z"
+      "generated": "2026-07-20T20:38:15.905Z"
     },
     "135514": {
       "slug": "sedgwick-ks-22-acres-135514",
       "status": "complete",
       "name": "Sedgwick, KS 22 +/- Acres",
-      "generated": "2026-07-10T16:10:11.726Z"
+      "generated": "2026-07-20T20:38:15.905Z"
     },
     "136682": {
       "slug": "augusta-ks-68-acres-136682",
       "status": "complete",
       "name": "Augusta, KS 6.8 +/- Acres",
-      "generated": "2026-07-10T16:10:11.727Z"
+      "generated": "2026-07-20T20:38:15.905Z"
     },
     "137251": {
       "slug": "howard-ks-625-acres-137251",
       "status": "complete",
       "name": "Howard, KS 625 +/- Acres",
-      "generated": "2026-07-10T16:10:11.722Z"
+      "generated": "2026-07-20T20:38:15.904Z"
     },
     "137681": {
       "slug": "clearwater-ks-155-acres-6-tracts-137681",
       "status": "complete",
       "name": "Clearwater, KS 155 +/- Acres- 6 Tracts",
-      "generated": "2026-07-10T16:10:11.725Z"
+      "generated": "2026-07-20T20:38:15.904Z"
     },
     "137919": {
       "slug": "coffeyville-ks-80-acres-137919",
       "status": "complete",
       "name": "Coffeyville, KS 80 +/- Acres",
-      "generated": "2026-07-10T16:10:11.721Z"
+      "generated": "2026-07-20T20:38:15.904Z"
     },
     "137946": {
       "slug": "cambridge-ks-159-acres-137946",
       "status": "complete",
       "name": "Cambridge, KS 159 +/- Acres",
-      "generated": "2026-07-10T16:10:11.723Z"
+      "generated": "2026-07-20T20:38:15.904Z"
     },
     "139175": {
       "slug": "sasakwa-ok-150-acres-139175",
       "status": "complete",
       "name": "Sasakwa, OK 150 +/- Acres",
-      "generated": "2026-07-10T16:10:11.719Z"
+      "generated": "2026-07-20T20:38:15.904Z"
     },
     "139179": {
       "slug": "south-haven-ks-150-acres-139179",
       "status": "complete",
       "name": "South Haven, KS 150 +/- Acres",
-      "generated": "2026-07-10T16:10:11.720Z"
+      "generated": "2026-07-20T20:38:15.904Z"
     },
     "139342": {
       "slug": "ponca-city-ok-47-acres-139342",
       "status": "complete",
       "name": "Ponca City, OK 47 +/- Acres",
-      "generated": "2026-07-10T16:10:11.718Z"
+      "generated": "2026-07-20T20:38:15.904Z"
     },
     "140658": {
       "slug": "hutchinson-ks-95-acres-140658",
       "status": "complete",
       "name": "Hutchinson, KS 9.5 +/- Acres",
-      "generated": "2026-07-10T16:10:11.715Z"
+      "generated": "2026-07-20T20:38:15.903Z"
     },
     "142473": {
       "slug": "1987-3-bed-2-bath-manufactured-home-142473",
       "status": "complete",
       "name": "1987 3 Bed 2 Bath Manufactured Home",
-      "generated": "2026-07-10T16:10:11.714Z"
+      "generated": "2026-07-20T20:38:15.903Z"
     },
     "145750": {
       "slug": "arlington-ks-158-acres-145750",
       "status": "complete",
       "name": "Arlington, KS 158 +/- Acres",
-      "generated": "2026-07-10T16:10:11.713Z"
+      "generated": "2026-07-20T20:38:15.903Z"
     },
     "146070": {
       "slug": "264-acres-in-arlington-ks-146070",
       "status": "complete",
       "name": "264 +/- Acres in Arlington, KS",
-      "generated": "2026-07-10T16:10:11.710Z"
+      "generated": "2026-07-20T20:38:15.903Z"
     },
     "146636": {
       "slug": "5-acres-with-home-in-sedgwick-ks-146636",
       "status": "complete",
       "name": "5 +/- Acres with Home in Sedgwick, KS",
-      "generated": "2026-07-10T16:10:11.711Z"
+      "generated": "2026-07-20T20:38:15.903Z"
     },
     "146722": {
       "slug": "80-acres-in-nardin-ok-146722",
       "status": "complete",
       "name": "80 +/- Acres in Nardin, OK",
-      "generated": "2026-07-10T16:10:11.706Z"
+      "generated": "2026-07-20T20:38:15.902Z"
     },
     "147288": {
       "slug": "2-tracts-774-739-acres-in-moundridge-ks-147288",
       "status": "complete",
       "name": "2 Tracts: 77.4 & 73.9 Acres in Moundridge, KS",
-      "generated": "2026-07-10T16:10:11.704Z"
+      "generated": "2026-07-20T20:38:15.902Z"
     },
     "147342": {
       "slug": "3-acres-in-lamont-ok-147342",
       "status": "complete",
       "name": "3 +/- Acres in Lamont, OK",
-      "generated": "2026-07-10T16:10:11.709Z"
+      "generated": "2026-07-20T20:38:15.903Z"
     },
     "147725": {
       "slug": "2-bedroom-1-bath-home-in-hillsboro-ks-147725",
       "status": "complete",
       "name": "2 Bedroom 1 Bath Home in Hillsboro, KS!",
-      "generated": "2026-07-10T16:10:11.708Z"
+      "generated": "2026-07-20T20:38:15.902Z"
     },
     "148961": {
       "slug": "190-acres-in-sedan-ks-148961",
       "status": "complete",
       "name": "190 +/- Acres in Sedan, KS",
-      "generated": "2026-07-10T16:10:11.701Z"
+      "generated": "2026-07-20T20:38:15.902Z"
     },
     "148973": {
       "slug": "302-acres-in-sycamore-ks-148973",
       "status": "complete",
       "name": "302 +/- Acres in Sycamore, KS",
-      "generated": "2026-07-10T16:10:11.695Z"
+      "generated": "2026-07-20T20:38:15.901Z"
     },
     "148990": {
       "slug": "10-tracts-offered-812-acres-in-mound-valley-ks-148990",
       "status": "complete",
       "name": "10 Tracts offered: 812 +/- Acres in Mound Valley, KS",
-      "generated": "2026-07-10T16:10:11.703Z"
+      "generated": "2026-07-20T20:38:15.902Z"
     },
     "149929": {
       "slug": "4479-acres-in-newton-ks-149929",
       "status": "complete",
       "name": "44.79 +/- Acres in Newton, KS!",
-      "generated": "2026-07-10T16:10:11.698Z"
+      "generated": "2026-07-20T20:38:15.901Z"
     },
     "150756": {
       "slug": "fredonia-ks-45-acres-150756",
       "status": "complete",
       "name": "Fredonia, KS 45 +/- Acres",
-      "generated": "2026-07-10T16:10:11.700Z"
+      "generated": "2026-07-20T20:38:15.902Z"
     },
     "151846": {
       "slug": "171-acres-in-chetopa-ks-151846",
       "status": "complete",
       "name": "171 +/- Acres in Chetopa, KS",
-      "generated": "2026-07-10T16:10:11.696Z"
+      "generated": "2026-07-20T20:38:15.901Z"
     },
     "155134": {
       "slug": "albany-mo-609-acres-155134",
       "status": "complete",
       "name": "Albany, MO 60.9 +/- Acres",
-      "generated": "2026-07-10T16:10:11.694Z"
+      "generated": "2026-07-20T20:38:15.901Z"
     },
     "157198": {
       "slug": "neodesha-ks-2-tracts-1575-acres-157198",
       "status": "complete",
       "name": "Neodesha, KS 2 Tracts: 157.5 +/- Acres",
-      "generated": "2026-07-10T16:10:11.692Z"
+      "generated": "2026-07-20T20:38:15.901Z"
     },
     "162209": {
       "slug": "attica-ks-561-acres-162209",
       "status": "complete",
       "name": "Attica, KS 56.1 +/- Acres",
-      "generated": "2026-07-10T16:10:11.690Z"
+      "generated": "2026-07-20T20:38:15.901Z"
     },
     "162365": {
       "slug": "galesburg-ks-23076-acres-162365",
       "status": "complete",
       "name": "Galesburg, KS 230.76 +/- Acres",
-      "generated": "2026-07-10T16:10:11.671Z"
+      "generated": "2026-07-20T20:38:15.900Z"
     },
     "164500": {
       "slug": "longton-ks-147-acres-164500",
       "status": "pending",
       "name": "Longton, KS 147 +/- Acres",
-      "generated": "2026-07-10T15:41:41.076Z"
+      "generated": "2026-07-20T20:38:15.900Z"
     },
     "164505": {
       "slug": "coffeyville-ks-160-acres-164505",
       "status": "pending",
       "name": "Coffeyville, KS 160 +/- Acres",
-      "generated": "2026-07-10T15:41:41.074Z"
+      "generated": "2026-07-20T20:38:15.900Z"
     },
     "164706": {
       "slug": "home-in-hutchinson-ks-164706",
       "status": "pending",
       "name": "Home in Hutchinson, KS",
-      "generated": "2026-07-10T15:41:41.055Z"
+      "generated": "2026-07-20T20:38:15.899Z"
     },
     "165029": {
       "slug": "leroy-ks-1091-acres-165029",
       "status": "pending",
       "name": "LeRoy, KS 109.1 +/- Acres",
-      "generated": "2026-07-10T15:41:41.078Z"
+      "generated": "2026-07-20T20:38:15.900Z"
     },
     "165168": {
       "slug": "cherryvale-ks-315-acres-165168",
       "status": "pending",
       "name": "Cherryvale, KS 315 +/- Acres",
-      "generated": "2026-07-10T15:41:41.080Z"
+      "generated": "2026-07-20T20:38:15.900Z"
     }
   }
 }
