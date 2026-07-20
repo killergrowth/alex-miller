@@ -32,7 +32,6 @@ const ROOT_PAGES = [
   'listings.html',
   'contact.html',
   'service-areas.html',
-  'upcoming-auctions.html',
   'resources.html',
   'privacy-policy.html'];
 
@@ -173,6 +172,24 @@ for (const dir of ASSET_DIRS) {
 const favicon = path.join(ROOT, 'img', 'favicon.ico');
 if (fs.existsSync(favicon)) {
   fs.copyFileSync(favicon, path.join(DIST, 'favicon.ico'));
+}
+
+// Copy _redirects (Cloudflare Pages routing rules)
+const redirectsSrc = path.join(ROOT, '_redirects');
+if (fs.existsSync(redirectsSrc)) {
+  fs.copyFileSync(redirectsSrc, path.join(DIST, '_redirects'));
+}
+
+// Copy _worker.js (Cloudflare Pages Worker — handles robots, listings, contact, redirects)
+const workerSrc = path.join(ROOT, '_worker.js');
+if (fs.existsSync(workerSrc)) {
+  fs.copyFileSync(workerSrc, path.join(DIST, '_worker.js'));
+}
+
+// Copy _routes.json (scopes which paths the Worker handles)
+const routesSrc = path.join(ROOT, '_routes.json');
+if (fs.existsSync(routesSrc)) {
+  fs.copyFileSync(routesSrc, path.join(DIST, '_routes.json'));
 }
 
 // ------------------------------------------------------------------

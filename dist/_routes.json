@@ -1,5 +1,14 @@
 {
   "version": 1,
-  "include": ["/robots.txt", "/listings", "/listings.html", "/listings/", "/api/contact"],
+  "include": [
+    "/robots.txt",
+    "/listings",
+    "/listings.html",
+    "/listings/",
+    "/api/contact",
+    "/upcoming-auctions",
+    "/upcoming-auctions/",
+    "/upcoming-auctions.html"
+  ],
   "exclude": []
 }
