@@ -185,7 +185,7 @@ const PAGE_CSS = `
         .am-auction-hero .hero-inner { position: relative; z-index: 2; width: 100%; padding: 40px 0 36px; }
         .am-spill { display:inline-block; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px; }
         .pill-active   { background:#16a34a; color:#fff; }
-        .pill-upcoming { background:#c9a227; color:#0d1b3e; }
+        .pill-upcoming { background:#0d1b3e; color:#fff; }
         .pill-sold     { background:rgba(255,255,255,.2); color:#fff; border:1px solid rgba(255,255,255,.4); }
         .am-sold-banner { background:#0d1b3e; border-left:4px solid #c9a227; padding:18px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
         .am-sold-banner p { margin:0; color:#fff; font-weight:600; font-size:15px; }
