@@ -73,12 +73,12 @@ function truncate(str, len) {
 
 function isActive(status) {
   // BidWrangler uses 'pending' for scheduled/upcoming auctions
-  return ['active', 'upcoming', 'preview', 'pending', 'scheduled'].includes((status || '').toLowerCase());
+  return ['active', 'accepting_bids', 'upcoming', 'preview', 'pending', 'scheduled'].includes((status || '').toLowerCase());
 }
 
 function statusLabel(status) {
   const s = (status || '').toLowerCase();
-  if (s === 'active')    return 'ACTIVE';
+  if (s === 'active' || s === 'accepting_bids') return 'ACTIVE';
   if (s === 'upcoming' || s === 'pending' || s === 'scheduled') return 'UPCOMING';
   if (s === 'preview')   return 'PREVIEW';
   if (s === 'complete' || s === 'completed') return 'SOLD';
@@ -88,7 +88,7 @@ function statusLabel(status) {
 
 function statusPillClass(status) {
   const s = (status || '').toLowerCase();
-  if (s === 'active')   return 'pill-active';
+  if (s === 'active' || s === 'accepting_bids') return 'pill-active';
   if (s === 'upcoming' || s === 'pending' || s === 'scheduled') return 'pill-upcoming';
   return 'pill-sold';
 }
