@@ -499,7 +499,7 @@ function renderCard(auction, slug, cardIndex) {
   const loc       = formatLocation(auction.location);
   const startDt   = formatDateTime(auction.starts_at);
   const active    = isActive(auction.status);
-  const badgeClass = active ? (auction.status === 'upcoming' ? 'upcoming' : 'active') : 'sold';
+  const badgeClass = active ? (['upcoming','pending','scheduled','preview'].includes((auction.status||'').toLowerCase()) ? 'upcoming' : 'active') : 'sold';
   const badgeLabel = statusLabel(auction.status);
 
   const cardImg = imgUrl
