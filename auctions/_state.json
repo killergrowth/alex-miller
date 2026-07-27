@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-07-20T20:38:15.899Z",
+  "lastFetch": "2026-07-27T14:11:11.944Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -447,9 +447,10 @@
     },
     "164706": {
       "slug": "home-in-hutchinson-ks-164706",
-      "status": "pending",
+      "status": "accepting_bids",
       "name": "Home in Hutchinson, KS",
-      "generated": "2026-07-20T20:38:15.899Z"
+      "generated": "2026-07-20T20:38:15.899Z",
+      "updated": "2026-07-27T14:11:11.944Z"
     },
     "165029": {
       "slug": "leroy-ks-1091-acres-165029",
