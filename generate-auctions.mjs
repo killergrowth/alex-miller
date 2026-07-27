@@ -231,7 +231,7 @@ const PAGE_CSS = `
         .am-card-img { height:200px; background-size:cover; background-position:center; position:relative; flex-shrink:0; }
         .am-card-badge { position:absolute; top:12px; left:12px; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
         .am-card-badge.active   { background:#16a34a; color:#fff; }
-        .am-card-badge.upcoming { background:#c9a227; color:#0d1b3e; }
+        .am-card-badge.upcoming { background:#0d1b3e; color:#fff; }
         .am-card-badge.sold     { background:rgba(0,0,0,.55); color:#ddd; }
         .am-card-body { padding:20px; flex:1; display:flex; flex-direction:column; }
         .am-card-title { font-size:16px; font-weight:700; color:#0d1b3e; margin-bottom:8px; line-height:1.4; }
