@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-07-28T14:13:18.702Z",
+  "lastFetch": "2026-07-28T16:42:09.155Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -443,8 +443,7 @@
       "slug": "coffeyville-ks-160-acres-164505",
       "status": "accepting_bids",
       "name": "Coffeyville, KS 160 +/- Acres",
-      "generated": "2026-07-20T20:38:15.900Z",
-      "updated": "2026-07-28T14:13:18.703Z"
+      "generated": "2026-07-20T20:38:15.900Z"
     },
     "164706": {
       "slug": "home-in-hutchinson-ks-164706",
