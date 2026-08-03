@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-08-03T09:51:22.914Z",
+  "lastFetch": "2026-08-03T14:45:04.902Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -435,9 +435,10 @@
     },
     "164500": {
       "slug": "longton-ks-147-acres-164500",
-      "status": "pending",
+      "status": "accepting_bids",
       "name": "Longton, KS 147 +/- Acres",
-      "generated": "2026-07-20T20:38:15.900Z"
+      "generated": "2026-07-20T20:38:15.900Z",
+      "updated": "2026-08-03T14:45:04.902Z"
     },
     "164505": {
       "slug": "coffeyville-ks-160-acres-164505",
