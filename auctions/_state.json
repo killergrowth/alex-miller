@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-08-10T13:14:23.580Z",
+  "lastFetch": "2026-08-10T16:01:54.553Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -480,6 +480,12 @@
       "status": "pending",
       "name": "Green Castle, MO | 3 Tracts | 71 +/- Acres",
       "generated": "2026-07-31T16:47:25.787Z"
+    },
+    "167372": {
+      "slug": "85-acres-with-home-in-galena-ks-167372",
+      "status": "pending",
+      "name": "8.5 +/- Acres with Home in Galena, KS",
+      "generated": "2026-08-10T16:01:54.553Z"
     }
   }
 }
