@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-08-13T02:10:52.435Z",
+  "lastFetch": "2026-08-13T04:53:00.756Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -455,8 +455,7 @@
       "slug": "leroy-ks-1091-acres-165029",
       "status": "complete",
       "name": "LeRoy, KS 109.1 +/- Acres",
-      "generated": "2026-07-20T20:38:15.900Z",
-      "updated": "2026-08-13T02:10:52.436Z"
+      "generated": "2026-07-20T20:38:15.900Z"
     },
     "165168": {
       "slug": "cherryvale-ks-315-acres-165168",
