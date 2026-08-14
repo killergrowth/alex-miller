@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-08-14T02:08:33.765Z",
+  "lastFetch": "2026-08-14T04:49:58.912Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -461,8 +461,7 @@
       "slug": "cherryvale-ks-315-acres-165168",
       "status": "complete",
       "name": "Cherryvale, KS 315 +/- Acres",
-      "generated": "2026-07-20T20:38:15.900Z",
-      "updated": "2026-08-14T02:08:33.765Z"
+      "generated": "2026-07-20T20:38:15.900Z"
     },
     "166822": {
       "slug": "burden-ks-745-acres-166822",
