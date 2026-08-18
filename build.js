@@ -10,8 +10,10 @@
 const fs = require('fs');
 const path = require('path');
 const { generateSitemap } = require('C:\\Users\\KillerGrowth\\.openclaw\\workspace\\tools\\kg-site-builder\\lib\\gen-sitemap');
+const { buildBlog } = require('C:\\Users\\KillerGrowth\\.openclaw\\workspace\\tools\\kg-site-builder\\lib\\blog-build');
 const SITE_DOMAIN = 'amauctionsandrealestate.com';
 const SITE_ID     = 'alex-miller';
+const SITE_NAME   = 'AM Auctions & Real Estate';
 const { injectScripts, loadSiteScripts } = require('C:\\Users\\KillerGrowth\\.openclaw\\workspace\\tools\\kg-site-builder\\lib\\inject-scripts');
 
 const ROOT = __dirname;
@@ -238,6 +240,16 @@ for (const page of ALL_PAGES) {
 }
 
 console.log(`\nDone. ${built} pages built, ${skipped} skipped.`);
+
+// Build blog posts and index
+buildBlog({
+  srcDir: ROOT,
+  distDir: DIST,
+  siteId: SITE_ID,
+  domain: SITE_DOMAIN,
+  siteName: SITE_NAME,
+  primaryColor: '#b8860b'
+});
 
 // Generate sitemap from actual dist/ contents
 generateSitemap({ distDir: DIST, siteRoot: ROOT, domain: SITE_DOMAIN });
