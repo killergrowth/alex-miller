@@ -24,43 +24,125 @@
    })('t5pZRdMNCLsQ93aey77L')
   </script>
   <style>
-    /* === Alex Miller Blog Index Styles === */
-    .kg-blog-grid { padding: 60px 0 80px; }
-    .kg-post-card { background: #fff; border: 1px solid #e8e2d4; border-radius: 8px; overflow: hidden; height: 100%; display: flex; flex-direction: column; transition: box-shadow 0.2s; }
-    .kg-post-card:hover { box-shadow: 0 6px 28px rgba(13,27,62,0.12); }
-    .kg-card-img { width: 100%; height: 200px; object-fit: cover; display: block; }
-    .kg-card-img-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #0d1b3e 0%, #1a3260 100%); display: flex; align-items: center; justify-content: center; }
-    .kg-card-img-placeholder i { font-size: 48px; color: #c9a227; }
-    .kg-card-body { padding: 24px 24px 20px; flex-grow: 1; display: flex; flex-direction: column; }
-    .kg-card-meta { font-size: 13px; color: #888; margin-bottom: 12px; }
-    .kg-card-title { font-size: 18px; font-weight: 700; color: #0d1b3e; margin: 0 0 12px; line-height: 1.35; }
-    .kg-card-title a { color: #0d1b3e; text-decoration: none; }
-    .kg-card-title a:hover { color: #c9a227; }
-    .kg-card-excerpt { font-size: 14px; color: #555; line-height: 1.65; flex-grow: 1; margin-bottom: 18px; }
-    .kg-card-link { display: inline-block; color: #c9a227; font-weight: 700; font-size: 14px; text-decoration: none; }
-    .kg-card-link:hover { color: #0d1b3e; }
-    .kg-pagination { display: flex; justify-content: center; gap: 8px; margin-top: 48px; }
-    .kg-pagination a, .kg-pagination span { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; font-weight: 600; color: #0d1b3e; text-decoration: none; }
-    .kg-pagination a:hover { background: #c9a227; border-color: #c9a227; color: #fff; }
-    .kg-pagination .current { background: #0d1b3e; border-color: #0d1b3e; color: #fff; }
+    /* === Blog Index Gallery === */
+    .kg-blog-hero { background:#0d1b3e; padding:64px 0 48px; margin-bottom:0; }
+    .kg-blog-hero h1 { color:#fff; font-size:42px; font-weight:900; margin:0 0 12px; }
+    .kg-blog-hero p { color:rgba(255,255,255,0.72); font-size:17px; margin:0; }
+    .kg-blog-hero .breadcrumb-list { list-style:none; padding:0; margin:18px 0 0; display:flex; gap:8px; align-items:center; font-size:13px; }
+    .kg-blog-hero .breadcrumb-list li { color:rgba(255,255,255,0.5); }
+    .kg-blog-hero .breadcrumb-list a { color:#c9a227; text-decoration:none; }
+
+    .kg-card-grid { padding:64px 0 80px; background:#f9f7f2; }
+
+    .kg-blog-card-new {
+      background:#fff;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 2px 18px rgba(13,27,62,0.08);
+      display:flex;
+      flex-direction:column;
+      height:100%;
+      transition:box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .kg-blog-card-new:hover {
+      box-shadow:0 8px 32px rgba(13,27,62,0.15);
+      transform:translateY(-4px);
+    }
+    .kg-card-thumb {
+      height:210px;
+      background:linear-gradient(135deg,#0d1b3e 0%,#1a3260 60%,#0d2d5a 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+      overflow:hidden;
+      position:relative;
+    }
+    .kg-card-thumb img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .kg-card-thumb .kg-thumb-placeholder {
+      font-size:52px;
+      color:rgba(201,162,39,0.55);
+    }
+    .kg-card-body-new {
+      padding:24px 26px 28px;
+      display:flex;
+      flex-direction:column;
+      flex-grow:1;
+    }
+    .kg-card-date {
+      font-size:12px;
+      color:#999;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+      margin-bottom:10px;
+    }
+    .kg-card-title {
+      font-size:18px;
+      font-weight:800;
+      color:#0d1b3e;
+      line-height:1.3;
+      margin:0 0 12px;
+    }
+    .kg-card-title a {
+      color:#0d1b3e;
+      text-decoration:none;
+    }
+    .kg-card-title a:hover { color:#c9a227; }
+    .kg-card-excerpt {
+      font-size:14px;
+      color:#666;
+      line-height:1.65;
+      margin:0 0 20px;
+      flex-grow:1;
+    }
+    .kg-card-readmore {
+      font-size:14px;
+      font-weight:700;
+      color:#c9a227;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin-top:auto;
+    }
+    .kg-card-readmore:hover { color:#0d1b3e; }
+
+    .kg-blog-cta {
+      background:#0d1b3e;
+      padding:60px 0;
+    }
+    .kg-blog-cta h3 { color:#fff; font-size:28px; font-weight:800; margin:0 0 12px; }
+    .kg-blog-cta p { color:rgba(255,255,255,0.75); font-size:16px; margin:0 0 28px; }
+
+    @media (max-width:767px) {
+      .kg-blog-hero h1 { font-size:30px; }
+      .kg-card-thumb { height:180px; }
+    }
   </style>
 </head>
 <body>
 
 {{header}}
 
-<!-- Page Header -->
-<section class="page-header" style="background:#0d1b3e; padding: 52px 0 40px;">
+<!-- Blog Hero -->
+<div class="kg-blog-hero">
   <div class="container">
-    <div class="text-center">
-      <span style="display:inline-block; background:#c9a227; color:#0d1b3e; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; padding:4px 14px; border-radius:3px; margin-bottom:14px;">Resources &amp; Insights</span>
-      <h1 style="color:#fff; font-size:42px; font-weight:900; margin:0 0 14px;">{{page_title}}</h1>
-      <p style="color:rgba(255,255,255,0.75); font-size:16px; margin:0;">Farmland values, auction insights, and practical guides for Kansas landowners and buyers.</p>
-    </div>
+    <h1>{{page_title}}</h1>
+    <p>Expert insight on Kansas land sales, real estate auctions, and farmland valuation.</p>
+    <ul class="breadcrumb-list">
+      <li><a href="/">Home</a></li>
+      <li>&rsaquo;</li>
+      <li>Blog</li>
+    </ul>
   </div>
-</section>
+</div>
 
-<section class="kg-blog-grid" style="background:#f9f7f4;">
+<!-- Card Gallery -->
+<section class="kg-card-grid">
   <div class="container">
     <div class="row">
       {{posts_html}}
@@ -69,13 +151,13 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section style="background:#0d1b3e; padding:60px 0;">
+<!-- Blog CTA -->
+<section class="kg-blog-cta">
   <div class="container text-center">
-    <h2 style="color:#fff; font-size:30px; font-weight:800; margin:0 0 14px;">Ready to Talk About Your Property?</h2>
-    <p style="color:rgba(255,255,255,0.78); font-size:16px; margin:0 0 28px;">Alex Miller | Kansas Auctioneer &amp; Real Estate Agent | L2 Realty Inc.</p>
+    <h3>Ready to Talk About Your Property?</h3>
+    <p>Licensed Kansas auctioneer &amp; real estate agent serving central Kansas landowners.</p>
     <a href="/contact.html" class="btn ss-btn" style="margin-right:12px;">Request a Free Consultation</a>
-    <a href="tel:3163134759" style="color:#c9a227; font-weight:700; font-size:16px; display:inline-block; margin-top:12px;">316-313-4759</a>
+    <a href="tel:3163134759" style="color:#c9a227; font-weight:700; font-size:16px;">or call 316-313-4759</a>
   </div>
 </section>
 
@@ -92,16 +174,10 @@
 <script src="/js/main.js"></script>
 <script>
 function setActiveNav() {
-  var path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '/').replace(/\/?$/, '/');
-  var items = document.querySelectorAll('#mobile-menu > ul > li');
+  var items = document.querySelectorAll('#mobile-menu > ul > li, .main-menu__list > li');
   items.forEach(function(li){ li.classList.remove('current'); });
-  items.forEach(function(li){
-    var a = li.querySelector('a');
-    if (!a) return;
-    var href = (a.getAttribute('href') || '').replace(/\/index\.html$/, '/').replace(/\.html$/, '/').replace(/\/?$/, '/');
-    if (!href || href === '#/' || href === '#') return;
-    if (path === href || (href.length > 1 && path.startsWith(href))) li.classList.add('current');
-  });
+  var blogItems = document.querySelectorAll('#mobile-menu a[href="/blog/"], .main-menu__list a[href="/blog/"]');
+  blogItems.forEach(function(a){ if(a.parentElement) a.parentElement.classList.add('current'); });
 }
 setActiveNav();
 </script>
