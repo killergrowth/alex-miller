@@ -6,7 +6,7 @@ publishDate: '2026-08-11T07:00:00.000Z'
 excerpt: >-
   See 2026 Kansas farmland prices for cropland, irrigated ground, dryland, and
   pasture. Learn what affects farm value and how to estimate your land.
-featuredImage: null
+featuredImage: /images/blog/farm-ground-worth-2026.png
 inlineImage1: null
 inlineImage2: null
 tags:

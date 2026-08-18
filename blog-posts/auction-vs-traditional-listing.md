@@ -7,7 +7,7 @@ excerpt: >-
   Compare real estate auctions and traditional listings in Kansas. Learn which
   method may produce stronger net proceeds based on competition, timing, and
   property type.
-featuredImage: null
+featuredImage: /images/blog/auction-vs-traditional-listing.png
 inlineImage1: null
 inlineImage2: null
 tags:

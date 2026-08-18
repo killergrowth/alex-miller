@@ -7,7 +7,7 @@ excerpt: >-
   Avoid five costly mistakes before selling Kansas land. Learn how valuation,
   title work, leases, property records, marketing, and sale method affect your
   result.
-featuredImage: null
+featuredImage: /images/blog/mistakes-kansas-landowners-make.png
 inlineImage1: null
 inlineImage2: null
 tags:

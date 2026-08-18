@@ -6,7 +6,7 @@ publishDate: '2026-08-18T07:00:00.000Z'
 excerpt: >-
   Learn how Kansas real estate auctions work from valuation and marketing
   through bidding, contract, earnest money, title work, and closing.
-featuredImage: null
+featuredImage: /images/blog/how-real-estate-auctions-work-kansas.png
 inlineImage1: null
 inlineImage2: null
 tags:
