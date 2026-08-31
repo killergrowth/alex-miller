@@ -119,6 +119,94 @@ function bestImage(images, size = 'lg') {
   return img[size] || img.sm || img.xs || '';
 }
 
+// ── Geocoding ────────────────────────────────────────────────────────────
+// Nominatim (OSM) geocoder — used when BidWrangler location.lat/lng is null.
+// Parses "City, ST" from the auction name and resolves to coordinates.
+// Results cached in auctions/_geocache.json so we don't re-hit on every run.
+
+const GEOCACHE_FILE = path.join(AUCTIONS_DIR, '_geocache.json');
+
+function loadGeoCache() {
+  if (fs.existsSync(GEOCACHE_FILE)) {
+    try { return JSON.parse(fs.readFileSync(GEOCACHE_FILE, 'utf8')); } catch {}
+  }
+  return {};
+}
+
+function saveGeoCache(cache) {
+  fs.mkdirSync(AUCTIONS_DIR, { recursive: true });
+  fs.writeFileSync(GEOCACHE_FILE, JSON.stringify(cache, null, 2), 'utf8');
+}
+
+/**
+ * Extract a "City, ST" string from an auction name.
+ * Handles patterns like:
+ *   "Green Castle, MO | 3 Tracts"
+ *   "Burden, KS 74.5 +/- Acres"
+ *   "8.5 +/- Acres with Home in Galena, KS"
+ */
+function extractCityState(name) {
+  if (!name) return null;
+  // Pattern 1: "City, ST" at the start (before | or digits)
+  let m = name.match(/^([A-Za-z][A-Za-z\s\.]+),\s*([A-Z]{2})(?:\s|\||$)/);
+  if (m) return { city: m[1].trim(), state: m[2] };
+  // Pattern 2: "in City, ST" anywhere
+  m = name.match(/\bin\s+([A-Za-z][A-Za-z\s\.]+),\s*([A-Z]{2})(?:\s|$|!|,)/);
+  if (m) return { city: m[1].trim(), state: m[2] };
+  // Pattern 3: "City, ST" anywhere
+  m = name.match(/([A-Za-z][A-Za-z\s\.]{1,30}),\s*([A-Z]{2})(?:\s|\||$|!|,)/);
+  if (m) return { city: m[1].trim(), state: m[2] };
+  return null;
+}
+
+async function geocodeCityState(city, state, cache) {
+  const key = `${city},${state}`.toLowerCase().replace(/\s+/g, '-');
+  if (cache[key]) return cache[key];
+
+  const query = encodeURIComponent(`${city}, ${state}, USA`);
+  const url = `https://nominatim.openstreetmap.org/search?q=${query}&format=json&limit=1&countrycodes=us`;
+  try {
+    const res = await fetch(url, {
+      headers: { 'User-Agent': 'KillerGrowth-AuctionSite/1.0 (notifications@killergrowth.com)' }
+    });
+    const data = await res.json();
+    if (data && data[0] && data[0].lat && data[0].lon) {
+      const result = { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon), city, state };
+      cache[key] = result;
+      console.log(`  Geocoded: ${city}, ${state} → ${result.lat}, ${result.lng}`);
+      // Nominatim rate limit: 1 req/sec
+      await new Promise(r => setTimeout(r, 1100));
+      return result;
+    }
+  } catch (e) {
+    console.warn(`  Geocode failed for ${city}, ${state}:`, e.message);
+  }
+  cache[key] = null; // cache miss so we don't retry every run
+  return null;
+}
+
+async function enrichLocations(auctions) {
+  const cache = loadGeoCache();
+  let changed = false;
+  for (const a of auctions) {
+    if (a.location && a.location.lat && a.location.lng) continue; // already has coords
+    const parsed = extractCityState(a.name);
+    if (!parsed) continue;
+    const geo = await geocodeCityState(parsed.city, parsed.state, cache);
+    if (geo) {
+      // Attach synthesized location so the rest of the pipeline just works
+      a.location = a.location || {};
+      a.location.lat = String(geo.lat);
+      a.location.lng = String(geo.lng);
+      a.location.city  = a.location.city  || geo.city;
+      a.location.state = a.location.state || geo.state;
+      changed = true;
+    }
+  }
+  if (changed) saveGeoCache(cache);
+  return auctions;
+}
+
 // ── API ───────────────────────────────────────────────────────────────────
 
 async function fetchAllAuctions() {
@@ -863,6 +951,9 @@ async function main() {
     console.error('Failed to fetch auctions:', err.message);
     process.exit(1);
   }
+
+  // Geocode auctions missing lat/lng using city/state parsed from name
+  auctions = await enrichLocations(auctions);
 
   if (!auctions.length) {
     console.warn('No auctions returned — aborting to avoid overwriting pages.');

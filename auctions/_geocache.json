@@ -1,0 +1,124 @@
+{
+  "green-castle,mo": {
+    "lat": 39.3594097,
+    "lng": -94.5713952,
+    "city": "Green Castle",
+    "state": "MO"
+  },
+  "burden,ks": {
+    "lat": 37.3128025,
+    "lng": -96.7541973,
+    "city": "Burden",
+    "state": "KS"
+  },
+  "galena,ks": {
+    "lat": 37.0741519,
+    "lng": -94.6390414,
+    "city": "Galena",
+    "state": "KS"
+  },
+  "home-in-hutchinson,ks": null,
+  "attica,ks": {
+    "lat": 37.2414101,
+    "lng": -98.226735,
+    "city": "Attica",
+    "state": "KS"
+  },
+  "lamont,ok": {
+    "lat": 36.690587,
+    "lng": -97.5564376,
+    "city": "Lamont",
+    "state": "OK"
+  },
+  "sedgwick,ks": {
+    "lat": 37.6448148,
+    "lng": -97.4641388,
+    "city": "Sedgwick",
+    "state": "KS"
+  },
+  "hutchinson,ks": {
+    "lat": 38.0608444,
+    "lng": -97.9297743,
+    "city": "Hutchinson",
+    "state": "KS"
+  },
+  "sasakwa,ok": {
+    "lat": 34.9486951,
+    "lng": -96.525289,
+    "city": "Sasakwa",
+    "state": "OK"
+  },
+  "coffeyville,ks": {
+    "lat": 37.0372999,
+    "lng": -95.6163634,
+    "city": "Coffeyville",
+    "state": "KS"
+  },
+  "augusta,ks": {
+    "lat": 37.6809165,
+    "lng": -96.9771177,
+    "city": "Augusta",
+    "state": "KS"
+  },
+  "harper,ks": {
+    "lat": 37.1922068,
+    "lng": -98.0835849,
+    "city": "Harper",
+    "state": "KS"
+  },
+  "norwich,ks": {
+    "lat": 37.4572405,
+    "lng": -97.8489433,
+    "city": "Norwich",
+    "state": "KS"
+  },
+  "fredonia,ks": {
+    "lat": 37.5339386,
+    "lng": -95.8266483,
+    "city": "Fredonia",
+    "state": "KS"
+  },
+  "niotaze,ks": {
+    "lat": 37.0664337,
+    "lng": -96.0152107,
+    "city": "Niotaze",
+    "state": "KS"
+  },
+  "elk-county,ks": {
+    "lat": 37.4619149,
+    "lng": -96.2528451,
+    "city": "Elk County",
+    "state": "KS"
+  },
+  "west-virginia-moran,ks": null,
+  "rd.-neodesha,ks": {
+    "lat": 37.4366637,
+    "lng": -95.6769806,
+    "city": "Rd. Neodesha",
+    "state": "KS"
+  },
+  "neodesha,ks": {
+    "lat": 37.4183929,
+    "lng": -95.6802581,
+    "city": "Neodesha",
+    "state": "KS"
+  },
+  "harper-county,ks": {
+    "lat": 37.1922068,
+    "lng": -98.0835849,
+    "city": "Harper County",
+    "state": "KS"
+  },
+  "thayer,ks": {
+    "lat": 37.4886003,
+    "lng": -95.4726393,
+    "city": "Thayer",
+    "state": "KS"
+  },
+  "buffalo,ks": {
+    "lat": 37.7097669,
+    "lng": -95.6974822,
+    "city": "Buffalo",
+    "state": "KS"
+  }
+}
