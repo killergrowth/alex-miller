@@ -83,6 +83,48 @@
       "author": "Alex Miller",
       "createdAt": "2026-08-21T07:00:00.000Z",
       "updatedAt": "2026-08-21T07:00:00.000Z"
+    },
+    {
+      "slug": "preparing-your-farm-for-sale-kansas-seller-checklist",
+      "title": "Preparing Your Farm for Sale: A Complete Kansas Seller Checklist",
+      "status": "published",
+      "publishDate": "2026-09-02T07:00:00.000Z",
+      "scheduledDate": "2026-09-02T07:00:00.000Z",
+      "excerpt": "A practical Kansas landowner's guide to reducing surprises, strengthening buyer confidence, and protecting the sale timeline — from title work and leases to photography and closing.",
+      "featuredImage": "/images/blog/preparing-your-farm-for-sale.png",
+      "inlineImage1": null,
+      "inlineImage2": null,
+      "tags": [
+        "preparing your farm for sale",
+        "farm seller checklist",
+        "selling Kansas farmland",
+        "prepare farmland for sale",
+        "kansas land auction"
+      ],
+      "author": "Alex Miller",
+      "createdAt": "2026-09-02T07:00:00.000Z",
+      "updatedAt": "2026-09-02T07:00:00.000Z"
+    },
+    {
+      "slug": "july-kansas-land-market-report-2026",
+      "title": "July 2026 Kansas Land Market Report: Farmland Values",
+      "status": "published",
+      "publishDate": "2026-09-04T07:00:00.000Z",
+      "scheduledDate": "2026-09-04T07:00:00.000Z",
+      "excerpt": "Kansas land values remained firm through July 2026. Pasture led statewide gains while cropland continued rising at a more measured pace.",
+      "featuredImage": "/images/blog/july-kansas-land-market-report-2026.png",
+      "inlineImage1": null,
+      "inlineImage2": null,
+      "tags": [
+        "kansas land market report",
+        "kansas farmland values",
+        "kansas land prices 2026",
+        "kansas pasture values",
+        "kansas cropland market"
+      ],
+      "author": "Alex Miller",
+      "createdAt": "2026-09-04T07:00:00.000Z",
+      "updatedAt": "2026-09-04T07:00:00.000Z"
     }
   ]
 }
