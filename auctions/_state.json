@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-09-07T17:35:27.497Z",
+  "lastFetch": "2026-09-07T21:16:38.206Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -483,9 +483,10 @@
     },
     "167372": {
       "slug": "85-acres-with-home-in-galena-ks-167372",
-      "status": "pending",
+      "status": "accepting_bids",
       "name": "8.5 +/- Acres with Home in Galena, KS",
-      "generated": "2026-08-10T16:01:54.553Z"
+      "generated": "2026-08-10T16:01:54.553Z",
+      "updated": "2026-09-07T21:16:38.206Z"
     }
   }
 }
