@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-09-10T16:02:39.744Z",
+  "lastFetch": "2026-09-10T20:35:22.321Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -465,9 +465,10 @@
     },
     "166822": {
       "slug": "burden-ks-745-acres-166822",
-      "status": "accepting_bids",
+      "status": "complete",
       "name": "Burden, KS 74.5 +/- Acres",
-      "generated": "2026-07-30T19:36:38.786Z"
+      "generated": "2026-07-30T19:36:38.786Z",
+      "updated": "2026-09-10T20:35:22.321Z"
     },
     "166861": {
       "slug": "erie-ks-12331-acres-166861",
