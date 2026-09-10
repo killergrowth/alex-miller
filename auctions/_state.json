@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-09-10T10:53:48.345Z",
+  "lastFetch": "2026-09-10T16:02:39.744Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -492,6 +492,12 @@
       "status": "pending",
       "name": "Hidden Cabin with Endless Potential on 0.55+/- Acres in Wilson Co, KS",
       "generated": "2026-09-08T16:16:10.293Z"
+    },
+    "169478": {
+      "slug": "little-river-ks-783-acres-169478",
+      "status": "pending",
+      "name": "Little River, KS 78.3 +/- Acres",
+      "generated": "2026-09-10T16:02:39.745Z"
     }
   }
 }
