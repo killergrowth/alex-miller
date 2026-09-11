@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-09-11T20:40:36.443Z",
+  "lastFetch": "2026-09-11T23:03:43.991Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -473,8 +473,7 @@
       "slug": "erie-ks-12331-acres-166861",
       "status": "accepting_bids",
       "name": "Erie, KS 123.31 +/- Acres",
-      "generated": "2026-07-31T14:13:31.692Z",
-      "updated": "2026-09-11T20:40:36.443Z"
+      "generated": "2026-07-31T14:13:31.692Z"
     },
     "166881": {
       "slug": "green-castle-mo-3-tracts-71-acres-166881",
@@ -484,9 +483,10 @@
     },
     "167372": {
       "slug": "85-acres-with-home-in-galena-ks-167372",
-      "status": "accepting_bids",
+      "status": "complete",
       "name": "8.5 +/- Acres with Home in Galena, KS",
-      "generated": "2026-08-10T16:01:54.553Z"
+      "generated": "2026-08-10T16:01:54.553Z",
+      "updated": "2026-09-11T23:03:43.991Z"
     },
     "169241": {
       "slug": "hidden-cabin-with-endless-potential-on-055-acres-in-wilson-c-169241",
