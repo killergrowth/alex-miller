@@ -2,10 +2,8 @@ name: Refresh Auction Pages
 
 on:
   schedule:
-    # Every 3 hours — auctions don't change that fast
     - cron: '0 */3 * * *'
   workflow_dispatch:
-    # Also triggerable manually from GitHub Actions tab
 
 jobs:
   refresh:
@@ -24,10 +22,10 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
       - name: Generate auction pages
-        # generate-auctions.mjs writes directly to dist/auctions/ and updates
-        # dist/sitemap.xml. We do NOT run build.js here because it has
-        # hardcoded Windows absolute paths that don't work on Ubuntu.
         run: node generate-auctions.mjs --direct
 
       - name: Commit changes (if any)
@@ -40,26 +38,17 @@ jobs:
           else
             git commit -m "chore: refresh auction pages $(date -u '+%Y-%m-%d %H:%M UTC')"
             git push origin main
-            # Keep staging in sync with main after every refresh
             git push origin main:staging
           fi
 
       - name: Deploy to Cloudflare Pages (main)
         if: success()
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: 27cafbbee6f8e1db0d9499405d4755c1
-          projectName: alex-miller
-          directory: dist
-          branch: main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: wrangler pages deploy dist --project-name=alex-miller --branch=main
 
       - name: Deploy to Cloudflare Pages (staging)
         if: success()
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: 27cafbbee6f8e1db0d9499405d4755c1
-          projectName: alex-miller
-          directory: dist
-          branch: staging
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: wrangler pages deploy dist --project-name=alex-miller --branch=staging
