@@ -133,7 +133,7 @@
       "publishDate": "2026-09-22T07:00:00.000Z",
       "scheduledDate": "2026-09-22T07:00:00.000Z",
       "excerpt": "See current Rice County, Kansas farmland values for dryland, irrigated cropland, and pasture, plus recent sales, market trends, and seller guidance.",
-      "featuredImage": "/images/blog/rice-county-kansas-farmland-values-2026.png",
+      "featuredImage": "/blog-posts/images/rice-county-kansas-farmland-values-2026.jpg",
       "inlineImage1": null,
       "inlineImage2": null,
       "tags": [
@@ -145,7 +145,30 @@
       ],
       "author": "Alex Miller",
       "createdAt": "2026-09-22T07:00:00.000Z",
-      "updatedAt": "2026-09-22T07:00:00.000Z"
+      "updatedAt": "2026-09-22T07:00:00.000Z",
+      "featuredImageAlt": "Aerial view of Rice County Kansas farmland representing current cropland and pasture values."
+    },
+    {
+      "slug": "what-determines-kansas-farm-ground-value",
+      "title": "What Determines the Value of Kansas Farm Ground",
+      "status": "published",
+      "publishDate": "2026-09-22T12:00:00.000Z",
+      "scheduledDate": "2026-09-22T12:00:00.000Z",
+      "excerpt": "Kansas farm ground is worth more than a statewide average. See how soils, water, income, location, access, improvements, and buyer demand shape a property-specific value.",
+      "featuredImage": "/images/blog/what-determines-kansas-farm-ground-value.png",
+      "featuredImageAlt": "Kansas farm ground with cropland and pasture being evaluated for soil, water, access, improvements, and market value.",
+      "inlineImage1": null,
+      "inlineImage2": null,
+      "tags": [
+        "what determines Kansas farm ground value",
+        "Kansas farmland value factors",
+        "farm ground appraisal",
+        "soil productivity and land value",
+        "valuing Kansas farmland"
+      ],
+      "author": "Alex Miller",
+      "createdAt": "2026-09-22T12:00:00.000Z",
+      "updatedAt": "2026-09-22T12:00:00.000Z"
     }
   ]
 }

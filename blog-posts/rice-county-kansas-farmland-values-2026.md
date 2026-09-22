@@ -5,7 +5,7 @@ status: published
 publishDate: '2026-09-22T07:00:00.000Z'
 excerpt: >-
   See current Rice County, Kansas farmland values for dryland, irrigated cropland, and pasture, plus recent sales, market trends, and seller guidance.
-featuredImage: /images/blog/rice-county-kansas-farmland-values-2026.png
+featuredImage: /blog-posts/images/rice-county-kansas-farmland-values-2026.jpg
 inlineImage1: null
 inlineImage2: null
 tags:
@@ -136,3 +136,4 @@ Alex Miller | L2 Realty Inc. & Auction | 316-313-4759
 ---
 
 *Sources: K-State Research and Extension, Kansas Agricultural Land Values and Trends 2025; USDA NASS, Land Values 2026 Summary; USDA NASS, Kansas county cash-rent data; Kansas Department of Revenue, Agricultural Use Valuation; DTN Progressive Farmer, reported Rice County and Rice/Ellsworth County auction results. Market data is current through September 2026 where available. Reported sale results may be rounded and should be verified before use in an appraisal or transaction. This article provides general market information and is not a certified appraisal, legal opinion, tax advice, water-right opinion, survey, or guarantee of sale price.*
+
