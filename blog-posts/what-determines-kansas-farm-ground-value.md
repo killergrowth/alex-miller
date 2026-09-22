@@ -4,7 +4,7 @@ title: What Determines the Value of Kansas Farm Ground
 date: 2026-09-22
 author: Alex Miller
 excerpt: Kansas farm ground is worth more than a statewide average. See how soils, water, income, location, access, improvements, and buyer demand shape a property-specific value.
-featuredImage: /images/blog/what-determines-kansas-farm-ground-value.png
+featuredImage: /img/blog/what-determines-kansas-farm-ground-value.png
 featuredImageAlt: Kansas farm ground with cropland and pasture being evaluated for soil, water, access, improvements, and market value.
 tags:
   - what determines Kansas farm ground value
