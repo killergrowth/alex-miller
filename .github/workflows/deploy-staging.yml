@@ -13,10 +13,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Deploy to Cloudflare Pages (staging)
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: 27cafbbee6f8e1db0d9499405d4755c1
-          projectName: alex-miller
-          directory: dist
-          branch: staging
+        run: npx wrangler pages deploy dist --project-name=alex-miller --branch=staging
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: 27cafbbee6f8e1db0d9499405d4755c1
