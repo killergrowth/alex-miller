@@ -36,9 +36,9 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "chore: refresh auction pages $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git commit -m "chore: refresh auction pages 2026-09-23 11:43 UTC"
             git push origin main
-            git push origin main:staging
+            git push origin main:staging --force
           fi
 
       - name: Deploy to Cloudflare Pages (main)
