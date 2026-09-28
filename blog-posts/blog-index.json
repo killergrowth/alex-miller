@@ -169,6 +169,29 @@
                       "author":  "Alex Miller",
                       "createdAt":  "2026-09-22T12:00:00.000Z",
                       "updatedAt":  "2026-09-22T12:00:00.000Z"
+                  },
+                  {
+                      "slug":  "reserve-vs-absolute-auctions",
+                      "title":  "Reserve vs. Absolute Auctions Explained for Kansas Sellers",
+                      "status":  "published",
+                      "publishDate":  "2026-09-28T07:00:00.000Z",
+                      "scheduledDate":  "2026-09-28T07:00:00.000Z",
+                      "excerpt":  "Reserve auctions protect a seller's minimum, while absolute auctions guarantee a sale to the highest qualified bidder. Compare the risks, benefits, and best uses of each format.",
+                      "featuredImage":  "/img/blog/reserve-vs-absolute-auctions.png",
+                      "featuredImageAlt":  "Kansas real estate auction comparing a reserve auction with an absolute auction.",
+                      "inlineImage1":  null,
+                      "inlineImage2":  null,
+                      "tags":  [
+                                   "reserve vs absolute auction",
+                                   "absolute auction meaning",
+                                   "reserve auction meaning",
+                                   "Kansas real estate auction",
+                                   "auction with reserve",
+                                   "auction without reserve"
+                               ],
+                      "author":  "Alex Miller",
+                      "createdAt":  "2026-09-28T07:00:00.000Z",
+                      "updatedAt":  "2026-09-28T07:00:00.000Z"
                   }
               ]
 }
