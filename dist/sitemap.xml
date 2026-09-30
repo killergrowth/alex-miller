@@ -254,6 +254,13 @@
   </url>
 
   <url>
+    <loc>https://amauctionsandrealestate.com/auctions/cherryvale-ks-3-tracts-625-acres-170665/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://amauctionsandrealestate.com/auctions/cherryvale-ks-315-acres-165168/</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
@@ -374,6 +381,13 @@
 
   <url>
     <loc>https://amauctionsandrealestate.com/auctions/home-in-hutchinson-ks-164706/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://amauctionsandrealestate.com/auctions/howard-ks-414-acres-170725/</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -996,14 +1010,4 @@
     <priority>0.6</priority>
   </url>
 
-  <url>
-    <loc>https://amauctionsandrealestate.com/auctions/cherryvale-ks-3-tracts-625-acres-170665/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://amauctionsandrealestate.com/auctions/howard-ks-414-acres-170725/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
 </urlset>
