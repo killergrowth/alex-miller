@@ -171,6 +171,30 @@
                       "updatedAt":  "2026-09-22T12:00:00.000Z"
                   },
                   {
+                      "slug":  "selling-estate-farm-kansas",
+                      "title":  "Selling an Estate Farm in Kansas: What Families Need to Know",
+                      "status":  "published",
+                      "publishDate":  "2026-09-30T07:00:00.000Z",
+                      "scheduledDate":  "2026-09-30T07:00:00.000Z",
+                      "excerpt":  "Selling an inherited Kansas farm starts with ownership and authority. This guide explains probate, value, taxes, leases, title, family decisions, sale methods, and closing.",
+                      "featuredImage":  "/img/blog/selling-estate-farm-kansas.png",
+                      "featuredImageAlt":  "Kansas family reviewing inherited farmland maps and estate documents before selling the family farm.",
+                      "inlineImage1":  null,
+                      "inlineImage2":  null,
+                      "tags":  [
+                                   "selling an estate farm",
+                                   "inherited farmland",
+                                   "estate farm sale",
+                                   "probate property",
+                                   "selling inherited farmland in Kansas",
+                                   "Kansas probate real estate",
+                                   "family farm inheritance"
+                               ],
+                      "author":  "Alex Miller",
+                      "createdAt":  "2026-09-30T07:00:00.000Z",
+                      "updatedAt":  "2026-09-30T07:00:00.000Z"
+                  },
+                  {
                       "slug":  "reserve-vs-absolute-auctions",
                       "title":  "Reserve vs. Absolute Auctions Explained for Kansas Sellers",
                       "status":  "published",
