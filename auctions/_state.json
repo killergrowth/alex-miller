@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-10-02T09:29:34.972Z",
+  "lastFetch": "2026-10-02T17:38:16.171Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -495,9 +495,10 @@
     },
     "169478": {
       "slug": "little-river-ks-783-acres-169478",
-      "status": "pending",
+      "status": "accepting_bids",
       "name": "Little River, KS 78.3 +/- Acres",
-      "generated": "2026-09-10T16:02:39.745Z"
+      "generated": "2026-09-10T16:02:39.745Z",
+      "updated": "2026-10-02T17:38:16.171Z"
     },
     "169869": {
       "slug": "sedgwick-ks-7682-acres-169869",
