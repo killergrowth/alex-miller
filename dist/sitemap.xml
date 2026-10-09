@@ -1010,4 +1010,9 @@
     <priority>0.6</priority>
   </url>
 
+  <url>
+    <loc>https://amauctionsandrealestate.com/auctions/2-tracts-276-acres-fredonia-toronto-ks-171539/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
