@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-10-09T18:07:55.671Z",
+  "lastFetch": "2026-10-10T00:34:16.781Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -503,8 +503,7 @@
       "slug": "sedgwick-ks-7682-acres-169869",
       "status": "accepting_bids",
       "name": "Sedgwick, KS 76.82+/- Acres",
-      "generated": "2026-09-16T16:25:26.519Z",
-      "updated": "2026-10-09T18:07:55.671Z"
+      "generated": "2026-09-16T16:25:26.519Z"
     },
     "170507": {
       "slug": "independence-ks-9832-acres-170507",
