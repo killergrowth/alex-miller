@@ -195,6 +195,51 @@
                       "updatedAt":  "2026-09-30T07:00:00.000Z"
                   },
                   {
+                      "slug":  "kansas-land-auction-success-story",
+                      "title":  "Kansas Land Auction Success Story: Lessons From a Kansas Land Sale",
+                      "status":  "published",
+                      "publishDate":  "2026-09-30T12:00:00.000Z",
+                      "scheduledDate":  "2026-09-30T12:00:00.000Z",
+                      "excerpt":  "One Kansas land auction exceeded its reserve by 50 percent. Another beat expectations by nearly $1,500 per acre. Here are the seller lessons behind those results.",
+                      "featuredImage":  "/images/ChatGPT_Image_Sep_30__2026__12_24_01_PM.png",
+                      "featuredImageAlt":  "Recent Auction Success Story - Lessons From a Kansas Land Sale, auctioneer shaking hands with sellers at a Kansas land auction at sunset.",
+                      "inlineImage1":  null,
+                      "inlineImage2":  null,
+                      "tags":  [
+                                   "kansas land auction success story",
+                                   "kansas land auction results",
+                                   "farm auction case study",
+                                   "successful farmland auction",
+                                   "reserve land auction",
+                                   "no reserve land auction"
+                               ],
+                      "author":  "Alex Miller",
+                      "createdAt":  "2026-09-30T12:00:00.000Z",
+                      "updatedAt":  "2026-09-30T12:00:00.000Z"
+                  },
+                  {
+                      "slug":  "understanding-soil-productivity-land-value",
+                      "title":  "Understanding Soil Productivity and Land Value",
+                      "status":  "published",
+                      "publishDate":  "2026-10-10T07:00:00.000Z",
+                      "scheduledDate":  "2026-10-10T07:00:00.000Z",
+                      "excerpt":  "Learn how NCCPI, soil classes, water capacity, drainage, slope, and field conditions influence Kansas farmland productivity and market value.",
+                      "featuredImage":  "/blog-posts/images/understanding-soil-productivity-land-value.png",
+                      "featuredImageAlt":  "Kansas farmland and soil map illustrating how soil productivity affects agricultural land value.",
+                      "inlineImage1":  null,
+                      "inlineImage2":  null,
+                      "tags":  [
+                                   "Kansas soil productivity",
+                                   "NCCPI Kansas",
+                                   "farmland soil quality",
+                                   "soil rating and land value",
+                                   "Kansas farm ground value"
+                               ],
+                      "author":  "Alex Miller",
+                      "createdAt":  "2026-10-10T07:00:00.000Z",
+                      "updatedAt":  "2026-10-10T07:00:00.000Z"
+                  },
+                  {
                       "slug":  "reserve-vs-absolute-auctions",
                       "title":  "Reserve vs. Absolute Auctions Explained for Kansas Sellers",
                       "status":  "published",
