@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-10-20T19:01:49.192Z",
+  "lastFetch": "2026-10-20T23:40:35.515Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -534,6 +534,12 @@
       "status": "pending",
       "name": "2 Tracts | 276 +/- Acres | Fredonia & Toronto, KS",
       "generated": "2026-10-09T18:07:55.686Z"
+    },
+    "172287": {
+      "slug": "derby-ks-5-acres-with-home-172287",
+      "status": "pending",
+      "name": "Derby, KS | 5 +/- Acres with Home",
+      "generated": "2026-10-20T23:40:35.516Z"
     }
   }
 }

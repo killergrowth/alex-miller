@@ -1038,4 +1038,9 @@
     <priority>0.6</priority>
   </url>
 
+  <url>
+    <loc>https://amauctionsandrealestate.com/auctions/derby-ks-5-acres-with-home-172287/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
