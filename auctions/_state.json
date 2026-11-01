@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-10-31T21:11:23.379Z",
+  "lastFetch": "2026-11-01T05:02:08.032Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -521,8 +521,7 @@
       "slug": "cherryvale-ks-3-tracts-625-acres-170665",
       "status": "accepting_bids",
       "name": "Cherryvale, KS | 3 Tracts | 62.5 +/- Acres",
-      "generated": "2026-09-28T21:07:29.739Z",
-      "updated": "2026-10-31T21:11:23.379Z"
+      "generated": "2026-09-28T21:07:29.739Z"
     },
     "170725": {
       "slug": "howard-ks-414-acres-170725",
