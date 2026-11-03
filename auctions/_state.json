@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-11-02T21:30:43.587Z",
+  "lastFetch": "2026-11-03T05:51:00.554Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -509,8 +509,7 @@
       "slug": "independence-ks-9832-acres-170507",
       "status": "accepting_bids",
       "name": "Independence, KS 98.32+/- Acres",
-      "generated": "2026-09-25T16:50:21.343Z",
-      "updated": "2026-11-02T21:30:43.587Z"
+      "generated": "2026-09-25T16:50:21.343Z"
     },
     "170617": {
       "slug": "4-tracts-27-acres-independence-ks-170617",
