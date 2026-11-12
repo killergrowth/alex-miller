@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-11-12T06:22:38.182Z",
+  "lastFetch": "2026-11-12T17:26:26.091Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -537,9 +537,10 @@
     },
     "172287": {
       "slug": "derby-ks-5-acres-with-home-172287",
-      "status": "pending",
+      "status": "accepting_bids",
       "name": "Derby, KS | 5 +/- Acres with Home",
-      "generated": "2026-10-20T23:40:35.516Z"
+      "generated": "2026-10-20T23:40:35.516Z",
+      "updated": "2026-11-12T17:26:26.091Z"
     }
   }
 }
