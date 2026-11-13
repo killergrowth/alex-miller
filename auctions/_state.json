@@ -1,5 +1,5 @@
 {
-  "lastFetch": "2026-11-13T14:11:21.087Z",
+  "lastFetch": "2026-11-13T21:15:36.048Z",
   "auctions": {
     "76794": {
       "slug": "southern-forest-products-auction-6-tracts-to-be-auctioned-76794",
@@ -531,9 +531,10 @@
     },
     "171539": {
       "slug": "2-tracts-276-acres-fredonia-toronto-ks-171539",
-      "status": "accepting_bids",
+      "status": "complete",
       "name": "2 Tracts | 276 +/- Acres | Fredonia & Toronto, KS",
-      "generated": "2026-10-09T18:07:55.686Z"
+      "generated": "2026-10-09T18:07:55.686Z",
+      "updated": "2026-11-13T21:15:36.048Z"
     },
     "172287": {
       "slug": "derby-ks-5-acres-with-home-172287",
